@@ -1,0 +1,173 @@
+[
+  {
+    "type": "hamzat-wasl",
+    "Name": "Hamzat al-Wasl",
+    "description": "Hamzat al-Wasl est prononcée au début de la récitation et omise en liaison.",
+    "possible_errors": [
+      "Prononcée en liaison au lieu d’être omise",
+      "Non prononcée au début de la récitation",
+      "Mauvaise vocalisation en début"
+    ]
+  },
+  {
+    "type": "silent",
+    "Name": "Lettre muette (Sukoun)",
+    "description": "Lettre immobile écrite mais non prononcée.",
+    "possible_errors": [
+      "Lettre immobile prononcée",
+      "Ajout d’une voyelle après le soukoun",
+      "Omission de l’arrêt sur la lettre"
+    ]
+  },
+  {
+    "type": "lam_shamsiyyah",
+    "Name": "Lām Solaire",
+    "description": "Lam Shamsiyyah est assimilée à la lettre solaire qui la suit.",
+    "possible_errors": [
+      "Le lam a été prononcé au lieu d’être assimilé",
+      "Absence de chaddah sur la lettre solaire",
+      "Assimilation incorrecte (cas d’un lam qamariyyah)"
+    ]
+  },
+  {
+    "type": "madd_2",
+    "Name": "Madd Naturel",
+    "description": "Madd naturel de deux mouvements.",
+    "possible_errors": [
+      "Aucun allongement effectué",
+      "Allongement supérieur à deux mouvements",
+      "Arrêt pendant l’allongement"
+    ]
+  },
+  {
+    "type": "madd_246",
+    "Name": "Madd Facultatif",
+    "description": "Madd facultatif pouvant être de 2, 4 ou 6 mouvements.",
+    "possible_errors": [
+      "Allongement incorrect (moins de 2 ou plus de 6)",
+      "Variations d’allongement entre les lectures",
+      "Omission de l’allongement malgré la cause"
+    ]
+  },
+  {
+    "type": "madda_necesssary",
+    "Name": "Madd Obligatoire",
+    "description": "Madd obligatoire de 6 mouvements en raison d’un soukoun obligatoire.",
+    "possible_errors": [
+      "Allongement de moins de 6 mouvements",
+      "Traitement comme un madd naturel",
+      "Omission du soukoun obligatoire"
+    ]
+  },
+  {
+    "type": "qalaqah",
+    "Name": "Qalqalah (Rebond)",
+    "description": "Qalqalah : vibration sonore à l’arrêt sur certaines lettres.",
+    "possible_errors": [
+      "Absence de qalqalah à l’arrêt",
+      "Application de qalqalah en liaison",
+      "Exagération du son de la qalqalah"
+    ]
+  },
+  {
+    "type": "madda-obligatory",
+    "Name": "Madd Wājib Muttasil",
+    "description": "Madd wajib muttasil : allongement de 4 à 5 mouvements dû à une hamza en liaison.",
+    "possible_errors": [
+      "Allongement inférieur à 4 mouvements",
+      "Traitement comme un madd naturel",
+      "Omission de la hamza après la lettre d’allongement"
+    ]
+  },
+  {
+    "type": "ikhafa_shafawi",
+    "Name": "Ikhfā Chafawi",
+    "description": "Ikhfâ shafawi : dissimulation du mīm sakinah devant un bā’ avec ghounnah.",
+    "possible_errors": [
+      "Mīm clairement prononcé",
+      "Omission de la ghounnah",
+      "Position incorrecte des lèvres"
+    ]
+  },
+  {
+    "type": "ikhafa",
+    "Name": "Ikhfā",
+    "description": "Ikhfâ : dissimulation de la nūn sākinah ou du tanwīn devant une lettre d’ikhfâ avec ghounnah.",
+    "possible_errors": [
+      "Nūn ou tanwīn prononcés",
+      "Absence de ghounnah",
+      "Interruption avant l’application de l’ikhfâ"
+    ]
+  },
+  {
+    "type": "idgham_shafawi",
+    "Name": "Idghām Chafawi",
+    "description": "Idghām shafawi : assimilation du mīm sakinah dans un mīm avec ghounnah.",
+    "possible_errors": [
+      "Pas d’assimilation des deux mīm",
+      "Assimilation sans ghounnah",
+      "Fermeture incorrecte des lèvres"
+    ]
+  },
+  {
+    "type": "iqlab",
+    "Name": "Iqlāb",
+    "description": "Iqlāb : transformation de la nūn sākinah ou du tanwīn en mīm devant un bā’ avec ghounnah.",
+    "possible_errors": [
+      "Nūn non transformée en mīm",
+      "Absence de ghounnah pendant l’iqlāb",
+      "Mīm mal prononcée"
+    ]
+  },
+  {
+    "type": "idgham_with_ghunnah",
+    "Name": "Idghām avec Ghounnah",
+    "description": "Idghām avec ghounnah de la nūn sākinah ou du tanwīn avec les lettres 'ي', 'ن', 'م', 'و'.",
+    "possible_errors": [
+      "Idghām sans ghounnah",
+      "Énonciation au lieu de l’idghām",
+      "Ghounnah exagérée"
+    ]
+  },
+  {
+    "type": "idgham_without_ghunnah",
+    "Name": "Idghām sans Ghounnah",
+    "description": "Idghām sans ghounnah de la nūn sākinah ou du tanwīn dans 'lām' ou 'rā’.",
+    "possible_errors": [
+      "Idghām avec ghounnah",
+      "Idghām incorrect",
+      "Pause claire entre les lettres"
+    ]
+  },
+  {
+    "type": "idgham_mutajanisayn",
+    "Name": "Idghām des Lettres Identiques",
+    "description": "Idghām de deux lettres identiques dans le point d’articulation et la caractéristique.",
+    "possible_errors": [
+      "Pas d’assimilation des deux lettres",
+      "Idghām avec ghounnah non nécessaire",
+      "Prononciation floue de la lettre assimilée"
+    ]
+  },
+  {
+    "type": "idgham_mutaqaribayn",
+    "Name": "Idghām des Lettres Proches",
+    "description": "Idghām de deux lettres proches en articulation, comme 'ق' et 'ك'.",
+    "possible_errors": [
+      "Aucune assimilation effectuée",
+      "Prononciation confuse de la deuxième lettre",
+      "Ajout de ghounnah non requise"
+    ]
+  },
+  {
+    "type": "ghunnah",
+    "Name": "Ghounnah (Nasalisation)",
+    "description": "Ghounnah : son nasal prolongé de deux mouvements.",
+    "possible_errors": [
+      "Ghounnah non appliquée",
+      "Ghounnah trop courte",
+      "Ghounnah trop longue",
+      "Prononciation non nasale"
+    ]
+  }
+]

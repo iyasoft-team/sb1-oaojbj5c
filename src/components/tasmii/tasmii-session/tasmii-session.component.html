@@ -1,0 +1,24 @@
+<div class="tasmii-container">
+ <mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <mat-panel-title class="student-header">
+      <mat-icon>account_circle</mat-icon>
+      <span class="student-name">majdi</span>
+    </mat-panel-title>
+    <mat-panel-description>
+      from baqarah ayah1 -> ayah10 : page 20
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+
+  <!-- Expanded Content -->
+
+</mat-expansion-panel>
+
+  <div class="horizontal-div tasmii-main gap-20" (click)="reset()">
+    <app-quran-book2 (OnCharClick)="OnCharClick($event)"></app-quran-book2>
+    <div class="vertical-div tasmii-eval gap-10">
+      <app-tajweed-eval></app-tajweed-eval>
+      <app-ayah-eval></app-ayah-eval>
+      <app-general-eval></app-general-eval>
+    </div>
+  </div>

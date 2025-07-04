@@ -1,0 +1,18 @@
+<!--<button mat-icon-button *ngFor="let ratingId of ratingArr;index as i" 
+[id]="'star_'+i" 
+matTooltipPosition="above">
+  <mat-icon>
+    {{showIcon(i)}}
+  </mat-icon>
+</button>-->
+<div class="evaluation-menu white-rounded-shd">
+<h3 class="rule-main">: Note Générale </h3>
+<span class="star-bar">
+  <span *ngFor="let i of [1, 2, 3, 4, 5]" (click)="rate(i)">
+    <mat-icon class="star-icon"
+      fontIcon>
+      {{ getIcon(i) }}
+    </mat-icon>
+  </span>
+</span>
+</div>

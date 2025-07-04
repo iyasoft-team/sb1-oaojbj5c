@@ -1,0 +1,20 @@
+<div class="evaluation-menu white-rounded-shd" *ngIf="selectedAyahNumber!=0">
+  <h3 class="rule-main">Recitation evaluation</h3>
+  <div class="horizontal-div" style="justify-content: space-between;">
+  <label class="error-label" id="error-radio-group-label">Evaluer :</label>
+  <label class="error-label" id="error-radio-group-label">الأية رقم{{selectedAyahNumber}}</label>
+  </div>
+
+<mat-radio-group
+  aria-labelledby="error-radio-group-label"
+  class="error-radio-group"
+  [(ngModel)]="selectedError">
+  
+  <mat-radio-button 
+    *ngFor="let error of recitationErrors"
+    class="error-radio-button"
+    [value]="error">
+    {{ error }}
+  </mat-radio-button>
+</mat-radio-group>
+</div>

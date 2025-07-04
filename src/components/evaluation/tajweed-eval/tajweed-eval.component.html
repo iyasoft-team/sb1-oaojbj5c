@@ -1,0 +1,18 @@
+<div class="evaluation-menu white-rounded-shd" *ngIf="selectedTajweedChar">
+  <h3 class="rule-main">Tajweed evaluation</h3>
+  <h3 class="rule-title">{{ selectedRule?.Name }}</h3>
+  <h3 class="rule-title">{{ selectedTajweedChar?.text }}</h3>
+
+  <label class="error-label" id="error-radio-group-label">Choisir l'erreur :</label>
+
+  <mat-radio-group
+    aria-labelledby="error-radio-group-label"
+    class="error-radio-group"
+    [(ngModel)]="selectederror" >
+    @for (error of selectedRule?.possible_errors; track error) {
+      <mat-radio-button class="error-radio-button" [value]="error">
+        {{ error }}
+      </mat-radio-button>
+    }
+  </mat-radio-group>
+</div>

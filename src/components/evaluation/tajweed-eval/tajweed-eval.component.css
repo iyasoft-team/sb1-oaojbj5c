@@ -1,0 +1,53 @@
+.evaluation-menu {
+  width: 500px;
+  height: auto;
+  padding: 20px;
+  font-family: 'Amiri', serif;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  direction: ltr;
+  text-align: left;
+}
+
+.rule-title {
+  font-size: 22px;
+  color: #1d3557;
+  direction: rtl;
+  text-align: center;
+  font-family: 'Amiri', serif;
+}
+
+.rule-main {
+  border-bottom: 2px solid #f1c40f;
+  padding-bottom: 6px;
+  font-size: 22px;
+  color: #1d3557;
+  direction: rtl;
+  text-align: center;
+  font-family: 'Amiri', serif;
+}
+
+
+.error-label {
+  font-size: 18px;
+  font-weight: 600;
+  color: #4f6e99;
+  letter-spacing: 0.5px;
+}
+
+.error-radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.error-radio-button {
+  font-size: 15px;
+  color: #333;
+
+  &.mat-radio-checked .mat-radio-label-content {
+    color: #e67e22;
+    font-weight: bold;
+  }
+}

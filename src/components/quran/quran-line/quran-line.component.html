@@ -1,0 +1,34 @@
+<div class="line">
+  <ng-container *ngFor="let ayah of line.ayahs">
+
+    <!-- Surah Title -->
+    <ng-container *ngIf="ayah.ayahNumber  === -1">
+      <div class="surahName">{{ ayah.text }}</div>
+    </ng-container>
+
+    <!-- Basmalah -->
+    <ng-container *ngIf="ayah.ayahNumber === -2">
+      <div class="basmalah"></div>
+    </ng-container>
+
+    <!-- Regular Ayah (character mode with innerHTML per char) -->
+    <ng-container *ngIf="ayah.ayahNumber > 0">
+      <span class="ayah-group" [ngClass]="{ 'highlight': highlightedAyah === ayah.ayahNumber }" >
+        <ng-container *ngFor="let char of splitAyahChars(ayah,line)">
+          <span 
+            [attr.is-tajweed] = "char.isTajweed"
+            id="-{{ ayah.ayahNumber }}-"
+            class="letter ayah-{{ayah.ayahNumber}} {{char.ruleClass}}"     
+            [innerHTML]="char.char"
+            (click)="OnCharClick(char)">
+          </span>
+        </ng-container>
+
+        <ng-container *ngIf="ayah.isEnd">
+          <span class="ayah-number"  (click)="highlight(ayah.ayahNumber)">﴿{{ayah.ayahNumber}}﴾</span>
+        </ng-container>
+      </span>
+    </ng-container>
+
+  </ng-container>
+</div>

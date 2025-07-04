@@ -1,0 +1,41 @@
+.tasmii-main
+{
+  align-items: stretch; /* ensures both children are aligned vertically */
+  justify-content: center; /* or center/start depending on layout */
+  height: 100%; /* or a specific height if needed */
+  width: 100%;
+  direction: rtl;
+  margin: 15px;
+}
+.tasmii-container {
+  width: 100%;
+  max-width: 1000px; /* or 700px, same as .Quran-page if needed */
+  margin: 5px auto; /* center it */
+}
+
+mat-expansion-panel {
+  width: 103%;
+}
+
+.horizontal-div.tasmii-main {
+  width: 100%;
+}
+
+.student-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-avatar {
+  font-size: 32px;
+  color: #555;
+  background-color: #f1f1f1;
+  border-radius: 50%;
+  padding: 4px;
+}
+
+.student-name {
+  font-weight: 600;
+  font-size: 16px;
+}
