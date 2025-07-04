@@ -5,6 +5,20 @@
 /* Angular Material Theme */
 @import '@angular/material/prebuilt-themes/indigo-pink.css';
 
+
+@font-face {
+  font-family: 'AmiriBold';
+  src: url('assets/fonts/Amiri-Bold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Amiri';
+  src: url('assets/fonts/Amiri-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 /* Reset and base styles */
 * {
   margin: 0;
@@ -49,6 +63,8 @@ body {
   --border-color: #d5dbdb;
   --gold-accent: #d4af37;
   --teal-accent: #17a2b8;
+  --quran-fonts: "AmiriBold","Traditional Arabic", serif;
+  --page-size : 459px;
 }
 
 /* Arabic/Islamic typography */
@@ -812,4 +828,44 @@ body::before {
     box-shadow: none !important;
     border: 1px solid #ccc !important;
   }
+}
+
+.white-rounded-shd
+{
+  background-color: white;
+  border: 1px solid lightgray;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  border-radius: 15px;
+}
+
+.horizontal-div
+{
+  display: flex;
+  flex-direction: row;
+}
+
+.vertical-div
+{
+  display: flex;
+  flex-direction: column;
+}
+
+.gap-10
+{
+gap:10px
+}
+
+.gap-5
+{
+gap:5px
+}
+.gap-20
+{
+  gap:5rem
+
+}
+
+.highlight {
+  background-color: rgb(241, 223, 241);
+  transition: background-color 0.4s ease, box-shadow 0.4s ease;
 }
