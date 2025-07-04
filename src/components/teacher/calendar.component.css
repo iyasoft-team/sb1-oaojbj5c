@@ -141,26 +141,30 @@
 
 .session-item.status-completed {
   background: linear-gradient(135deg, #27ae60, #58d68d);
+  color: white !important;
 }
 
 .session-item.status-cancelled {
   background: linear-gradient(135deg, #e74c3c, #ec7063);
+  color: white !important;
 }
 
 .session-item.status-in-progress {
   background: linear-gradient(135deg, #f39c12, #f7dc6f);
-  color: #333;
+  color: white !important;
 }
 
 .session-time {
   font-weight: 600;
   font-size: 7px;
+  color: white !important;
 }
 
 .session-student {
   font-size: 7px;
   opacity: 0.9;
   margin-top: 1px;
+  color: white !important;
 }
 
 /* Custom scrollbar for day sessions */
