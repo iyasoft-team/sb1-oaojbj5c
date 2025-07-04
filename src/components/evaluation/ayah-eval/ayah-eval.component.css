@@ -50,10 +50,11 @@
 }
 
 .error-radio-button {
-  font-size: 9px;
+  font-size: 5px;
   color: #333;
   transition: all 0.3s ease;
   margin: 0;
+  height: 20px;
 }
 
 /* Override Material radio button styling */
@@ -94,7 +95,7 @@
 
 .error-radio-button .mat-radio-label-content {
   padding-left: 4px !important;
-  font-size: 9px !important;
+  font-size: 5px !important;
   line-height: 1.2 !important;
 }
 
@@ -109,23 +110,6 @@
   box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2) !important;
 }
 
-/* Custom scrollbar */
-.error-radio-group::-webkit-scrollbar {
-  width: 3px;
-}
-
-.error-radio-group::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.error-radio-group::-webkit-scrollbar-thumb {
-  background: rgba(15, 76, 117, 0.2);
-  border-radius: 2px;
-}
-
-.error-radio-group::-webkit-scrollbar-thumb:hover {
-  background: rgba(15, 76, 117, 0.3);
-}
 
 /* Responsive adjustments */
 @media (max-width: 768px) {

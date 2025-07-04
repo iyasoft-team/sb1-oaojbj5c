@@ -109,24 +109,6 @@
   box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2) !important;
 }
 
-/* Custom scrollbar */
-.error-radio-group::-webkit-scrollbar {
-  width: 3px;
-}
-
-.error-radio-group::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.error-radio-group::-webkit-scrollbar-thumb {
-  background: rgba(15, 76, 117, 0.2);
-  border-radius: 2px;
-}
-
-.error-radio-group::-webkit-scrollbar-thumb:hover {
-  background: rgba(15, 76, 117, 0.3);
-}
-
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .evaluation-menu {

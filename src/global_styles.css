@@ -569,22 +569,32 @@ body::before {
 
 /* Custom scrollbar with Islamic theme */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 4px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f2f6;
-  border-radius: 3px;
+   background: transparent;
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
-  border-radius: 3px;
+  background: lightgray;
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+}
+
+.mat-internal-form-field>label {
+    font-size: 11px;
+}
+
+.mat-mdc-radio-button .mdc-radio__native-control{
+  width: 10px  !important;
+}
+.mdc-radio__background{
+transform: scale(0.5);
 }
 
 /* Responsive typography */
