@@ -19,35 +19,134 @@
 }
 
 .rule-main {
-  border-bottom: 2px solid #f1c40f;
+  border-bottom: 2px solid #d4af37;
   padding-bottom: 6px;
   font-size: 22px;
-  color: #1d3557;
+  color: #0f4c75;
   direction: rtl;
   text-align: center;
   font-family: 'Amiri', serif;
 }
 
-
 .error-label {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
-  color: #4f6e99;
+  color: #0f4c75;
   letter-spacing: 0.5px;
 }
 
 .error-radio-group {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
 }
 
 .error-radio-button {
-  font-size: 15px;
+  font-size: 14px;
   color: #333;
+  transition: all 0.3s ease;
+}
 
-  &.mat-radio-checked .mat-radio-label-content {
-    color: #e67e22;
-    font-weight: bold;
+/* Override Material radio button styling */
+.error-radio-button .mat-radio-container {
+  width: 16px !important;
+  height: 16px !important;
+}
+
+.error-radio-button .mat-radio-outer-circle {
+  border-color: #0f4c75 !important;
+  border-width: 2px !important;
+  width: 16px !important;
+  height: 16px !important;
+}
+
+.error-radio-button .mat-radio-inner-circle {
+  background-color: #d4af37 !important;
+  width: 8px !important;
+  height: 8px !important;
+  top: 4px !important;
+  left: 4px !important;
+}
+
+.error-radio-button.mat-radio-checked .mat-radio-outer-circle {
+  border-color: #d4af37 !important;
+  background: linear-gradient(135deg, rgba(15, 76, 117, 0.1), rgba(212, 175, 55, 0.1)) !important;
+}
+
+.error-radio-button.mat-radio-checked .mat-radio-label-content {
+  color: #0f4c75 !important;
+  font-weight: 600 !important;
+}
+
+.error-radio-button:hover .mat-radio-outer-circle {
+  border-color: #d4af37 !important;
+  background: rgba(212, 175, 55, 0.05) !important;
+}
+
+.error-radio-button .mat-radio-label-content {
+  padding-left: 8px !important;
+  font-size: 14px !important;
+  line-height: 1.4 !important;
+}
+
+/* Ripple effect styling */
+.error-radio-button .mat-radio-ripple {
+  color: #d4af37 !important;
+}
+
+/* Focus styling */
+.error-radio-button.mat-radio-focused .mat-radio-outer-circle {
+  border-color: #d4af37 !important;
+  box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2) !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .evaluation-menu {
+    width: 100%;
+    max-width: 450px;
+    padding: 16px;
+  }
+
+  .rule-main {
+    font-size: 20px;
+  }
+
+  .rule-title {
+    font-size: 20px;
+  }
+
+  .error-label {
+    font-size: 15px;
+  }
+
+  .error-radio-button .mat-radio-label-content {
+    font-size: 13px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .evaluation-menu {
+    padding: 12px;
+  }
+
+  .rule-main {
+    font-size: 18px;
+  }
+
+  .rule-title {
+    font-size: 18px;
+  }
+
+  .error-label {
+    font-size: 14px;
+  }
+
+  .error-radio-button .mat-radio-label-content {
+    font-size: 12px !important;
+  }
+
+  .error-radio-group {
+    gap: 6px;
   }
 }
