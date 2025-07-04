@@ -206,13 +206,16 @@
 }
 
 .content-area {
-  min-height: calc(100vh - 200px);
+  height: calc(100vh - 280px);
+  max-height: 600px;
   background: white;
+  overflow: hidden;
 }
 
 .view-content {
   height: 100%;
   animation: fadeIn 0.3s ease-in-out;
+  overflow: hidden;
 }
 
 /* Calendar specific styling within content area */
