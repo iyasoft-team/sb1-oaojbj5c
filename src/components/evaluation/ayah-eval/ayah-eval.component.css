@@ -1,56 +1,56 @@
 .evaluation-menu {
   width: 320px;
-  height: 459px;
-  padding: 16px;
+  height: 153px;
+  padding: 12px;
   font-family: 'Amiri', serif;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
   direction: ltr;
   text-align: left;
   overflow-y: auto;
 }
 
 .rule-title {
-  font-size: 18px;
+  font-size: 14px;
   color: #1d3557;
   direction: rtl;
   text-align: center;
   font-family: 'Amiri', serif;
   margin: 0;
-  line-height: 1.2;
+  line-height: 1.1;
 }
 
 .rule-main {
   border-bottom: 2px solid #d4af37;
-  padding-bottom: 4px;
-  font-size: 18px;
+  padding-bottom: 3px;
+  font-size: 14px;
   color: #0f4c75;
   direction: rtl;
   text-align: center;
   font-family: 'Amiri', serif;
   margin: 0;
-  line-height: 1.2;
+  line-height: 1.1;
 }
 
 .error-label {
-  font-size: 14px;
+  font-size: 11px;
   font-weight: 600;
   color: #0f4c75;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.3px;
   margin: 0;
 }
 
 .error-radio-group {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
   flex: 1;
   overflow-y: auto;
 }
 
 .error-radio-button {
-  font-size: 12px;
+  font-size: 10px;
   color: #333;
   transition: all 0.3s ease;
   margin: 0;
@@ -58,23 +58,23 @@
 
 /* Override Material radio button styling */
 .error-radio-button .mat-radio-container {
-  width: 14px !important;
-  height: 14px !important;
+  width: 12px !important;
+  height: 12px !important;
 }
 
 .error-radio-button .mat-radio-outer-circle {
   border-color: #0f4c75 !important;
   border-width: 2px !important;
-  width: 14px !important;
-  height: 14px !important;
+  width: 12px !important;
+  height: 12px !important;
 }
 
 .error-radio-button .mat-radio-inner-circle {
   background-color: #d4af37 !important;
-  width: 6px !important;
-  height: 6px !important;
-  top: 4px !important;
-  left: 4px !important;
+  width: 5px !important;
+  height: 5px !important;
+  top: 3.5px !important;
+  left: 3.5px !important;
 }
 
 .error-radio-button.mat-radio-checked .mat-radio-outer-circle {
@@ -93,9 +93,9 @@
 }
 
 .error-radio-button .mat-radio-label-content {
-  padding-left: 6px !important;
-  font-size: 12px !important;
-  line-height: 1.3 !important;
+  padding-left: 5px !important;
+  font-size: 10px !important;
+  line-height: 1.2 !important;
 }
 
 /* Ripple effect styling */
@@ -111,7 +111,7 @@
 
 /* Custom scrollbar */
 .error-radio-group::-webkit-scrollbar {
-  width: 4px;
+  width: 3px;
 }
 
 .error-radio-group::-webkit-scrollbar-track {
@@ -131,51 +131,51 @@
 @media (max-width: 768px) {
   .evaluation-menu {
     width: 280px;
-    height: 400px;
-    padding: 12px;
+    height: 133px;
+    padding: 10px;
   }
 
   .rule-main {
-    font-size: 16px;
-  }
-
-  .rule-title {
-    font-size: 16px;
-  }
-
-  .error-label {
     font-size: 13px;
   }
 
+  .rule-title {
+    font-size: 13px;
+  }
+
+  .error-label {
+    font-size: 10px;
+  }
+
   .error-radio-button .mat-radio-label-content {
-    font-size: 11px !important;
+    font-size: 9px !important;
   }
 }
 
 @media (max-width: 480px) {
   .evaluation-menu {
     width: 250px;
-    height: 350px;
-    padding: 10px;
+    height: 117px;
+    padding: 8px;
   }
 
   .rule-main {
-    font-size: 14px;
-  }
-
-  .rule-title {
-    font-size: 14px;
-  }
-
-  .error-label {
     font-size: 12px;
   }
 
+  .rule-title {
+    font-size: 12px;
+  }
+
+  .error-label {
+    font-size: 9px;
+  }
+
   .error-radio-button .mat-radio-label-content {
-    font-size: 10px !important;
+    font-size: 8px !important;
   }
 
   .error-radio-group {
-    gap: 4px;
+    gap: 3px;
   }
 }
