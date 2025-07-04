@@ -1,0 +1,348 @@
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f4c75 0%, #3282b8 50%, #bbe1fa 100%);
+  padding: 15px;
+  position: relative;
+  overflow: hidden;
+}
+
+.language-toggle-container {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 10;
+}
+
+.islamic-decoration {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.geometric-pattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+  background-size: 120px 120px;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 380px;
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 1px solid rgba(212, 175, 55, 0.3) !important;
+  box-shadow: 0 15px 45px rgba(15, 76, 117, 0.25) !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.login-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #0f4c75, #d4af37, #0f4c75);
+}
+
+.school-logo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.logo-icon {
+  font-size: 40px !important;
+  width: 40px !important;
+  height: 40px !important;
+  background: linear-gradient(135deg, #0f4c75, #d4af37);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  line-height: 1 !important;
+}
+
+mat-card-header {
+  text-align: center;
+  margin-bottom: 20px;
+  padding: 20px 20px 0;
+}
+
+mat-card-title {
+  font-family: 'Amiri', serif !important;
+  font-size: 1.6rem !important;
+  font-weight: 700 !important;
+  background: linear-gradient(135deg, #0f4c75, #d4af37);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 6px !important;
+}
+
+mat-card-subtitle {
+  font-size: 1rem !important;
+  color: #5d6d7e !important;
+  font-weight: 500 !important;
+  margin-bottom: 3px !important;
+}
+
+.subtitle-arabic {
+  font-size: 0.85rem;
+  color: #7b8a8b;
+  margin-top: 3px;
+}
+
+.login-form {
+  padding: 0 20px;
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.login-button {
+  height: 44px;
+  margin-top: 20px;
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+  background: transparent !important;
+  border: 2px solid #0f4c75 !important;
+  color: #0f4c75 !important;
+  box-shadow: none !important;
+  transition: all 0.3s ease !important;
+}
+
+.login-button:hover {
+  background: rgba(15, 76, 117, 0.05) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(15, 76, 117, 0.2) !important;
+}
+
+.login-button mat-icon {
+  color: #0f4c75 !important;
+  margin-right: 6px;
+}
+
+.error-message {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #e74c3c !important;
+  background: rgba(231, 76, 60, 0.1);
+  padding: 10px 12px;
+  border-radius: 6px;
+  border-left: 3px solid #e74c3c;
+  margin: 12px 0;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.error-message mat-icon {
+  color: #e74c3c !important;
+  font-size: 18px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  line-height: 1 !important;
+}
+
+mat-card-actions {
+  padding: 0 !important;
+}
+
+.demo-credentials {
+  width: 100%;
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  padding: 16px;
+  border-top: 1px solid rgba(212, 175, 55, 0.2);
+  position: relative;
+}
+
+.demo-credentials::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 16px;
+  right: 16px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #d4af37, transparent);
+}
+
+.credentials-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 10px;
+  color: #5d6d7e;
+  font-size: 0.85rem;
+}
+
+.credentials-header mat-icon {
+  color: #d4af37 !important;
+  font-size: 16px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  line-height: 1 !important;
+}
+
+.credentials-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.credential-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #5d6d7e;
+  font-size: 0.8rem;
+  padding: 4px 0;
+}
+
+.credential-item mat-icon {
+  color: #0f4c75 !important;
+  font-size: 14px !important;
+  width: 14px !important;
+  height: 14px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  line-height: 1 !important;
+}
+
+/* Form field customization */
+.mat-mdc-form-field {
+  margin-bottom: 6px;
+}
+
+.mat-mdc-form-field .mat-mdc-form-field-outline {
+  border-radius: 8px !important;
+  border-color: rgba(15, 76, 117, 0.3) !important;
+}
+
+.mat-mdc-form-field.mat-focused .mat-mdc-form-field-outline {
+  border-color: #0f4c75 !important;
+  border-width: 2px !important;
+}
+
+.mat-mdc-form-field-label {
+  color: #5d6d7e !important;
+  font-weight: 500 !important;
+}
+
+.mat-mdc-input-element {
+  color: #2c3e50 !important;
+  font-weight: 500 !important;
+}
+
+.mat-mdc-form-field .mat-mdc-form-field-icon-suffix mat-icon {
+  color: #0f4c75 !important;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .login-container {
+    padding: 10px;
+  }
+
+  .login-card {
+    max-width: 100%;
+  }
+
+  mat-card-title {
+    font-size: 1.4rem !important;
+  }
+
+  .credentials-list {
+    font-size: 0.75rem;
+  }
+
+  .login-button {
+    height: 40px;
+    font-size: 0.9rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  mat-card-title {
+    font-size: 1.2rem !important;
+  }
+
+  mat-card-subtitle {
+    font-size: 0.9rem !important;
+  }
+
+  .subtitle-arabic {
+    font-size: 0.75rem;
+  }
+
+  .credential-item {
+    font-size: 0.7rem;
+  }
+
+  .login-form {
+    padding: 0 16px;
+  }
+
+  mat-card-header {
+    padding: 16px 16px 0;
+  }
+
+  .demo-credentials {
+    padding: 12px;
+  }
+}
+
+/* Animation enhancements */
+.fade-in {
+  animation: fadeInScale 0.5s ease-out;
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Focus states for accessibility */
+.login-button:focus {
+  outline: 2px solid #d4af37;
+  outline-offset: 2px;
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .login-card {
+    border: 2px solid #000 !important;
+    background: white !important;
+  }
+
+  mat-card-title {
+    color: #000 !important;
+    -webkit-text-fill-color: #000 !important;
+  }
+}

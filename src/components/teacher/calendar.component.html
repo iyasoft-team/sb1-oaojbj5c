@@ -1,0 +1,37 @@
+<div class="calendar-container">
+  <div class="calendar-header">
+    <button mat-icon-button (click)="previousMonth()">
+      <mat-icon>chevron_left</mat-icon>
+    </button>
+    <h2>{{ monthYear }}</h2>
+    <button mat-icon-button (click)="nextMonth()">
+      <mat-icon>chevron_right</mat-icon>
+    </button>
+  </div>
+
+  <div class="calendar-grid">
+    <div class="calendar-day-header" *ngFor="let day of weekDays">
+      {{ day }}
+    </div>
+    
+    <div 
+      class="calendar-day" 
+      *ngFor="let day of calendarDays"
+      [class.other-month]="!day.isCurrentMonth"
+      [class.today]="day.isToday"
+      [class.has-sessions]="day.sessions.length > 0"
+    >
+      <div class="day-number">{{ day.day }}</div>
+      <div class="day-sessions">
+        <div 
+          class="session-item" 
+          *ngFor="let session of day.sessions"
+          [class]="'status-' + session.status"
+        >
+          <div class="session-time">{{ session.startTime }}</div>
+          <div class="session-student">{{ session.studentName }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

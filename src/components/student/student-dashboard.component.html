@@ -1,0 +1,125 @@
+<div class="dashboard-layout">
+  <app-sidebar 
+    [menuItems]="menuItems" 
+    [isCollapsed]="sidebarCollapsed"
+    (menuClick)="onMenuClick($event)"
+    (toggleCollapse)="onSidebarToggle($event)">
+  </app-sidebar>
+
+  <div class="main-content">
+    <header class="dashboard-header islamic-pattern">
+      <div class="header-content">
+        <div class="header-title">
+          <mat-icon class="dashboard-icon">school</mat-icon>
+          <div class="title-group">
+            <h1>{{ translations.studentDashboard }}</h1>
+          </div>
+        </div>
+        <div class="header-actions">
+          <div class="welcome-section">
+            <span class="welcome-text">{{ translations.welcome }}, {{ currentUser?.name }}</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="dashboard-content fade-in">
+      <div class="sessions-section slide-up">
+        <div class="section-header">
+          <mat-icon class="section-icon">event</mat-icon>
+          <div class="section-title">
+            <h2>{{ translations.upcomingSessions }}</h2>
+          </div>
+        </div>
+        
+        <div class="sessions-grid" *ngIf="upcomingSessions.length > 0; else noSessions">
+          <mat-card class="session-card scale-in" *ngFor="let session of upcomingSessions; let i = index" 
+                    [style.animation-delay]="(i * 0.1) + 's'">
+            <mat-card-header>
+              <div class="session-header-content">
+                <mat-card-title>{{ session.topic || translations.generalSession }}</mat-card-title>
+                <mat-card-subtitle>{{ translations.with }} {{ session.teacherName }}</mat-card-subtitle>
+              </div>
+              <div class="session-icon">
+                <mat-icon>menu_book</mat-icon>
+              </div>
+            </mat-card-header>
+
+            <mat-card-content>
+              <div class="session-details">
+                <div class="detail-item">
+                  <mat-icon>event</mat-icon>
+                  <span>{{ formatDate(session.date) }}</span>
+                </div>
+                <div class="detail-item">
+                  <mat-icon>schedule</mat-icon>
+                  <span>{{ session.startTime }} - {{ session.endTime }}</span>
+                </div>
+                <div class="detail-item">
+                  <mat-icon>person</mat-icon>
+                  <span>{{ session.teacherName }}</span>
+                </div>
+              </div>
+
+              <div class="session-status">
+                <mat-chip [class]="'status-chip status-' + session.status">
+                  <mat-icon>{{ getStatusIcon(session.status) }}</mat-icon>
+                  {{ formatStatus(session.status) }}
+                </mat-chip>
+              </div>
+
+              <div class="time-until" *ngIf="getTimeUntilSession(session)">
+                <mat-icon>timer</mat-icon>
+                <span>{{ getTimeUntilSession(session) }}</span>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+
+        <ng-template #noSessions>
+          <div class="no-sessions">
+            <div class="no-sessions-icon">
+              <mat-icon>event_note</mat-icon>
+            </div>
+            <h3>{{ translations.noUpcomingSessions }}</h3>
+            <p>{{ translations.noSessionsMessage }}</p>
+            <div class="decorative-line"></div>
+          </div>
+        </ng-template>
+      </div>
+
+      <div class="completed-sessions slide-up" *ngIf="completedSessions.length > 0" 
+           style="animation-delay: 0.3s">
+        <div class="section-header">
+          <mat-icon class="section-icon">history</mat-icon>
+          <div class="section-title">
+            <h3>{{ translations.recentCompletedSessions }}</h3>
+          </div>
+        </div>
+        
+        <div class="completed-list">
+          <mat-card class="completed-card" *ngFor="let session of completedSessions; let i = index"
+                    [style.animation-delay]="(0.4 + i * 0.1) + 's'">
+            <div class="completed-content">
+              <div class="session-info">
+                <div class="session-title-row">
+                  <h4>{{ session.topic || translations.generalSession }}</h4>
+                  <mat-icon class="completed-icon">check_circle</mat-icon>
+                </div>
+                <p class="session-date">{{ formatDate(session.date) }} • {{ session.startTime }} - {{ session.endTime }}</p>
+                <p class="session-teacher">{{ translations.with }} {{ session.teacherName }}</p>
+              </div>
+              <div class="session-notes" *ngIf="session.notes">
+                <div class="notes-header">
+                  <mat-icon>notes</mat-icon>
+                  <h5>{{ translations.teacherNotes }}:</h5>
+                </div>
+                <p>{{ session.notes }}</p>
+              </div>
+            </div>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,50 @@
+<div class="notes-container" *ngIf="session">
+  <div class="notes-header">
+    <button mat-icon-button (click)="goBack()">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <div class="session-info">
+      <h1>Session {{ translations.with }} {{ session.studentName }}</h1>
+      <p>{{ formatDate(session.date) }} • {{ session.startTime }} - {{ session.endTime }}</p>
+      <p *ngIf="session.topic"><strong>Topic:</strong> {{ session.topic }}</p>
+    </div>
+  </div>
+
+  <mat-card class="notes-card">
+    <mat-card-header>
+      <mat-card-title>{{ translations.sessionNotes }}</mat-card-title>
+      <mat-card-subtitle>Enregistrer les progrès, observations et prochaines étapes</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Notes</mat-label>
+        <textarea 
+          matInput 
+          [(ngModel)]="notes" 
+          placeholder="Record student progress, observations, homework assigned, next steps..."
+          rows="10"
+          class="notes-textarea">
+        </textarea>
+      </mat-form-field>
+
+      <div class="session-status">
+        <p><strong>Status:</strong> {{ formatStatus(session.status) }}</p>
+        <p><strong>Duration:</strong> {{ session.startTime }} - {{ session.endTime }}</p>
+      </div>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-button (click)="goBack()">{{ translations.cancel }}</button>
+      <button 
+        mat-raised-button 
+        color="primary" 
+        (click)="saveAndComplete()"
+        [disabled]="!notes.trim()"
+      >
+        <mat-icon>save</mat-icon>
+        {{ translations.saveComplete }}
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

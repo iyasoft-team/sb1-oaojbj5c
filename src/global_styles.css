@@ -1,0 +1,815 @@
+/* Material Design Icons */
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* Angular Material Theme */
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: linear-gradient(135deg, #0f4c75 0%, #3282b8 50%, #bbe1fa 100%);
+  color: #2c3e50;
+  line-height: 1.5;
+  min-height: 100vh;
+  font-size: 14px;
+}
+
+/* Islamic-inspired color palette */
+:root {
+  --primary-color: #0f4c75;
+  --primary-light: #3282b8;
+  --primary-dark: #0b3d5f;
+  --secondary-color: #d4af37;
+  --secondary-light: #f4d03f;
+  --secondary-dark: #b7950b;
+  --accent-color: #27ae60;
+  --accent-light: #58d68d;
+  --accent-dark: #1e8449;
+  --success-color: #27ae60;
+  --warning-color: #f39c12;
+  --error-color: #e74c3c;
+  --background-color: #f8f9fa;
+  --surface-color: #ffffff;
+  --text-primary: #2c3e50;
+  --text-secondary: #5d6d7e;
+  --text-on-dark: #ffffff;
+  --border-color: #d5dbdb;
+  --gold-accent: #d4af37;
+  --teal-accent: #17a2b8;
+}
+
+/* Arabic/Islamic typography */
+.arabic-text {
+  font-family: 'Amiri', serif;
+  font-size: 1.1em;
+  direction: rtl;
+  text-align: right;
+}
+
+/* RTL support for Arabic */
+[dir="rtl"] {
+  direction: rtl;
+  text-align: right;
+}
+
+[dir="rtl"] .mat-mdc-form-field {
+  text-align: right;
+}
+
+[dir="rtl"] .mat-mdc-button,
+[dir="rtl"] .mat-mdc-raised-button,
+[dir="rtl"] .mat-mdc-stroked-button {
+  direction: rtl;
+}
+
+[dir="rtl"] .sidebar-container {
+  border-right: none;
+  border-left: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+[dir="rtl"] .sidebar-container::before {
+  right: auto;
+  left: 0;
+}
+
+[dir="rtl"] .nav-item::before {
+  left: auto;
+  right: 0;
+}
+
+[dir="rtl"] .nav-item:hover {
+  transform: translateX(-4px);
+}
+
+/* Text color utilities based on background */
+.text-on-light {
+  color: var(--text-primary) !important;
+}
+
+.text-on-dark {
+  color: var(--text-on-dark) !important;
+}
+
+/* Ensure proper text colors */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+h1 { font-size: 1.8rem; }
+h2 { font-size: 1.5rem; }
+h3 { font-size: 1.3rem; }
+h4 { font-size: 1.1rem; }
+h5 { font-size: 1rem; }
+h6 { font-size: 0.9rem; }
+
+p, span, div {
+  color: var(--text-primary);
+}
+
+/* Islamic geometric patterns background */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(15, 76, 117, 0.1) 0%, transparent 50%);
+  background-size: 80px 80px;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Material Design component overrides with Islamic theme */
+.mat-mdc-card {
+  background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%) !important;
+  color: var(--text-primary) !important;
+  border-radius: 10px !important;
+  box-shadow: 0 6px 24px rgba(15, 76, 117, 0.1), 0 2px 6px rgba(0, 0, 0, 0.05) !important;
+  border: 1px solid rgba(212, 175, 55, 0.1) !important;
+  transition: all 0.3s ease !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.mat-mdc-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--primary-color));
+}
+
+.mat-mdc-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(15, 76, 117, 0.15), 0 4px 10px rgba(0, 0, 0, 0.1) !important;
+}
+
+.mat-mdc-card-title {
+  color: var(--primary-color) !important;
+  font-weight: 600 !important;
+  font-size: 1.1rem !important;
+}
+
+.mat-mdc-card-subtitle {
+  color: var(--text-secondary) !important;
+  font-weight: 400 !important;
+  font-size: 0.9rem !important;
+}
+
+.mat-mdc-card-content {
+  color: var(--text-primary) !important;
+  padding: 16px !important;
+}
+
+.mat-mdc-card-header {
+  padding: 16px 16px 8px !important;
+}
+
+.mat-mdc-card-actions {
+  padding: 8px 16px 16px !important;
+}
+
+/* Button styling - OUTLINED BUTTONS ONLY */
+.mat-mdc-button, .mat-mdc-raised-button, .mat-mdc-stroked-button {
+  font-weight: 500 !important;
+  text-transform: none !important;
+  border-radius: 6px !important;
+  font-family: 'Inter', sans-serif !important;
+  transition: all 0.3s ease !important;
+  background: transparent !important;
+  border: 2px solid var(--primary-color) !important;
+  color: var(--primary-color) !important;
+  box-shadow: none !important;
+  font-size: 0.9rem !important;
+  padding: 8px 16px !important;
+  min-height: 36px !important;
+}
+
+.mat-mdc-button:hover, .mat-mdc-raised-button:hover, .mat-mdc-stroked-button:hover {
+  background: rgba(15, 76, 117, 0.05) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(15, 76, 117, 0.2) !important;
+}
+
+/* Special case for buttons on dark backgrounds */
+.mat-mdc-button.on-dark, .mat-mdc-raised-button.on-dark, .mat-mdc-stroked-button.on-dark {
+  border-color: white !important;
+  color: white !important;
+}
+
+.mat-mdc-button.on-dark:hover, .mat-mdc-raised-button.on-dark:hover, .mat-mdc-stroked-button.on-dark:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Icon buttons */
+.mat-mdc-icon-button {
+  color: var(--primary-color) !important;
+  transition: all 0.3s ease !important;
+  width: 40px !important;
+  height: 40px !important;
+}
+
+.mat-mdc-icon-button:hover {
+  background: rgba(15, 76, 117, 0.1) !important;
+  transform: scale(1.05);
+}
+
+.mat-mdc-icon-button.on-dark {
+  color: white !important;
+}
+
+.mat-mdc-icon-button.on-dark:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Form field styling */
+.mat-mdc-form-field {
+  width: 100%;
+  font-size: 14px !important;
+}
+
+.mat-mdc-form-field .mat-mdc-form-field-outline {
+  border-radius: 6px !important;
+  border-color: var(--border-color) !important;
+}
+
+.mat-mdc-form-field.mat-focused .mat-mdc-form-field-outline {
+  border-color: var(--primary-color) !important;
+}
+
+.mat-mdc-form-field-label {
+  color: var(--text-secondary) !important;
+  font-size: 14px !important;
+}
+
+.mat-mdc-input-element {
+  color: var(--text-primary) !important;
+  font-size: 14px !important;
+}
+
+/* Tab styling with Islamic theme */
+.mat-mdc-tab-group {
+  background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%) !important;
+  border-radius: 10px !important;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(15, 76, 117, 0.1) !important;
+}
+
+.mat-mdc-tab-header {
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-light)) !important;
+  height: 48px !important;
+}
+
+.mat-mdc-tab {
+  color: rgba(255, 255, 255, 0.7) !important;
+  font-weight: 500 !important;
+  font-size: 0.9rem !important;
+  min-width: 120px !important;
+  height: 48px !important;
+}
+
+.mat-mdc-tab.mdc-tab--active {
+  color: white !important;
+}
+
+.mat-mdc-tab-body-content {
+  background: transparent !important;
+}
+
+/* Chip styling */
+.mat-mdc-chip {
+  border-radius: 16px !important;
+  font-size: 11px !important;
+  font-weight: 500 !important;
+  border: 1px solid transparent !important;
+  height: 28px !important;
+  padding: 0 12px !important;
+}
+
+.status-chip.status-scheduled {
+  background: linear-gradient(135deg, #e3f2fd, #bbdefb) !important;
+  color: var(--primary-color) !important;
+  border-color: var(--primary-light) !important;
+}
+
+.status-chip.status-in-progress {
+  background: linear-gradient(135deg, #fff3e0, #ffcc02) !important;
+  color: #e65100 !important;
+  border-color: #ff9800 !important;
+}
+
+.status-chip.status-completed {
+  background: linear-gradient(135deg, #e8f5e8, #c8e6c9) !important;
+  color: var(--accent-dark) !important;
+  border-color: var(--accent-color) !important;
+}
+
+/* Icon styling */
+.mat-icon {
+  color: var(--primary-color) !important;
+  font-size: 20px !important;
+  width: 20px !important;
+  height: 20px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  line-height: 1 !important;
+}
+
+.mat-icon.on-dark {
+  color: white !important;
+}
+
+/* Dashboard specific styling */
+.dashboard-header {
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%) !important;
+  border: 1px solid rgba(212, 175, 55, 0.2) !important;
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px !important;
+}
+
+.dashboard-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--primary-color));
+}
+
+.dashboard-header h1 {
+  color: var(--primary-color) !important;
+  font-weight: 700 !important;
+  text-shadow: 0 1px 2px rgba(15, 76, 117, 0.1);
+  font-size: 1.6rem !important;
+}
+
+.welcome-text {
+  color: var(--text-secondary) !important;
+  font-weight: 500 !important;
+  font-size: 1rem !important;
+}
+
+/* Session cards with Islamic geometric accents */
+.session-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.session-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, var(--secondary-color), var(--secondary-light));
+  opacity: 0.1;
+  border-radius: 0 0 0 40px;
+}
+
+/* Calendar styling */
+.calendar-container {
+  background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%) !important;
+  border: 1px solid rgba(212, 175, 55, 0.1) !important;
+}
+
+.calendar-header {
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-light)) !important;
+  color: white !important;
+}
+
+.calendar-header h2 {
+  color: white !important;
+  font-weight: 600 !important;
+}
+
+.calendar-header .mat-mdc-icon-button {
+  color: white !important;
+}
+
+.calendar-day-header {
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef) !important;
+  color: var(--text-secondary) !important;
+  font-weight: 600 !important;
+}
+
+.calendar-day.today {
+  background: linear-gradient(135deg, #e3f2fd, #bbdefb) !important;
+  border: 2px solid var(--primary-light) !important;
+}
+
+.calendar-day.has-sessions {
+  border-left: 3px solid var(--secondary-color) !important;
+}
+
+.session-item {
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-light)) !important;
+  border-radius: 4px !important;
+  box-shadow: 0 1px 3px rgba(15, 76, 117, 0.2) !important;
+  color: white !important;
+}
+
+.session-item.status-completed {
+  background: linear-gradient(135deg, var(--accent-color), var(--accent-light)) !important;
+}
+
+.session-item.status-cancelled {
+  background: linear-gradient(135deg, var(--error-color), #ec7063) !important;
+}
+
+.session-item.status-in-progress {
+  background: linear-gradient(135deg, var(--warning-color), #f7dc6f) !important;
+}
+
+/* Login page styling */
+.login-container {
+  background: linear-gradient(135deg, #0f4c75 0%, #3282b8 50%, #bbe1fa 100%);
+  position: relative;
+  overflow: hidden;
+  padding: 15px;
+}
+
+.login-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 20% 80%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+  background-size: 150px 150px;
+}
+
+.login-card {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 1px solid rgba(212, 175, 55, 0.2) !important;
+  box-shadow: 0 15px 45px rgba(15, 76, 117, 0.2) !important;
+  max-width: 400px !important;
+}
+
+.login-card .mat-mdc-card-title {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: 1.6rem !important;
+  font-weight: 700 !important;
+  text-align: center;
+}
+
+/* Utility classes */
+.text-center {
+  text-align: center;
+}
+
+.text-primary {
+  color: var(--primary-color) !important;
+}
+
+.text-secondary {
+  color: var(--text-secondary) !important;
+}
+
+.text-white {
+  color: white !important;
+}
+
+.bg-primary {
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-light)) !important;
+}
+
+.bg-surface {
+  background: var(--surface-color) !important;
+}
+
+.shadow-1 {
+  box-shadow: 0 2px 6px rgba(15, 76, 117, 0.1);
+}
+
+.shadow-2 {
+  box-shadow: 0 4px 12px rgba(15, 76, 117, 0.15);
+}
+
+.shadow-3 {
+  box-shadow: 0 6px 24px rgba(15, 76, 117, 0.2);
+}
+
+.rounded {
+  border-radius: 6px;
+}
+
+.rounded-lg {
+  border-radius: 10px;
+}
+
+/* Islamic decorative elements */
+.islamic-pattern {
+  position: relative;
+}
+
+.islamic-pattern::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 8px,
+      rgba(212, 175, 55, 0.05) 8px,
+      rgba(212, 175, 55, 0.05) 16px
+    );
+  pointer-events: none;
+}
+
+/* Custom scrollbar with Islamic theme */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f2f6;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+}
+
+/* Responsive typography */
+@media (max-width: 1024px) {
+  body {
+    font-size: 13px;
+  }
+  
+  h1 { font-size: 1.6rem; }
+  h2 { font-size: 1.4rem; }
+  h3 { font-size: 1.2rem; }
+  
+  .mat-mdc-card-title {
+    font-size: 1rem !important;
+  }
+  
+  .mat-mdc-card-subtitle {
+    font-size: 0.85rem !important;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    font-size: 12px;
+  }
+  
+  h1 { font-size: 1.4rem; }
+  h2 { font-size: 1.2rem; }
+  h3 { font-size: 1.1rem; }
+  
+  .mat-mdc-button, .mat-mdc-raised-button, .mat-mdc-stroked-button {
+    font-size: 0.8rem !important;
+    padding: 6px 12px !important;
+    min-height: 32px !important;
+  }
+  
+  .mat-mdc-icon-button {
+    width: 36px !important;
+    height: 36px !important;
+  }
+  
+  .mat-icon {
+    font-size: 18px !important;
+    width: 18px !important;
+    height: 18px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 11px;
+  }
+  
+  h1 { font-size: 1.2rem; }
+  h2 { font-size: 1.1rem; }
+  h3 { font-size: 1rem; }
+  
+  .mat-mdc-card-content {
+    padding: 12px !important;
+  }
+  
+  .mat-mdc-card-header {
+    padding: 12px 12px 6px !important;
+  }
+  
+  .mat-mdc-card-actions {
+    padding: 6px 12px 12px !important;
+  }
+}
+
+/* Animation utilities with Islamic inspiration */
+.fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
+
+.slide-up {
+  animation: slideUp 0.5s ease-out;
+}
+
+.scale-in {
+  animation: scaleIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Loading states with Islamic theme */
+.loading {
+  opacity: 0.6;
+  pointer-events: none;
+  position: relative;
+}
+
+.loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  border: 2px solid rgba(15, 76, 117, 0.1);
+  border-top: 2px solid var(--primary-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Focus styles for accessibility */
+.mat-mdc-button:focus,
+.mat-mdc-icon-button:focus {
+  outline: 2px solid var(--secondary-color);
+  outline-offset: 2px;
+}
+
+/* Error message styling */
+.error-message {
+  color: var(--error-color) !important;
+  background: rgba(231, 76, 60, 0.1);
+  padding: 6px 10px;
+  border-radius: 4px;
+  border-left: 3px solid var(--error-color);
+  font-size: 0.9rem;
+}
+
+/* Demo credentials styling */
+.demo-credentials {
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.demo-credentials p {
+  color: var(--text-secondary) !important;
+  margin: 2px 0;
+  font-size: 0.8rem;
+}
+
+/* No sessions/empty state styling */
+.no-sessions {
+  background: linear-gradient(135deg, #ffffff, #f8f9fa);
+  border: 2px dashed rgba(15, 76, 117, 0.2);
+  border-radius: 10px;
+  position: relative;
+  padding: 40px 20px;
+}
+
+.no-sessions::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 30px;
+  height: 30px;
+  background: linear-gradient(135deg, var(--secondary-color), var(--secondary-light));
+  opacity: 0.1;
+  border-radius: 50%;
+}
+
+/* Session status indicators */
+.detail-item {
+  color: var(--text-secondary) !important;
+  transition: color 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.detail-item:hover {
+  color: var(--primary-color) !important;
+}
+
+.time-until {
+  background: linear-gradient(135deg, rgba(15, 76, 117, 0.1), rgba(50, 130, 184, 0.1));
+  padding: 6px 10px;
+  border-radius: 16px;
+  border: 1px solid rgba(15, 76, 117, 0.2);
+  font-size: 0.8rem;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --primary-color: #0b3d5f;
+    --text-primary: #000000;
+    --text-secondary: #424242;
+    --border-color: #000000;
+  }
+  
+  .mat-mdc-card {
+    border: 2px solid var(--border-color) !important;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Print styles */
+@media print {
+  body {
+    background: white !important;
+  }
+  
+  .mat-mdc-card {
+    box-shadow: none !important;
+    border: 1px solid #ccc !important;
+  }
+}

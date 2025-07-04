@@ -1,0 +1,68 @@
+<div class="login-container">
+  <div class="islamic-decoration">
+    <div class="geometric-pattern"></div>
+  </div>
+  
+  <!-- Language Toggle -->
+  <div class="language-toggle-container">
+    <app-language-toggle class="on-dark"></app-language-toggle>
+  </div>
+  
+  <mat-card class="login-card fade-in">
+    <mat-card-header>
+      <div class="school-logo">
+        <mat-icon class="logo-icon">menu_book</mat-icon>
+      </div>
+      <mat-card-title>{{ translations.loginTitle }}</mat-card-title>
+      <mat-card-subtitle>{{ translations.loginSubtitle }}</mat-card-subtitle>
+    </mat-card-header>
+    
+    <mat-card-content>
+      <form (ngSubmit)="onLogin()" #loginForm="ngForm" class="login-form">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>{{ translations.email }}</mat-label>
+          <input matInput type="email" [(ngModel)]="credentials.email" name="email" required>
+          <mat-icon matSuffix>email</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>{{ translations.password }}</mat-label>
+          <input matInput [type]="hidePassword ? 'password' : 'text'" 
+                 [(ngModel)]="credentials.password" name="password" required>
+          <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" type="button">
+            <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <div class="error-message" *ngIf="errorMessage">
+          <mat-icon>error_outline</mat-icon>
+          {{ translations.invalidCredentials }}
+        </div>
+
+        <button mat-raised-button color="primary" type="submit" class="full-width login-button">
+          <mat-icon>login</mat-icon>
+          {{ translations.signIn }}
+        </button>
+      </form>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <div class="demo-credentials">
+        <div class="credentials-header">
+          <mat-icon>info</mat-icon>
+          <strong>{{ translations.demoCredentials }}</strong>
+        </div>
+        <div class="credentials-list">
+          <div class="credential-item">
+            <mat-icon>school</mat-icon>
+            <span>{{ translations.teacher }}: teacher&#64;school.com / password</span>
+          </div>
+          <div class="credential-item">
+            <mat-icon>person</mat-icon>
+            <span>{{ translations.student }}: student&#64;school.com / password</span>
+          </div>
+        </div>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</div>

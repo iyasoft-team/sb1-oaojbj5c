@@ -1,0 +1,220 @@
+.session-list-container {
+  padding: 16px;
+}
+
+.list-header {
+  margin-bottom: 16px;
+}
+
+.list-header h3 {
+  margin: 0 0 6px 0;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.list-header p {
+  margin: 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.sessions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+.session-card {
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.session-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+}
+
+.session-details {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.detail-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.detail-item mat-icon {
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+}
+
+.session-status {
+  margin-bottom: 12px;
+}
+
+.status-chip {
+  font-size: 11px;
+  font-weight: 500;
+  height: 24px;
+}
+
+.status-chip.status-scheduled {
+  background-color: #e3f2fd;
+  color: #1976d2;
+}
+
+.status-chip.status-in-progress {
+  background-color: #fff3e0;
+  color: #f57c00;
+}
+
+.status-chip.status-completed {
+  background-color: #e8f5e8;
+  color: #2e7d32;
+}
+
+.status-chip.status-cancelled {
+  background-color: #ffebee;
+  color: #d32f2f;
+}
+
+.no-sessions {
+  text-align: center;
+  padding: 40px 20px;
+  color: #666;
+}
+
+.no-sessions mat-icon {
+  font-size: 40px;
+  width: 40px;
+  height: 40px;
+  margin-bottom: 12px;
+  opacity: 0.5;
+}
+
+.no-sessions h3 {
+  margin: 0 0 6px 0;
+  font-size: 1.2rem;
+}
+
+.no-sessions p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+mat-card-actions {
+  padding: 12px;
+  display: flex;
+  gap: 6px;
+}
+
+/* Override button styling for session actions */
+mat-card-actions .mat-mdc-raised-button {
+  background: transparent !important;
+  border: 2px solid #0f4c75 !important;
+  color: #0f4c75 !important;
+  box-shadow: none !important;
+  font-size: 0.85rem !important;
+  padding: 6px 12px !important;
+  min-height: 32px !important;
+}
+
+mat-card-actions .mat-mdc-raised-button:hover {
+  background: rgba(15, 76, 117, 0.05) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(15, 76, 117, 0.2) !important;
+}
+
+mat-card-actions .mat-mdc-raised-button mat-icon {
+  color: #0f4c75 !important;
+  font-size: 16px !important;
+}
+
+mat-card-actions .mat-mdc-stroked-button {
+  background: transparent !important;
+  border: 2px solid #666 !important;
+  color: #666 !important;
+  box-shadow: none !important;
+  font-size: 0.85rem !important;
+  padding: 6px 12px !important;
+  min-height: 32px !important;
+}
+
+mat-card-actions .mat-mdc-stroked-button:hover {
+  background: rgba(102, 102, 102, 0.05) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(102, 102, 102, 0.2) !important;
+}
+
+mat-card-actions .mat-mdc-stroked-button mat-icon {
+  color: #666 !important;
+  font-size: 16px !important;
+}
+
+@media (max-width: 1024px) {
+  .sessions-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 12px;
+  }
+  
+  .session-list-container {
+    padding: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .sessions-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  
+  .session-list-container {
+    padding: 10px;
+  }
+
+  .list-header h3 {
+    font-size: 1.2rem;
+  }
+
+  mat-card-actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  mat-card-actions .mat-mdc-raised-button,
+  mat-card-actions .mat-mdc-stroked-button {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .session-list-container {
+    padding: 8px;
+  }
+
+  .list-header h3 {
+    font-size: 1.1rem;
+  }
+
+  .list-header p {
+    font-size: 0.8rem;
+  }
+
+  .no-sessions {
+    padding: 30px 15px;
+  }
+
+  .no-sessions mat-icon {
+    font-size: 36px;
+    width: 36px;
+    height: 36px;
+  }
+}

@@ -1,0 +1,67 @@
+<div class="session-list-container">
+  <div class="list-header">
+    <h3>{{ translations.upcomingSessions }}</h3>
+    <p>{{ sessions.length }} session(s) scheduled</p>
+  </div>
+
+  <div class="sessions-grid" *ngIf="sessions.length > 0; else noSessions">
+    <mat-card class="session-card" *ngFor="let session of sortedSessions">
+      <mat-card-header>
+        <mat-card-title>{{ session.studentName }}</mat-card-title>
+        <mat-card-subtitle>{{ session.topic || translations.generalSession }}</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        <div class="session-details">
+          <div class="detail-item">
+            <mat-icon>event</mat-icon>
+            <span>{{ formatDate(session.date) }}</span>
+          </div>
+          <div class="detail-item">
+            <mat-icon>schedule</mat-icon>
+            <span>{{ session.startTime }} - {{ session.endTime }}</span>
+          </div>
+          <div class="detail-item">
+            <mat-icon>person</mat-icon>
+            <span>{{ session.studentName }}</span>
+          </div>
+        </div>
+
+        <div class="session-status">
+          <mat-chip [class]="'status-chip status-' + session.status">
+            {{ formatStatus(session.status) }}
+          </mat-chip>
+        </div>
+      </mat-card-content>
+
+      <mat-card-actions>
+        <button 
+          mat-raised-button 
+          color="primary" 
+          *ngIf="session.status === 'scheduled'"
+          (click)="onStartSession(session)"
+        >
+          <mat-icon>play_arrow</mat-icon>
+          {{ translations.startSession }}
+        </button>
+        
+        <button 
+          mat-stroked-button 
+          *ngIf="session.status === 'completed' && session.notes"
+          (click)="onViewNotes(session)"
+        >
+          <mat-icon>notes</mat-icon>
+          {{ translations.viewNotes }}
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+  <ng-template #noSessions>
+    <div class="no-sessions">
+      <mat-icon>event_note</mat-icon>
+      <h3>{{ translations.noUpcomingSessions }}</h3>
+      <p>Planifiez votre première session pour commencer</p>
+    </div>
+  </ng-template>
+</div>
