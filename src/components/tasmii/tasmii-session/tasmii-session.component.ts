@@ -24,7 +24,7 @@ import { LanguageService, Translation } from '../../../services/language.service
   styleUrl: './tasmii-session.component.css'
 })
 export class TasmiiSessionComponent {
-  sidebarCollapsed = false;
+  public sidebarCollapsed = false;
   translations: Translation;
   currentUser = this.authService.getCurrentUser();
   menuItems: MenuItem[] = [...TEACHER_MENU_ITEMS];
