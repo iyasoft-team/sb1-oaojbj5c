@@ -50,7 +50,7 @@
 }
 
 .error-radio-button {
-  font-size: 10px;
+  font-size: 9px;
   color: #333;
   transition: all 0.3s ease;
   margin: 0;
@@ -58,23 +58,23 @@
 
 /* Override Material radio button styling */
 .error-radio-button .mat-radio-container {
-  width: 12px !important;
-  height: 12px !important;
+  width: 10px !important;
+  height: 10px !important;
 }
 
 .error-radio-button .mat-radio-outer-circle {
   border-color: #0f4c75 !important;
   border-width: 2px !important;
-  width: 12px !important;
-  height: 12px !important;
+  width: 10px !important;
+  height: 10px !important;
 }
 
 .error-radio-button .mat-radio-inner-circle {
   background-color: #d4af37 !important;
-  width: 5px !important;
-  height: 5px !important;
-  top: 3.5px !important;
-  left: 3.5px !important;
+  width: 4px !important;
+  height: 4px !important;
+  top: 3px !important;
+  left: 3px !important;
 }
 
 .error-radio-button.mat-radio-checked .mat-radio-outer-circle {
@@ -93,8 +93,8 @@
 }
 
 .error-radio-button .mat-radio-label-content {
-  padding-left: 5px !important;
-  font-size: 10px !important;
+  padding-left: 4px !important;
+  font-size: 9px !important;
   line-height: 1.2 !important;
 }
 
