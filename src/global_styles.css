@@ -65,6 +65,7 @@ body {
   --teal-accent: #17a2b8;
   --quran-fonts: "AmiriBold","Traditional Arabic", serif;
   --page-size : 459px;
+  --eval-h:230px;
 }
 
 /* Arabic/Islamic typography */

@@ -1,6 +1,6 @@
 .evaluation-menu {
   width: 320px;
-  height: 153px;
+  height: var(--eval-h);
   padding: 12px;
   font-family: 'Amiri', serif;
   display: flex;
