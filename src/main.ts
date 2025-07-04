@@ -11,14 +11,23 @@ import { SessionNotesComponent } from './components/teacher/session-notes.compon
 import { StudentDashboardComponent } from './components/student/student-dashboard.component';
 import { LanguageService } from './services/language.service';
 import { TasmiiSessionComponent } from './components/tasmii/tasmii-session/tasmii-session.component';
+import { NavigationComponent } from './components/shared/navigation.component';
+import { AuthService } from './services/auth.service';
 import { provideHttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet,],
+  imports: [CommonModule, RouterOutlet, NavigationComponent],
   template: `
     <div class="app-container" [dir]="currentLanguage === 'ar' ? 'rtl' : 'ltr'">
+      <app-navigation 
+        *ngIf="showNavigation"
+        [menuItems]="menuItems" 
+        [isCollapsed]="sidebarCollapsed"
+        (menuClick)="onMenuClick($event)"
+        (toggleCollapse)="onSidebarToggle($event)">
+      </app-navigation>
       <router-outlet></router-outlet>
     </div>
   `,
@@ -31,14 +40,56 @@ import { provideHttpClient } from '@angular/common/http';
 })
 export class App {
   currentLanguage: 'fr' | 'en' | 'ar' = 'fr';
+  showNavigation = false;
+  sidebarCollapsed = false;
+  menuItems: any[] = [];
 
-  constructor(private languageService: LanguageService) {
+  constructor(
+    private languageService: LanguageService,
+    private authService: AuthService
+  ) {
     this.languageService.currentLanguage$.subscribe(lang => {
       this.currentLanguage = lang;
       // Update document direction for RTL support
       document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
       document.documentElement.lang = lang;
     });
+
+    // Check authentication status and set navigation visibility
+    this.authService.currentUser$.subscribe(user => {
+      this.showNavigation = !!user;
+      if (user) {
+        this.setMenuItems(user.role);
+      }
+    });
+  }
+
+  private setMenuItems(role: string): void {
+    if (role === 'teacher') {
+      this.menuItems = [
+        { id: 'dashboard', label: 'Dashboard', arabicLabel: 'لوحة التحكم', icon: 'dashboard', active: true },
+        { id: 'sessions', label: 'Sessions', arabicLabel: 'الجلسات', icon: 'event' },
+        { id: 'students', label: 'Students', arabicLabel: 'الطلاب', icon: 'people' },
+        { id: 'reports', label: 'Reports', arabicLabel: 'التقارير', icon: 'assessment' },
+        { id: 'settings', label: 'Settings', arabicLabel: 'الإعدادات', icon: 'settings' }
+      ];
+    } else if (role === 'student') {
+      this.menuItems = [
+        { id: 'dashboard', label: 'Dashboard', arabicLabel: 'لوحة التحكم', icon: 'dashboard', active: true },
+        { id: 'sessions', label: 'My Sessions', arabicLabel: 'جلساتي', icon: 'event' },
+        { id: 'progress', label: 'Progress', arabicLabel: 'التقدم', icon: 'trending_up' },
+        { id: 'assignments', label: 'Assignments', arabicLabel: 'الواجبات', icon: 'assignment' }
+      ];
+    }
+  }
+
+  onMenuClick(item: any): void {
+    // Handle menu navigation
+    console.log('Menu clicked:', item);
+  }
+
+  onSidebarToggle(collapsed: boolean): void {
+    this.sidebarCollapsed = collapsed;
   }
 }
 

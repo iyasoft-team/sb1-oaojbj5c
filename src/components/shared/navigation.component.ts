@@ -1,0 +1,592 @@
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
+import { LanguageService, Translation } from '../../services/language.service';
+import { LanguageToggleComponent } from './language-toggle.component';
+
+export interface MenuItem {
+  id: string;
+  label: string;
+  arabicLabel: string;
+  icon: string;
+  route?: string;
+  action?: string;
+  active?: boolean;
+}
+
+export const TEACHER_MENU_ITEMS: MenuItem[] = [
+  {
+    id: 'dashboard',
+    label: '',
+    arabicLabel: 'لوحة التحكم',
+    icon: 'dashboard',
+    route: '/teacher',
+    active: true
+  },
+  {
+    id: 'sessions',
+    label: '',
+    arabicLabel: 'الجلسات',
+    icon: 'event'
+  },
+  {
+    id: 'students',
+    label: '',
+    arabicLabel: 'الطلاب',
+    icon: 'people'
+  },
+  {
+    id: 'reports',
+    label: '',
+    arabicLabel: 'التقارير',
+    icon: 'assessment'
+  },
+  {
+    id: 'settings',
+    label: '',
+    arabicLabel: 'الإعدادات',
+    icon: 'settings'
+  }
+];
+
+export const STUDENT_MENU_ITEMS: MenuItem[] = [
+  {
+    id: 'dashboard',
+    label: '',
+    arabicLabel: 'لوحة التحكم',
+    icon: 'dashboard',
+    route: '/student',
+    active: true
+  },
+  {
+    id: 'sessions',
+    label: '',
+    arabicLabel: 'جلساتي',
+    icon: 'event'
+  },
+  {
+    id: 'progress',
+    label: '',
+    arabicLabel: 'التقدم',
+    icon: 'trending_up'
+  },
+  {
+    id: 'assignments',
+    label: '',
+    arabicLabel: 'الواجبات',
+    icon: 'assignment'
+  }
+];
+
+@Component({
+  selector: 'app-navigation',
+  standalone: true,
+  imports: [CommonModule, MatIconModule, MatButtonModule, MatTooltipModule, LanguageToggleComponent],
+  template: `
+    <div class="sidebar-container" [class.collapsed]="isCollapsed">
+      <!-- Logo Section -->
+      <div class="sidebar-header">
+        <div class="logo-section">
+          <mat-icon 
+            class="logo-icon" 
+            [class.clickable]="isCollapsed"
+            (click)="isCollapsed ? toggleSidebar() : null"
+            [matTooltip]="isCollapsed ? 'Expand menu' : ''"
+            matTooltipPosition="right"
+          >
+            menu_book
+          </mat-icon>
+          <div class="logo-text" *ngIf="!isCollapsed">
+            <h3>{{ translations.loginTitle }}</h3>
+          </div>
+        </div>
+        <button
+          *ngIf="!isCollapsed"
+          mat-icon-button 
+          (click)="toggleSidebar()" 
+          class="toggle-btn"
+          matTooltip="Réduire le menu"
+        >
+          <mat-icon>chevron_left</mat-icon>
+        </button>
+      </div>
+
+      <!-- Navigation Menu -->
+      <nav class="sidebar-nav">
+        <div class="nav-section">
+          <div class="section-label" *ngIf="!isCollapsed">{{ translations.main }}</div>
+          <button 
+            mat-button 
+            *ngFor="let item of menuItems" 
+            class="nav-item"
+            [class.active]="item.active"
+            (click)="onMenuClick(item)"
+            [matTooltip]="isCollapsed ? item.label : ''"
+            matTooltipPosition="right"
+          >
+            <mat-icon>{{ item.icon }}</mat-icon>
+            <div class="nav-text" *ngIf="!isCollapsed">
+            <span class="nav-label">{{ item.label }}</span>
+            </div>
+          </button>
+        </div>
+
+        <!-- User Section -->
+        <div class="nav-section">
+          <div class="section-label" *ngIf="!isCollapsed">{{ translations.account }}</div>
+          <button 
+            mat-button 
+            class="nav-item"
+            (click)="onMenuClick({id: 'profile', label: translations.profile, arabicLabel: 'الملف الشخصي', icon: 'person'})"
+            [matTooltip]="isCollapsed ? translations.profile : ''"
+            matTooltipPosition="right"
+          >
+            <mat-icon>person</mat-icon>
+            <div class="nav-text" *ngIf="!isCollapsed">
+              <span class="nav-label">{{ translations.profile }}</span>
+            </div>
+          </button>
+          
+          <button 
+            mat-button 
+            class="nav-item logout-item"
+            (click)="onLogout()"
+            [matTooltip]="isCollapsed ? translations.logout : ''"
+            matTooltipPosition="right"
+          >
+            <mat-icon>logout</mat-icon>
+            <div class="nav-text" *ngIf="!isCollapsed">
+              <span class="nav-label">{{ translations.logout }}</span>
+            </div>
+          </button>
+        </div>
+      </nav>
+
+      <!-- Language Toggle in Sidebar -->
+      <div class="sidebar-language-toggle" *ngIf="!isCollapsed">
+        <app-language-toggle></app-language-toggle>
+      </div>
+
+      <!-- User Info -->
+      <div class="user-info" *ngIf="!isCollapsed && currentUser">
+        <div class="user-avatar">
+          <mat-icon>account_circle</mat-icon>
+        </div>
+        <div class="user-details">
+          <div class="user-name">{{ currentUser.name }}</div>
+          <div class="user-role">{{ currentUser.role | titlecase }}</div>
+        </div>
+      </div>
+    </div>
+  `,
+  styles: [`
+    .sidebar-container {
+      width: 280px;
+      height: 100vh;
+      background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
+      border-right: 1px solid rgba(212, 175, 55, 0.2);
+      display: flex;
+      flex-direction: column;
+      transition: width 0.3s ease;
+      position: fixed;
+      left: 0;
+      top: 0;
+      z-index: 1000;
+      overflow: hidden;
+      box-shadow: 2px 0 8px rgba(15, 76, 117, 0.08);
+    }
+
+    .sidebar-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 2px;
+      height: 100%;
+      background: linear-gradient(180deg, #0f4c75, #d4af37, #0f4c75);
+    }
+
+    .sidebar-container.collapsed {
+      width: 60px;
+    }
+
+    .sidebar-header {
+      padding: 16px;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 80px;
+      background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .sidebar-container.collapsed .sidebar-header {
+      justify-content: center;
+      padding: 16px 8px;
+    }
+
+    .logo-section {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex: 1;
+    }
+
+    .logo-icon {
+      font-size: 32px !important;
+      width: 32px !important;
+      height: 32px !important;
+      color: #0f4c75 !important;
+      background: linear-gradient(135deg, rgba(15, 76, 117, 0.1), rgba(212, 175, 55, 0.1));
+      border-radius: 50%;
+      padding: 6px;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      line-height: 1 !important;
+    }
+
+    .logo-icon.clickable {
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .logo-icon.clickable:hover {
+      transform: scale(1.1);
+      background: linear-gradient(135deg, rgba(15, 76, 117, 0.2), rgba(212, 175, 55, 0.2));
+    }
+
+    .sidebar-container.collapsed .logo-text {
+      display: none;
+    }
+
+    .sidebar-container.collapsed .logo-section {
+      flex: none;
+      justify-content: center;
+    }
+
+    .logo-text h3 {
+      margin: 0;
+      color: #0f4c75;
+      font-size: 1.1rem;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+
+    .toggle-btn {
+      width: 36px !important;
+      height: 36px !important;
+      color: #0f4c75 !important;
+      background: rgba(15, 76, 117, 0.05) !important;
+      border-radius: 50% !important;
+    }
+
+    .toggle-btn:hover {
+      background: rgba(15, 76, 117, 0.1) !important;
+      transform: scale(1.05);
+    }
+
+    .sidebar-nav {
+      flex: 1;
+      padding: 20px 0;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .nav-section {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding: 0 16px;
+    }
+
+    .sidebar-container.collapsed .nav-section {
+      padding: 0 8px;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #5d6d7e;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+      padding: 0 12px;
+    }
+
+    .sidebar-container.collapsed .section-label {
+      display: none;
+    }
+
+    .nav-item {
+      display: flex !important;
+      align-items: center !important;
+      gap: 12px !important;
+      padding: 12px !important;
+      border-radius: 8px !important;
+      transition: all 0.3s ease !important;
+      background: transparent !important;
+      border: none !important;
+      color: #5d6d7e !important;
+      text-align: left !important;
+      justify-content: flex-start !important;
+      width: 100% !important;
+      min-height: 48px !important;
+      position: relative !important;
+      overflow: hidden !important;
+    }
+
+    .nav-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 0;
+      background: linear-gradient(135deg, #0f4c75, #3282b8);
+      transition: width 0.3s ease;
+    }
+
+    .nav-item:hover {
+      background: rgba(15, 76, 117, 0.05) !important;
+      color: #0f4c75 !important;
+      transform: translateX(4px);
+    }
+
+    .nav-item:hover::before {
+      width: 3px;
+    }
+
+    .nav-item.active {
+      background: linear-gradient(135deg, rgba(15, 76, 117, 0.1), rgba(50, 130, 184, 0.1)) !important;
+      color: #0f4c75 !important;
+      font-weight: 600 !important;
+    }
+
+    .nav-item.active::before {
+      width: 3px;
+    }
+
+    .nav-item mat-icon {
+      color: inherit !important;
+      font-size: 20px !important;
+      width: 20px !important;
+      height: 20px !important;
+      flex-shrink: 0;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      line-height: 1 !important;
+    }
+
+    .sidebar-container.collapsed .nav-text {
+      display: none;
+    }
+
+    .nav-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      flex: 1;
+    }
+
+    .nav-label {
+      font-size: 0.9rem;
+      font-weight: 500;
+      line-height: 1.2;
+    }
+
+    .logout-item {
+      margin-top: 8px;
+      border-top: 1px solid rgba(212, 175, 55, 0.2) !important;
+      padding-top: 16px !important;
+    }
+
+    .logout-item:hover {
+      background: rgba(231, 76, 60, 0.05) !important;
+      color: #e74c3c !important;
+    }
+
+    .logout-item:hover::before {
+      background: linear-gradient(135deg, #e74c3c, #ec7063);
+    }
+
+    .sidebar-language-toggle {
+      padding: 16px;
+      border-top: 1px solid rgba(212, 175, 55, 0.2);
+      display: flex;
+      justify-content: center;
+    }
+
+    .sidebar-container.collapsed .sidebar-language-toggle {
+      display: none;
+    }
+
+    .user-info {
+      padding: 16px;
+      border-top: 1px solid rgba(212, 175, 55, 0.2);
+      background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .sidebar-container.collapsed .user-info {
+      display: none;
+    }
+
+    .user-avatar mat-icon {
+      font-size: 36px !important;
+      width: 36px !important;
+      height: 36px !important;
+      color: #0f4c75 !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      line-height: 1 !important;
+    }
+
+    .user-details {
+      flex: 1;
+    }
+
+    .user-name {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #0f4c75;
+      line-height: 1.2;
+    }
+
+    .user-role {
+      font-size: 0.75rem;
+      color: #5d6d7e;
+      text-transform: capitalize;
+    }
+
+    /* Collapsed state adjustments */
+    .sidebar-container.collapsed .nav-item {
+      justify-content: center !important;
+      padding: 12px 8px !important;
+    }
+
+    .sidebar-container.collapsed .nav-item mat-icon {
+      margin: 0 !important;
+    }
+
+    /* Custom scrollbar */
+    .sidebar-nav::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .sidebar-nav::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .sidebar-nav::-webkit-scrollbar-thumb {
+      background: rgba(15, 76, 117, 0.2);
+      border-radius: 2px;
+    }
+
+    .sidebar-nav::-webkit-scrollbar-thumb:hover {
+      background: rgba(15, 76, 117, 0.3);
+    }
+
+    /* Responsive design */
+    @media (max-width: 1024px) {
+      .sidebar-container {
+        width: 260px;
+      }
+
+      .sidebar-container.collapsed {
+        width: 50px;
+      }
+
+      .logo-icon {
+        font-size: 28px !important;
+        width: 28px !important;
+        height: 28px !important;
+      }
+
+      .logo-text h3 {
+        font-size: 1rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .sidebar-container {
+        width: 240px;
+      }
+
+      .sidebar-container.collapsed {
+        width: 45px;
+      }
+
+      .nav-item {
+        min-height: 44px !important;
+        padding: 10px !important;
+      }
+
+      .nav-label {
+        font-size: 0.85rem;
+      }
+    }
+
+    /* Animation */
+    .sidebar-container {
+      animation: slideInLeft 0.3s ease-out;
+    }
+
+    @keyframes slideInLeft {
+      from {
+        transform: translateX(-100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+  `]
+})
+export class NavigationComponent {
+  @Input() menuItems: MenuItem[] = [];
+  @Input() isCollapsed = false;
+  @Output() menuClick = new EventEmitter<MenuItem>();
+  @Output() toggleCollapse = new EventEmitter<boolean>();
+
+  translations: Translation;
+  currentUser = this.authService.getCurrentUser();
+
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private languageService: LanguageService
+  ) {
+    this.translations = this.languageService.getTranslations();
+    this.languageService.translations$.subscribe(translations => {
+      this.translations = translations;
+    });
+  }
+
+  toggleSidebar(): void {
+    this.isCollapsed = !this.isCollapsed;
+    this.toggleCollapse.emit(this.isCollapsed);
+  }
+
+  onMenuClick(item: MenuItem): void {
+    this.menuClick.emit(item);
+  }
+
+  onLogout(): void {
+    this.authService.logout();
+    this.router.navigate(['/login']);
+  }
+}

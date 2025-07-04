@@ -12,7 +12,7 @@ import { Session } from '../../models/session.model';
 import { CalendarComponent } from './calendar.component';
 import { SessionListComponent } from './session-list.component';
 import { ScheduleSessionModalComponent } from './schedule-session-modal.component';
-import { SidebarComponent, MenuItem } from '../shared/sidebar.component';
+import { NavigationComponent, MenuItem, TEACHER_MENU_ITEMS } from '../shared/navigation.component';
 import { LanguageService, Translation } from '../../services/language.service';
 
 @Component({
@@ -27,7 +27,7 @@ import { LanguageService, Translation } from '../../services/language.service';
     MatDialogModule,
     CalendarComponent,
     SessionListComponent,
-    SidebarComponent
+    NavigationComponent
   ],
   templateUrl: './teacher-dashboard.component.html',
   styleUrls: ['./teacher-dashboard.component.css']
@@ -39,39 +39,7 @@ export class TeacherDashboardComponent implements OnInit {
   sidebarCollapsed = false;
   translations: Translation;
   
-  menuItems: MenuItem[] = [
-    {
-      id: 'dashboard',
-      label: '',
-      arabicLabel: 'لوحة التحكم',
-      icon: 'dashboard',
-      active: true
-    },
-    {
-      id: 'sessions',
-      label: '',
-      arabicLabel: 'الجلسات',
-      icon: 'event'
-    },
-    {
-      id: 'students',
-      label: '',
-      arabicLabel: 'الطلاب',
-      icon: 'people'
-    },
-    {
-      id: 'reports',
-      label: '',
-      arabicLabel: 'التقارير',
-      icon: 'assessment'
-    },
-    {
-      id: 'settings',
-      label: '',
-      arabicLabel: 'الإعدادات',
-      icon: 'settings'
-    }
-  ];
+  menuItems: MenuItem[] = [...TEACHER_MENU_ITEMS];
 
   constructor(
     private sessionService: SessionService,

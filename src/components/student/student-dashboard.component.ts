@@ -8,13 +8,13 @@ import { Router } from '@angular/router';
 import { SessionService } from '../../services/session.service';
 import { AuthService } from '../../services/auth.service';
 import { Session } from '../../models/session.model';
-import { SidebarComponent, MenuItem } from '../shared/sidebar.component';
+import { NavigationComponent, MenuItem, STUDENT_MENU_ITEMS } from '../shared/navigation.component';
 import { LanguageService, Translation } from '../../services/language.service';
 
 @Component({
   selector: 'app-student-dashboard',
   standalone: true,
-  imports: [CommonModule, MatCardModule, MatButtonModule, MatIconModule, MatChipsModule, SidebarComponent],
+  imports: [CommonModule, MatCardModule, MatButtonModule, MatIconModule, MatChipsModule, NavigationComponent],
   templateUrl: './student-dashboard.component.html',
   styleUrls: ['./student-dashboard.component.css']
 })
@@ -24,33 +24,7 @@ export class StudentDashboardComponent implements OnInit {
   sidebarCollapsed = false;
   translations: Translation;
   
-  menuItems: MenuItem[] = [
-    {
-      id: 'dashboard',
-      label: '',
-      arabicLabel: 'لوحة التحكم',
-      icon: 'dashboard',
-      active: true
-    },
-    {
-      id: 'sessions',
-      label: '',
-      arabicLabel: 'جلساتي',
-      icon: 'event'
-    },
-    {
-      id: 'progress',
-      label: '',
-      arabicLabel: 'التقدم',
-      icon: 'trending_up'
-    },
-    {
-      id: 'assignments',
-      label: '',
-      arabicLabel: 'الواجبات',
-      icon: 'assignment'
-    }
-  ];
+  menuItems: MenuItem[] = [...STUDENT_MENU_ITEMS];
 
   constructor(
     private sessionService: SessionService,

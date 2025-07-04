@@ -1,3 +1,7 @@
+.main-content {
+  transition: margin-left 0.3s ease;
+}
+
 .tasmii-main
 {
   align-items: stretch; /* ensures both children are aligned vertically */

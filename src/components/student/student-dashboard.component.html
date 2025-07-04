@@ -1,12 +1,5 @@
 <div class="dashboard-layout">
-  <app-sidebar 
-    [menuItems]="menuItems" 
-    [isCollapsed]="sidebarCollapsed"
-    (menuClick)="onMenuClick($event)"
-    (toggleCollapse)="onSidebarToggle($event)">
-  </app-sidebar>
-
-  <div class="main-content">
+  <div class="main-content" [style.margin-left]="sidebarCollapsed ? '60px' : '280px'">
     <header class="dashboard-header islamic-pattern">
       <div class="header-content">
         <div class="header-title">
