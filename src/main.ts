@@ -3,7 +3,7 @@ import { bootstrapApplication } from '@angular/platform-browser';
 import { provideRouter, Routes } from '@angular/router';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet, Router, NavigationEnd } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
 import { LoginComponent } from './components/login/login.component';
 import { TeacherDashboardComponent } from './components/teacher/teacher-dashboard.component';
@@ -14,6 +14,7 @@ import { TasmiiSessionComponent } from './components/tasmii/tasmii-session/tasmi
 import { NavigationComponent } from './components/shared/navigation.component';
 import { AuthService } from './services/auth.service';
 import { provideHttpClient } from '@angular/common/http';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -43,10 +44,12 @@ export class App {
   showNavigation = false;
   sidebarCollapsed = false;
   menuItems: any[] = [];
+  isLoginPage = false;
 
   constructor(
     private languageService: LanguageService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {
     this.languageService.currentLanguage$.subscribe(lang => {
       this.currentLanguage = lang;
@@ -55,13 +58,26 @@ export class App {
       document.documentElement.lang = lang;
     });
 
+    // Listen to route changes to determine if we're on login page
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe((event: NavigationEnd) => {
+      this.isLoginPage = event.url === '/login' || event.url === '/';
+      this.updateNavigationVisibility();
+    });
+
     // Check authentication status and set navigation visibility
     this.authService.currentUser$.subscribe(user => {
-      this.showNavigation = !!user;
+      this.updateNavigationVisibility();
       if (user) {
         this.setMenuItems(user.role);
       }
     });
+  }
+
+  private updateNavigationVisibility(): void {
+    const user = this.authService.getCurrentUser();
+    this.showNavigation = !!user && !this.isLoginPage;
   }
 
   private setMenuItems(role: string): void {
