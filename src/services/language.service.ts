@@ -118,7 +118,7 @@ const FRENCH_TRANSLATIONS: Translation = {
 
   // Dashboard
   welcome: 'Bienvenue',
-  teacherDashboard: 'Tableau de bord Professeur',
+  teacherDashboard: 'Bienvenu',
   studentDashboard: 'Tableau de bord Étudiant',
   scheduleSession: 'Planifier une session',
   upcomingSessions: 'Vos prochaines sessions',
@@ -208,7 +208,7 @@ const ENGLISH_TRANSLATIONS: Translation = {
 
   // Dashboard
   welcome: 'Welcome',
-  teacherDashboard: 'Teacher Dashboard',
+  teacherDashboard: 'Welcome',
   studentDashboard: 'Student Dashboard',
   scheduleSession: 'Schedule Session',
   upcomingSessions: 'Your Upcoming Sessions',
@@ -298,7 +298,7 @@ const ARABIC_TRANSLATIONS: Translation = {
 
   // Dashboard
   welcome: 'أهلاً وسهلاً',
-  teacherDashboard: 'لوحة المعلم',
+  teacherDashboard: 'أهلاً وسهلاً',
   studentDashboard: 'لوحة الطالب',
   scheduleSession: 'جدولة جلسة',
   upcomingSessions: 'جلساتك القادمة',
