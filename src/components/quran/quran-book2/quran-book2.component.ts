@@ -4,10 +4,11 @@ import { Component, EventEmitter, Inject, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { QuranLineComponent } from '../quran-line/quran-line.component';
-import { Ayah, AyahChar, AyahTajweedData, PageLine } from '../models/TajweedID';
-import { SurahNavigatorComponent } from '../shared/surah-navigator/surah-navigator.component';
-import { TajweedService } from '../services/tajweed.service';
-import { QuranService } from '../services/quran.service';
+import { Ayah, AyahChar, AyahTajweedData, PageLine } from '../../../models/TajweedID';
+import { TajweedService } from '../../../services/tajweed.service';
+import { QuranService } from '../../../services/quran.service';
+import { SurahNavigatorComponent } from '../../shared/surah-navigator/surah-navigator.component';
+
 
 declare var Tajweed: any;
 

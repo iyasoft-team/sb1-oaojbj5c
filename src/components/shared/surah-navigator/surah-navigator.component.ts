@@ -4,7 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CommonModule } from '@angular/common';
-import { StateService } from '../../services/notificationService';
+import { StateService } from '../../../services/notificationService';
 
 @Component({
   selector: 'app-surah-navigator',

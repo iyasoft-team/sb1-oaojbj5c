@@ -10,11 +10,13 @@ import { TeacherDashboardComponent } from './components/teacher/teacher-dashboar
 import { SessionNotesComponent } from './components/teacher/session-notes.component';
 import { StudentDashboardComponent } from './components/student/student-dashboard.component';
 import { LanguageService } from './services/language.service';
+import { TasmiiSessionComponent } from './components/tasmii/tasmii-session/tasmii-session.component';
+import { provideHttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet],
+  imports: [CommonModule, RouterOutlet,],
   template: `
     <div class="app-container" [dir]="currentLanguage === 'ar' ? 'rtl' : 'ltr'">
       <router-outlet></router-outlet>
@@ -50,7 +52,7 @@ const routes: Routes = [
   },
   { 
     path: 'teacher/session/:id', 
-    component: SessionNotesComponent,
+    component: TasmiiSessionComponent,
     canActivate: [AuthGuard]
   },
   { 
@@ -65,6 +67,7 @@ bootstrapApplication(App, {
   providers: [
     provideRouter(routes),
     provideAnimations(),
+    provideHttpClient(),
     AuthGuard
   ]
 });

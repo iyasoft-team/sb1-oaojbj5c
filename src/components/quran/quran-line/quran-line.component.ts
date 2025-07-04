@@ -2,9 +2,9 @@ import { CommonModule } from '@angular/common';
 import { Component, Input, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { Ayah, AyahChar, PageLine, TajweedAnnotation, TajweedRule } from '../models/TajweedID';
-import { elementAt } from 'rxjs';
-import { StateService } from '../services/notificationService';
+import { Ayah, AyahChar, PageLine, TajweedAnnotation, TajweedRule } from '../../../models/TajweedID';
+import { StateService } from '../../../services/notificationService';
+
 @Component({
   selector: 'app-quran-line',
   templateUrl: './quran-line.component.html',

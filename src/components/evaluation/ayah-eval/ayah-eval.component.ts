@@ -2,8 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatRadioModule } from '@angular/material/radio';
-import { StateService } from '../../services/notificationService';
 import { Subscription } from 'rxjs';
+import { StateService } from '../../../services/notificationService';
 
 @Component({
   selector: 'app-ayah-eval',

@@ -1,11 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { AyahChar, TajweedRuleInfo } from '../../models/TajweedID';
-import { StateService } from '../../services/notificationService';
 import { Subscription } from 'rxjs';
-import { TajweedRuleService } from '../../services/tajweedinfo.service';
 import { FormsModule } from '@angular/forms';
 import {MatRadioModule} from '@angular/material/radio';
 import { CommonModule } from '@angular/common';
+import { AyahChar, TajweedRuleInfo } from '../../../models/TajweedID';
+import { StateService } from '../../../services/notificationService';
+import { TajweedRuleService } from '../../../services/tajweedinfo.service';
 @Component({
   selector: 'app-tajweed-eval',
   imports: [MatRadioModule, FormsModule,CommonModule],
