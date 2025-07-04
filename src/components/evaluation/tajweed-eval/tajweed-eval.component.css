@@ -1,69 +1,78 @@
 .evaluation-menu {
-  width: 500px;
-  height: auto;
-  padding: 20px;
+  width: 320px;
+  height: 459px;
+  padding: 16px;
   font-family: 'Amiri', serif;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 12px;
   direction: ltr;
   text-align: left;
+  overflow-y: auto;
 }
 
 .rule-title {
-  font-size: 22px;
+  font-size: 18px;
   color: #1d3557;
   direction: rtl;
   text-align: center;
   font-family: 'Amiri', serif;
+  margin: 0;
+  line-height: 1.2;
 }
 
 .rule-main {
   border-bottom: 2px solid #d4af37;
-  padding-bottom: 6px;
-  font-size: 22px;
+  padding-bottom: 4px;
+  font-size: 18px;
   color: #0f4c75;
   direction: rtl;
   text-align: center;
   font-family: 'Amiri', serif;
+  margin: 0;
+  line-height: 1.2;
 }
 
 .error-label {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
   color: #0f4c75;
   letter-spacing: 0.5px;
+  margin: 0;
 }
 
 .error-radio-group {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
+  flex: 1;
+  overflow-y: auto;
 }
 
 .error-radio-button {
-  font-size: 14px;
+  font-size: 12px;
   color: #333;
   transition: all 0.3s ease;
+  margin: 0;
 }
 
 /* Override Material radio button styling */
 .error-radio-button .mat-radio-container {
-  width: 16px !important;
-  height: 16px !important;
+  width: 14px !important;
+  height: 14px !important;
 }
 
 .error-radio-button .mat-radio-outer-circle {
   border-color: #0f4c75 !important;
   border-width: 2px !important;
-  width: 16px !important;
-  height: 16px !important;
+  width: 14px !important;
+  height: 14px !important;
 }
 
 .error-radio-button .mat-radio-inner-circle {
   background-color: #d4af37 !important;
-  width: 8px !important;
-  height: 8px !important;
+  width: 6px !important;
+  height: 6px !important;
   top: 4px !important;
   left: 4px !important;
 }
@@ -84,9 +93,9 @@
 }
 
 .error-radio-button .mat-radio-label-content {
-  padding-left: 8px !important;
-  font-size: 14px !important;
-  line-height: 1.4 !important;
+  padding-left: 6px !important;
+  font-size: 12px !important;
+  line-height: 1.3 !important;
 }
 
 /* Ripple effect styling */
@@ -100,53 +109,73 @@
   box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2) !important;
 }
 
+/* Custom scrollbar */
+.error-radio-group::-webkit-scrollbar {
+  width: 4px;
+}
+
+.error-radio-group::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.error-radio-group::-webkit-scrollbar-thumb {
+  background: rgba(15, 76, 117, 0.2);
+  border-radius: 2px;
+}
+
+.error-radio-group::-webkit-scrollbar-thumb:hover {
+  background: rgba(15, 76, 117, 0.3);
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .evaluation-menu {
-    width: 100%;
-    max-width: 450px;
-    padding: 16px;
+    width: 280px;
+    height: 400px;
+    padding: 12px;
   }
 
   .rule-main {
-    font-size: 20px;
+    font-size: 16px;
   }
 
   .rule-title {
-    font-size: 20px;
+    font-size: 16px;
   }
 
   .error-label {
-    font-size: 15px;
+    font-size: 13px;
   }
 
   .error-radio-button .mat-radio-label-content {
-    font-size: 13px !important;
+    font-size: 11px !important;
   }
 }
 
 @media (max-width: 480px) {
   .evaluation-menu {
-    padding: 12px;
+    width: 250px;
+    height: 350px;
+    padding: 10px;
   }
 
   .rule-main {
-    font-size: 18px;
-  }
-
-  .rule-title {
-    font-size: 18px;
-  }
-
-  .error-label {
     font-size: 14px;
   }
 
+  .rule-title {
+    font-size: 14px;
+  }
+
+  .error-label {
+    font-size: 12px;
+  }
+
   .error-radio-button .mat-radio-label-content {
-    font-size: 12px !important;
+    font-size: 10px !important;
   }
 
   .error-radio-group {
-    gap: 6px;
+    gap: 4px;
   }
 }

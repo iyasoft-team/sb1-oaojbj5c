@@ -2,27 +2,37 @@
   transition: margin-left 0.3s ease;
 }
 
-.tasmii-main
-{
-  align-items: stretch; /* ensures both children are aligned vertically */
-  justify-content: center; /* or center/start depending on layout */
-  height: 100%; /* or a specific height if needed */
+.tasmii-main {
+  align-items: flex-start;
+  justify-content: center;
+  height: 100%;
   width: 100%;
   direction: rtl;
   margin: 15px;
 }
+
 .tasmii-container {
   width: 100%;
-  max-width: 1000px; /* or 700px, same as .Quran-page if needed */
-  margin: 5px auto; /* center it */
+  max-width: 1200px;
+  margin: 5px auto;
 }
 
 mat-expansion-panel {
-  width: 103%;
+  width: 100%;
+  margin-bottom: 20px;
 }
 
 .horizontal-div.tasmii-main {
   width: 100%;
+  gap: 20px;
+}
+
+.tasmii-eval {
+  min-width: 320px;
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .student-header {
@@ -42,4 +52,55 @@ mat-expansion-panel {
 .student-name {
   font-weight: 600;
   font-size: 16px;
+}
+
+/* Ensure all evaluation components have the same height */
+.tasmii-eval > * {
+  flex-shrink: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .horizontal-div.tasmii-main {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .tasmii-eval {
+    min-width: 280px;
+    max-width: 280px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .tasmii-main {
+    margin: 10px;
+  }
+
+  .tasmii-eval {
+    min-width: 250px;
+    max-width: 250px;
+  }
+
+  .horizontal-div.tasmii-main {
+    gap: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .tasmii-main {
+    margin: 8px;
+  }
+
+  .tasmii-eval {
+    min-width: 100%;
+    max-width: 100%;
+  }
+
+  .horizontal-div.tasmii-main {
+    gap: 10px;
+  }
 }
