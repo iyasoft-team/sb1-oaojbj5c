@@ -12,13 +12,10 @@
         <div class="header-title">
           <mat-icon class="dashboard-icon">school</mat-icon>
           <div class="title-group">
-            <h1>{{ translations.teacherDashboard }}</h1>
+            <h1>{{ translations.welcome }}, {{ currentUser?.name }}</h1>
           </div>
         </div>
         <div class="header-actions">
-          <div class="welcome-section">
-            <span class="welcome-text">{{ translations.welcome }}, {{ currentUser?.name }}</span>
-          </div>
           <button mat-raised-button (click)="openScheduleModal()" class="schedule-btn">
             <mat-icon>add</mat-icon>
             {{ translations.scheduleSession }}
