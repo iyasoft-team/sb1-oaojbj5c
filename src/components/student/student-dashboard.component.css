@@ -9,10 +9,11 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  margin-left: 16px;
 }
 
 .dashboard-container {
-  padding: 15px;
+  padding: 20px;
   min-height: 100vh;
   background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
 }
