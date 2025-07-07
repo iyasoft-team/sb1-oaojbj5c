@@ -3,13 +3,11 @@ dist
 node_modules
 .env
 
-/Madrasaty-BE/QuranApi/QuranModels/bin
-/Madrasaty-BE/QuranApi/QuranModels/obj
-/Madrasaty-BE/QuranApi/QuranApi/obj
-/Madrasaty-BE/QuranApi/QuranApi/bin
+*/**/bin/Debug
+*/**/obj/Debug
+*/**/obj/Release
+*/**/bin/Release
 
 *.cache
 
-/Madrasaty-BE/QuranApi/.vs
-/Madrasaty-BE/QuranApi/QuranApi/obj
-/Madrasaty-BE/QuranApi/.vs/QuranApi
+*/**/.vs
