@@ -1,12 +1,13 @@
-export interface Session {
+export class Session {
   id: string;
   teacherId: string;
   studentId: string;
   teacherName: string;
   studentName: string;
-  date: Date;
-  startTime: string;
-  endTime: string;
+
+  date?:Date;
+  startDate: Date;
+  endDate: Date;
   topic?: string;
   notes?: string;
   status: 'scheduled' | 'in-progress' | 'completed' | 'cancelled';

@@ -55,7 +55,7 @@ export class SessionNotesComponent implements OnInit {
     this.sessionService.getSessions().subscribe(sessions => {
       this.session = sessions.find(s => s.id === this.sessionId) || null;
       if (this.session) {
-        this.notes = this.session.notes || '';
+        this.notes = 'yess';
         // Start the session if it's not already in progress
         if (this.session.status === 'scheduled') {
           this.sessionService.startSession(this.session.id).subscribe();

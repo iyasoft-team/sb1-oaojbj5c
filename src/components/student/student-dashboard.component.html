@@ -42,11 +42,11 @@
               <div class="session-details">
                 <div class="detail-item">
                   <mat-icon>event</mat-icon>
-                  <span>{{ formatDate(session.date) }}</span>
+                  <span>{{ formatDate(session.startDate) }}</span>
                 </div>
                 <div class="detail-item">
                   <mat-icon>schedule</mat-icon>
-                  <span>{{ session.startTime }} - {{ session.endTime }}</span>
+                  <span>{{ session.startDate.getHours() }} - {{ session.endDate.getHours() }}</span>
                 </div>
                 <div class="detail-item">
                   <mat-icon>person</mat-icon>
@@ -99,7 +99,7 @@
                   <h4>{{ session.topic || translations.generalSession }}</h4>
                   <mat-icon class="completed-icon">check_circle</mat-icon>
                 </div>
-                <p class="session-date">{{ formatDate(session.date) }} • {{ session.startTime }} - {{ session.endTime }}</p>
+                <p class="session-date">{{ formatDate(session.startDate) }} • {{ session.startDate.getHours() }} - {{ session.endDate.getHours() }}</p>
                 <p class="session-teacher">{{ translations.with }} {{ session.teacherName }}</p>
               </div>
               <div class="session-notes" *ngIf="session.notes">

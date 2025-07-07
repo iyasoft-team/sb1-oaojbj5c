@@ -104,3 +104,14 @@ mat-expansion-panel {
     gap: 10px;
   }
 }
+
+.student-avatar {
+  width: 36px;        /* You can go down to 28px if needed */
+  height: 36px;
+  border-radius: 50%; /* Makes it perfectly circular */
+  object-fit: cover;  /* Prevent distortion */
+  margin-right: 8px;  /* Space between image and name */
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2); /* Optional: subtle shadow */
+  border: 1px solid #ddd; /* Optional: light border for clarity */
+  vertical-align: middle;
+}

@@ -1,0 +1,12 @@
+<div class="app-container" [dir]="currentLanguage === 'ar' ? 'rtl' : 'ltr'">
+      <app-navigation 
+        *ngIf="showNavigation"
+        [menuItems]="menuItems" 
+        [isCollapsed]="sidebarCollapsed"
+        (menuClick)="onMenuClick($event)"
+        (toggleCollapse)="onSidebarToggle($event)">
+      </app-navigation>
+
+        <router-outlet></router-outlet>
+
+</div>

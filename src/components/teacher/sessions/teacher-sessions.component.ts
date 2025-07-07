@@ -6,17 +6,17 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule, MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { SessionService } from '../../services/session.service';
-import { AuthService } from '../../services/auth.service';
-import { Session } from '../../models/session.model';
-import { CalendarComponent } from './calendar.component';
-import { SessionListComponent } from './session-list.component';
-import { ScheduleSessionModalComponent } from './schedule-session-modal.component';
-import { NavigationComponent, MenuItem, TEACHER_MENU_ITEMS } from '../shared/navigation/navigation.component';
-import { LanguageService, Translation } from '../../services/language.service';
+import { SessionService } from '../../../services/session.service';
+import { AuthService } from '../../../services/auth.service';
+import { Session } from '../../../models/session.model';
+import { CalendarComponent } from '../calendar.component';
+import { SessionListComponent } from '../session-list.component';
+import { ScheduleSessionModalComponent } from '../schedule-session-modal.component';
+import { NavigationComponent, MenuItem, TEACHER_MENU_ITEMS } from '../../shared/navigation/navigation.component';
+import { LanguageService, Translation } from '../../../services/language.service';
 
 @Component({
-  selector: 'app-teacher-dashboard',
+  selector: 'app-teacher-sessions',
   standalone: true,
   imports: [
     CommonModule,
@@ -29,13 +29,13 @@ import { LanguageService, Translation } from '../../services/language.service';
     SessionListComponent,
     NavigationComponent
   ],
-  templateUrl: './teacher-dashboard.component.html',
-  styleUrls: ['./teacher-dashboard.component.css']
+  templateUrl: './teacher-sessions.component.html',
+  styleUrls: ['./teacher-sessions.component.css']
 })
-export class TeacherDashboardComponent implements OnInit {
+export class TeacherSessionsComponent implements OnInit {
   sessions: Session[] = [];
   currentUser = this.authService.getCurrentUser();
-  currentView: 'calendar' | 'list' = 'calendar';
+  currentView: 'calendar' | 'list' = 'list';
   sidebarCollapsed = false;
   translations: Translation;
   
@@ -100,6 +100,16 @@ export class TeacherDashboardComponent implements OnInit {
   onSessionAction(event: { action: string; session: Session }): void {
     if (event.action === 'start') {
       this.router.navigate(['/teacher/session', event.session.id]);
+    }
+    else if (event.action === 'start')
+    {
+
+    }
+    else if (event.action === 'delete')
+    {
+      this.sessionService.DeleteSession(event.session.id).subscribe(result => {
+        this.loadSessions();     
+    });
     }
   }
 

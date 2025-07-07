@@ -294,7 +294,9 @@ export class ScheduleSessionModalComponent implements OnInit {
     topic: '',
     date: new Date(),
     startTime: '09:00',
-    endTime: '10:00'
+    endTime: '10:00',
+    startDate:new Date(),
+    endDate:new Date()
   };
 
   constructor(
@@ -324,15 +326,23 @@ export class ScheduleSessionModalComponent implements OnInit {
 
     const selectedStudent = this.students.find(s => s.id === this.newSession.studentId);
     if (!selectedStudent) return;
+  
+  const [startHour, startMinute] = this.newSession.startTime.split(':').map(Number);
+  const [endHour, endMinute] = this.newSession.endTime.split(':').map(Number);
+  
+  const startDateTime = new Date(  this.newSession.date);
+  startDateTime.setHours(startHour, startMinute, 0);
+
+  const endDateTime = new Date(  this.newSession.date);
+  endDateTime.setHours(endHour, endMinute, 0);
 
     const sessionData: Omit<Session, 'id' | 'createdAt'> = {
       teacherId: this.currentUser.id,
       studentId: this.newSession.studentId,
       teacherName: this.currentUser.name,
       studentName: selectedStudent.name,
-      date: this.newSession.date,
-      startTime: this.newSession.startTime,
-      endTime: this.newSession.endTime,
+      startDate:startDateTime ,
+      endDate:endDateTime,
       topic: this.newSession.topic,
       status: 'scheduled'
     };

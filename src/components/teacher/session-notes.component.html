@@ -5,7 +5,7 @@
     </button>
     <div class="session-info">
       <h1>Session {{ translations.with }} {{ session.studentName }}</h1>
-      <p>{{ formatDate(session.date) }} • {{ session.startTime }} - {{ session.endTime }}</p>
+      <p>{{ formatDate(session.date) }} • {{ session.startDate.getHours() }} - {{ session.endDate.getHours() }}</p>
       <p *ngIf="session.topic"><strong>Topic:</strong> {{ session.topic }}</p>
     </div>
   </div>
@@ -30,7 +30,7 @@
 
       <div class="session-status">
         <p><strong>Status:</strong> {{ formatStatus(session.status) }}</p>
-        <p><strong>Duration:</strong> {{ session.startTime }} - {{ session.endTime }}</p>
+        <p><strong>Duration:</strong> {{ session.startDate.getHours() }} - {{ session.endDate.getHours() }}</p>
       </div>
     </mat-card-content>
 

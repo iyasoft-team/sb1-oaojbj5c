@@ -6,38 +6,23 @@ import { CommonModule } from '@angular/common';
 import { RouterOutlet, Router, NavigationEnd } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
 import { LoginComponent } from './components/login/login.component';
-import { TeacherDashboardComponent } from './components/teacher/teacher-dashboard.component';
-import { SessionNotesComponent } from './components/teacher/session-notes.component';
+import { TeacherSessionsComponent } from './components/teacher/sessions/teacher-sessions.component';
 import { StudentDashboardComponent } from './components/student/student-dashboard.component';
 import { LanguageService } from './services/language.service';
 import { TasmiiSessionComponent } from './components/tasmii/tasmii-session/tasmii-session.component';
 import { NavigationComponent } from './components/shared/navigation/navigation.component';
 import { AuthService } from './services/auth.service';
-import { provideHttpClient } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { filter } from 'rxjs/operators';
+import { AuthInterceptor } from './services/auth.interceptor';
+import { DateInterceptor } from './services/date.interceptor';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [CommonModule, RouterOutlet, NavigationComponent],
-  template: `
-    <div class="app-container" [dir]="currentLanguage === 'ar' ? 'rtl' : 'ltr'">
-      <app-navigation 
-        *ngIf="showNavigation"
-        [menuItems]="menuItems" 
-        [isCollapsed]="sidebarCollapsed"
-        (menuClick)="onMenuClick($event)"
-        (toggleCollapse)="onSidebarToggle($event)">
-      </app-navigation>
-      <router-outlet></router-outlet>
-    </div>
-  `,
-  styles: [`
-    .app-container {
-      min-height: 100vh;
-      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-    }
-  `]
+  templateUrl:'./main.component.html',
+  styleUrl : './main.component.css'
 })
 export class App {
   currentLanguage: 'fr' | 'en' | 'ar' = 'fr';
@@ -62,7 +47,7 @@ export class App {
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe((event: NavigationEnd) => {
-      this.isLoginPage = event.url === '/login' || event.url === '/';
+      this.isLoginPage = event.url === '/login';
       this.updateNavigationVisibility();
     });
 
@@ -83,7 +68,7 @@ export class App {
   private setMenuItems(role: string): void {
     if (role === 'teacher') {
       this.menuItems = [
-        { id: 'dashboard', label: 'Dashboard', arabicLabel: 'لوحة التحكم', icon: 'dashboard', active: true },
+        { id: 'dashboard', label: 'Dashboard', arabicLabel: 'لوحة التحكم', icon: 'dashboard' },
         { id: 'sessions', label: 'Sessions', arabicLabel: 'الجلسات', icon: 'event' },
         { id: 'students', label: 'Students', arabicLabel: 'الطلاب', icon: 'people' },
         { id: 'reports', label: 'Reports', arabicLabel: 'التقارير', icon: 'assessment' },
@@ -101,7 +86,10 @@ export class App {
 
   onMenuClick(item: any): void {
     // Handle menu navigation
-    console.log('Menu clicked:', item);
+    //console.log('Menu clicked:', item);
+    this.menuItems.forEach((item)=>{item.active = false})
+    item.active = true;
+    this.router.navigate([this.authService.getCurrentUser().role+'/'+item.id]);
   }
 
   onSidebarToggle(collapsed: boolean): void {
@@ -113,28 +101,39 @@ const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { 
-    path: 'teacher', 
-    component: TeacherDashboardComponent,
-    canActivate: [AuthGuard]
+    path: 'teacher/sessions', 
+    component: TeacherSessionsComponent,
+    /*canActivate: [AuthGuard]*/
   },
   { 
     path: 'teacher/session/:id', 
     component: TasmiiSessionComponent,
-    canActivate: [AuthGuard]
+     /*canActivate: [AuthGuard]*/
   },
   { 
     path: 'student', 
     component: StudentDashboardComponent,
-    canActivate: [AuthGuard]
+     /*canActivate: [AuthGuard]*/
   },
-  { path: '**', redirectTo: '/login' }
+  { path: '**', redirectTo: '/teacher/sessions' }
 ];
 
 bootstrapApplication(App, {
   providers: [
     provideRouter(routes),
     provideAnimations(),
-    provideHttpClient(),
-    AuthGuard
+    provideHttpClient(withInterceptorsFromDi()),
+    AuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: DateInterceptor,
+      multi: true
+    }
+    
   ]
 });

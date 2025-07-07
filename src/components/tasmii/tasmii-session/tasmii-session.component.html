@@ -3,8 +3,18 @@
  <mat-expansion-panel>
   <mat-expansion-panel-header>
     <mat-panel-title class="student-header">
-      <mat-icon>account_circle</mat-icon>
-      <span class="student-name">majdi</span>
+      <img 
+        *ngIf="student?.profileImageUrl; else defaultIcon"
+        [src]="student.profileImageUrl" 
+        alt="Student Photo"
+        class="student-avatar" />
+
+      <ng-template #defaultIcon>
+        <mat-icon>account_circle</mat-icon>
+      </ng-template>
+
+  <span class="student-name">{{ student?.fullName }}</span>
+      
     </mat-panel-title>
     <mat-panel-description>
       from baqarah ayah1 -> ayah10 : page 20

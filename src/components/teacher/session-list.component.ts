@@ -34,6 +34,7 @@ export class SessionListComponent {
   }
 
   formatDate(date: Date): string {
+    
     return new Date(date).toLocaleDateString('en-US', {
       weekday: 'short',
       year: 'numeric',
@@ -50,13 +51,22 @@ export class SessionListComponent {
       case 'cancelled': return this.translations.cancelled;
       default: return status;
     }
-  }
 
+    
+  }
+  formathours(date : Date) : number
+    {
+      return date?.getHours();
+    }
   onStartSession(session: Session): void {
     this.sessionAction.emit({ action: 'start', session });
   }
 
   onViewNotes(session: Session): void {
     this.sessionAction.emit({ action: 'view-notes', session });
+  }
+
+  onDeleteSession(session: Session): void {
+    this.sessionAction.emit({ action: 'delete', session });
   }
 }

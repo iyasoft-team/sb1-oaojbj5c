@@ -6,6 +6,7 @@
 
   <div class="sessions-grid" *ngIf="sessions.length > 0; else noSessions">
     <mat-card class="session-card" *ngFor="let session of sortedSessions">
+    
       <mat-card-header>
         <mat-card-title>{{ session.studentName }}</mat-card-title>
         <mat-card-subtitle>{{ session.topic || translations.generalSession }}</mat-card-subtitle>
@@ -15,11 +16,11 @@
         <div class="session-details">
           <div class="detail-item">
             <mat-icon>event</mat-icon>
-            <span>{{ formatDate(session.date) }}</span>
+            <span>{{ session.startDate.toDateString() }}</span>
           </div>
           <div class="detail-item">
             <mat-icon>schedule</mat-icon>
-            <span>{{ session.startTime }} - {{ session.endTime }}</span>
+            <span>{{ formathours(session.startDate)  }} - {{ formathours(session.endDate)}}</span>
           </div>
           <div class="detail-item">
             <mat-icon>person</mat-icon>
@@ -47,12 +48,20 @@
         
         <button 
           mat-stroked-button 
-          *ngIf="session.status === 'completed' && session.notes"
+          *ngIf="session.status === 'completed'"
           (click)="onViewNotes(session)"
         >
           <mat-icon>notes</mat-icon>
           {{ translations.viewNotes }}
         </button>
+
+        <button 
+                mat-icon-button 
+                color="warn"
+                (click)="onDeleteSession(session)">
+                <mat-icon>delete</mat-icon>
+        </button>
+
       </mat-card-actions>
     </mat-card>
   </div>

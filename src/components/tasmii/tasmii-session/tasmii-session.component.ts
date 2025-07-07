@@ -12,6 +12,8 @@ import { AyahChar } from '../../../models/TajweedID';
 import { NavigationComponent, MenuItem, TEACHER_MENU_ITEMS } from '../../shared/navigation/navigation.component';
 import { AuthService } from '../../../services/auth.service';
 import { LanguageService, Translation } from '../../../services/language.service';
+import { StudentService } from '../../../services/student.service';
+import { Student } from '../../../models/user.model';
 
 @Component({
   selector: 'app-tasmii-session',
@@ -28,11 +30,13 @@ export class TasmiiSessionComponent {
   translations: Translation;
   currentUser = this.authService.getCurrentUser();
   menuItems: MenuItem[] = [...TEACHER_MENU_ITEMS];
-
+  student: Student | null = null;
   constructor(
     private sharedService: StateService,
     private authService: AuthService,
-    private languageService: LanguageService
+    private languageService: LanguageService,
+
+    private studentService : StudentService
   ) {
     this.translations = this.languageService.getTranslations();
     this.languageService.translations$.subscribe(translations => {
@@ -43,7 +47,9 @@ export class TasmiiSessionComponent {
   }
 
   selectedchar: AyahChar;
-
+  ngOnInit() {
+    this.studentService.getStudent(1).subscribe(s => this.student = s); // replace 1 with actual ID
+  }
   OnCharClick(char:AyahChar){
     this.selectedchar = char;
     console.log(char);
