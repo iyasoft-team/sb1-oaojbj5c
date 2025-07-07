@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 import { SessionService } from '../../services/session.service';
 import { AuthService } from '../../services/auth.service';
 import { Session } from '../../models/session.model';
-import { NavigationComponent, MenuItem, STUDENT_MENU_ITEMS } from '../shared/navigation.component';
+import { NavigationComponent, MenuItem, STUDENT_MENU_ITEMS } from '../shared/navigation/navigation.component';
 import { LanguageService, Translation } from '../../services/language.service';
 
 @Component({

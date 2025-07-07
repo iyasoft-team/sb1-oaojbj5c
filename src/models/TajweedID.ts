@@ -14,7 +14,7 @@ export enum TajweedRule {
   Madda246 = 'madd_246'
 }
 export class TajweedAnnotation {
-  word: number;       // word index (0-based)
+  wordIndex: number;       // word index (0-based)
   start: number;      // start index within the word
   end: number;        // end index within the word
   rule: TajweedRule;  // rule type as enum or string

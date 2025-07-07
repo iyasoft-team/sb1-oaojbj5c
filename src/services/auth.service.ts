@@ -46,7 +46,7 @@ export class AuthService {
     // Simple mock authentication
     const user = this.mockUsers.find(u => u.email === credentials.email);
     
-    if (user && credentials.password === 'password') {
+    if (user && credentials.password === 'P@ssword') {
       localStorage.setItem('currentUser', JSON.stringify(user));
       this.currentUserSubject.next(user);
       return of(user);

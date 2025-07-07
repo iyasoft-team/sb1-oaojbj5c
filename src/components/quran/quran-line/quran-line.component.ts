@@ -30,40 +30,6 @@ export class QuranLineComponent {
 ngOnInit(): void {
 
   }
-
- /* highlightAyah(number: number): void {
-    console.log(`enetered highlight`);
-    // Remove any existing highlights
-   /* document.querySelectorAll('.highlight').forEach(el => {
-      el.classList.remove('highlight');
-    });*/
-/*if (!number) return;
-    // Highlight all matching letters
-    let items = document.querySelectorAll(`.ayah-${number}`);
-    items.forEach(el => {
-      el.classList.add('highlight');
-    });
-    console.log(`Found ${items.length} elements with class .ayah-${number}`);
-  }*/
-
-  private parseAyah(ayah: any): string {
-    const words = ayah.text2.trim().split(/\s+/);
-    const wordHtml = words.map(word => {
-      const wrapped = [...word].map(char =>
-        /[\u0600-\u06FF]/.test(char)
-          ? `<span class="letter ayah-${ayah.number}">${char}</span>`
-          : char
-      ).join('');
-      return wrapped;
-    });
-
-    const ayahText = wordHtml.join(' ');
-    const number = ayah.isend
-      ? `<span class="ayah-number" onclick="window.highlightAyah(${ayah.number})" >﴿${ayah.number}﴾</span>`
-      : '';
-
-    return `<span class="ayah-group">${ayahText}${number}</span>`;
-  }
   splitAyahChars(ayah: Ayah, line: PageLine): AyahChar[] {
   const charsList: AyahChar[] = [];
   const words = ayah.text2.split(' ');
@@ -76,10 +42,11 @@ ngOnInit(): void {
     for (let i = 0; i < chars.length; i++) {
       const char = chars[i];
       const rule = ayah.annotations?.find(
-        ann => ann.word === wordIndex && (ann.start === i || ann.end === i)
+        ann => ann.wordIndex === wordIndex && (ann.start === i || ann.end === i)
       );
 
-      const activeRule = (pendingRule && pendingRule.word !== wordIndex) ? pendingRule : rule;
+      const activeRule = (pendingRule && pendingRule.wordIndex !== wordIndex) ? pendingRule : rule;
+      
       const ruleClass = activeRule ? this.getTajweedClass(activeRule.rule) : '';
 
       charsList.push({
@@ -87,7 +54,7 @@ ngOnInit(): void {
         index: i,
         word: wordIndex,
         text: word,
-        ruleClass,
+        ruleClass : ruleClass,
         isTajweed: activeRule ? true : false,
         ayah: ayah.ayahNumber,
         surah: line.surahId,

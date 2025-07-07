@@ -11,7 +11,7 @@ import { SessionNotesComponent } from './components/teacher/session-notes.compon
 import { StudentDashboardComponent } from './components/student/student-dashboard.component';
 import { LanguageService } from './services/language.service';
 import { TasmiiSessionComponent } from './components/tasmii/tasmii-session/tasmii-session.component';
-import { NavigationComponent } from './components/shared/navigation.component';
+import { NavigationComponent } from './components/shared/navigation/navigation.component';
 import { AuthService } from './services/auth.service';
 import { provideHttpClient } from '@angular/common/http';
 import { filter } from 'rxjs/operators';

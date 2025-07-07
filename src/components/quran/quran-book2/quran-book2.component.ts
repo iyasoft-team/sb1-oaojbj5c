@@ -58,22 +58,8 @@ loadSurahPage()
 {
    this.QuranSrv.loadPage(this.pageNumber).subscribe({
     next: (response: PageLine[]) => {
-      let tempPagelines = response
- 
-      let tajweed : AyahTajweedData[];
-       this.TjwService.loadTajweedAnnotations().subscribe({
-                      next: data => {
-                        tajweed = data;
-                         tempPagelines.forEach(line=>{
-                        let surahid = line.surahId;
-                        this.loadTajweedIntoAyahs(tajweed,line.ayahs,surahid); 
-                        this.pageLines = tempPagelines;
-                          })
-                      },
-                      error: err => {
-                        console.error('Failed to load tajweed annotations:', err);
-                      }
-                    });
+      this.pageLines = response
+
     },
     error: (err) => {
       console.error('Failed to load ayah:', err);

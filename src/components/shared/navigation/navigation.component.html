@@ -1,0 +1,95 @@
+<div class="sidebar-container" [class.collapsed]="isCollapsed">
+      <!-- Logo Section -->
+      <div class="sidebar-header">
+        <div class="logo-section">
+          <mat-icon 
+            class="logo-icon" 
+            [class.clickable]="isCollapsed"
+            (click)="isCollapsed ? toggleSidebar() : null"
+            [matTooltip]="isCollapsed ? 'Expand menu' : ''"
+            matTooltipPosition="right"
+          >
+            menu_book
+          </mat-icon>
+          <div class="logo-text" *ngIf="!isCollapsed">
+            <h3>{{ translations.loginTitle }}</h3>
+          </div>
+        </div>
+        <button
+          *ngIf="!isCollapsed"
+          mat-icon-button 
+          (click)="toggleSidebar()" 
+          class="toggle-btn"
+          matTooltip="Réduire le menu"
+        >
+          <mat-icon>chevron_left</mat-icon>
+        </button>
+      </div>
+
+      <!-- Navigation Menu -->
+      <nav class="sidebar-nav">
+        <div class="nav-section">
+          <div class="section-label" *ngIf="!isCollapsed">{{ translations.main }}</div>
+          <button 
+            mat-button 
+            *ngFor="let item of menuItems" 
+            class="nav-item"
+            [class.active]="item.active"
+            (click)="onMenuClick(item)"
+            [matTooltip]="isCollapsed ? item.label : ''"
+            matTooltipPosition="right"
+          >
+            <mat-icon>{{ item.icon }}</mat-icon>
+            <div class="nav-text" *ngIf="!isCollapsed">
+            <span class="nav-label">{{ item.label }}</span>
+            </div>
+          </button>
+        </div>
+
+        <!-- User Section -->
+        <div class="nav-section">
+          <div class="section-label" *ngIf="!isCollapsed">{{ translations.account }}</div>
+          <button 
+            mat-button 
+            class="nav-item"
+            (click)="onMenuClick({id: 'profile', label: translations.profile, arabicLabel: 'الملف الشخصي', icon: 'person'})"
+            [matTooltip]="isCollapsed ? translations.profile : ''"
+            matTooltipPosition="right"
+          >
+            <mat-icon>person</mat-icon>
+            <div class="nav-text" *ngIf="!isCollapsed">
+              <span class="nav-label">{{ translations.profile }}</span>
+            </div>
+          </button>
+          
+          <button 
+            mat-button 
+            class="nav-item logout-item"
+            (click)="onLogout()"
+            [matTooltip]="isCollapsed ? translations.logout : ''"
+            matTooltipPosition="right"
+          >
+            <mat-icon>logout</mat-icon>
+            <div class="nav-text" *ngIf="!isCollapsed">
+              <span class="nav-label">{{ translations.logout }}</span>
+            </div>
+          </button>
+        </div>
+      </nav>
+
+      <!-- Language Toggle in Sidebar -->
+      <div class="sidebar-language-toggle" *ngIf="!isCollapsed">
+        <app-language-toggle></app-language-toggle>
+      </div>
+
+      <!-- User Info -->
+      <div class="user-info" *ngIf="!isCollapsed && currentUser">
+        <div class="user-avatar">
+          <mat-icon>account_circle</mat-icon>
+        </div>
+        <div class="user-details">
+          <div class="user-name">{{ currentUser.name }}</div>
+          <div class="user-role">{{ currentUser.role | titlecase }}</div>
+        </div>
+      </div>
+    </div>

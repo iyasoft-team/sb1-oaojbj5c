@@ -12,7 +12,7 @@ import { Session } from '../../models/session.model';
 import { CalendarComponent } from './calendar.component';
 import { SessionListComponent } from './session-list.component';
 import { ScheduleSessionModalComponent } from './schedule-session-modal.component';
-import { NavigationComponent, MenuItem, TEACHER_MENU_ITEMS } from '../shared/navigation.component';
+import { NavigationComponent, MenuItem, TEACHER_MENU_ITEMS } from '../shared/navigation/navigation.component';
 import { LanguageService, Translation } from '../../services/language.service';
 
 @Component({

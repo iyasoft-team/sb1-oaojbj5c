@@ -9,7 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { QuranBook2Component } from '../../quran/quran-book2/quran-book2.component';
 import { StateService } from '../../../services/notificationService';
 import { AyahChar } from '../../../models/TajweedID';
-import { NavigationComponent, MenuItem, TEACHER_MENU_ITEMS } from '../../shared/navigation.component';
+import { NavigationComponent, MenuItem, TEACHER_MENU_ITEMS } from '../../shared/navigation/navigation.component';
 import { AuthService } from '../../../services/auth.service';
 import { LanguageService, Translation } from '../../../services/language.service';
 
