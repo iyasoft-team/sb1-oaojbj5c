@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("QuranModels")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b628cfbcd4d83c861da86706a4f320c47a2c1af3")]
 [assembly: System.Reflection.AssemblyProductAttribute("QuranModels")]
 [assembly: System.Reflection.AssemblyTitleAttribute("QuranModels")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

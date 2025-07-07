@@ -10,3 +10,5 @@ node_modules
 
 *.cache
 
+/Madrasaty-BE/QuranApi/.vs
+/Madrasaty-BE/QuranApi/QuranApi/obj

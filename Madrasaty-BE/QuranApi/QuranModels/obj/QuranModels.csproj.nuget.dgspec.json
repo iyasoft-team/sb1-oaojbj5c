@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Madrasaty-BE\\QuranApi\\QuranModels\\QuranModels.csproj": {}
+    "E:\\sb1-oaojbj5c\\Madrasaty-BE\\QuranApi\\QuranModels\\QuranModels.csproj": {}
   },
   "projects": {
-    "E:\\Madrasaty-BE\\QuranApi\\QuranModels\\QuranModels.csproj": {
+    "E:\\sb1-oaojbj5c\\Madrasaty-BE\\QuranApi\\QuranModels\\QuranModels.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Madrasaty-BE\\QuranApi\\QuranModels\\QuranModels.csproj",
+        "projectUniqueName": "E:\\sb1-oaojbj5c\\Madrasaty-BE\\QuranApi\\QuranModels\\QuranModels.csproj",
         "projectName": "QuranModels",
-        "projectPath": "E:\\Madrasaty-BE\\QuranApi\\QuranModels\\QuranModels.csproj",
+        "projectPath": "E:\\sb1-oaojbj5c\\Madrasaty-BE\\QuranApi\\QuranModels\\QuranModels.csproj",
         "packagesPath": "C:\\Users\\mom\\.nuget\\packages\\",
-        "outputPath": "E:\\Madrasaty-BE\\QuranApi\\QuranModels\\obj\\",
+        "outputPath": "E:\\sb1-oaojbj5c\\Madrasaty-BE\\QuranApi\\QuranModels\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -24,7 +24,7 @@
           "C:\\Program Files (x86)\\NuGet\\Config\\Telerik UI for WinForms.config"
         ],
         "originalTargetFrameworks": [
-          "net7.0"
+          "net8.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
@@ -35,8 +35,8 @@
           "https://nuget.devexpress.com/fbRidW2TaYz7FSpeCAqar7ZaDhxfPVo5ClGXjoADiUl61yu8Xf/api": {}
         },
         "frameworks": {
-          "net7.0": {
-            "targetAlias": "net7.0",
+          "net8.0": {
+            "targetAlias": "net8.0",
             "projectReferences": {}
           }
         },
@@ -44,11 +44,17 @@
           "warnAsError": [
             "NU1605"
           ]
-        }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
-        "net7.0": {
-          "targetAlias": "net7.0",
+        "net8.0": {
+          "targetAlias": "net8.0",
           "imports": [
             "net461",
             "net462",
@@ -65,7 +71,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.301/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
