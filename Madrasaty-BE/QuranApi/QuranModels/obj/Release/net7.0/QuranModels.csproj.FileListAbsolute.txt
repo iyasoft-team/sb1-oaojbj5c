@@ -1,0 +1,12 @@
+E:\Madrasaty-BE\QuranApi\QuranModels\bin\Release\net7.0\QuranModels.deps.json
+E:\Madrasaty-BE\QuranApi\QuranModels\bin\Release\net7.0\QuranModels.dll
+E:\Madrasaty-BE\QuranApi\QuranModels\bin\Release\net7.0\QuranModels.pdb
+E:\Madrasaty-BE\QuranApi\QuranModels\obj\Release\net7.0\QuranModels.csproj.AssemblyReference.cache
+E:\Madrasaty-BE\QuranApi\QuranModels\obj\Release\net7.0\QuranModels.GeneratedMSBuildEditorConfig.editorconfig
+E:\Madrasaty-BE\QuranApi\QuranModels\obj\Release\net7.0\QuranModels.AssemblyInfoInputs.cache
+E:\Madrasaty-BE\QuranApi\QuranModels\obj\Release\net7.0\QuranModels.AssemblyInfo.cs
+E:\Madrasaty-BE\QuranApi\QuranModels\obj\Release\net7.0\QuranModels.csproj.CoreCompileInputs.cache
+E:\Madrasaty-BE\QuranApi\QuranModels\obj\Release\net7.0\QuranModels.dll
+E:\Madrasaty-BE\QuranApi\QuranModels\obj\Release\net7.0\refint\QuranModels.dll
+E:\Madrasaty-BE\QuranApi\QuranModels\obj\Release\net7.0\QuranModels.pdb
+E:\Madrasaty-BE\QuranApi\QuranModels\obj\Release\net7.0\ref\QuranModels.dll

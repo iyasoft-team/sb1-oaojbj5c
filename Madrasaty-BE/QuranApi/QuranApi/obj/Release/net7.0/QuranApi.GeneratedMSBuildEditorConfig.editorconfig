@@ -1,0 +1,97 @@
+is_global = true
+build_property.TargetFramework = net7.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = QuranApi
+build_property.RootNamespace = QuranApi
+build_property.ProjectDir = E:\Madrasaty-BE\QuranApi\QuranApi\
+build_property.RazorLangVersion = 7.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = E:\Madrasaty-BE\QuranApi\QuranApi
+build_property._RazorSourceGeneratorDebug = 
+
+[E:/Madrasaty-BE/QuranApi/QuranApi/Views/SessionEvaluations/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2Vzc2lvbkV2YWx1YXRpb25zXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Madrasaty-BE/QuranApi/QuranApi/Views/SessionEvaluations/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2Vzc2lvbkV2YWx1YXRpb25zXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Madrasaty-BE/QuranApi/QuranApi/Views/SessionEvaluations/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2Vzc2lvbkV2YWx1YXRpb25zXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Madrasaty-BE/QuranApi/QuranApi/Views/SessionEvaluations/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2Vzc2lvbkV2YWx1YXRpb25zXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Madrasaty-BE/QuranApi/QuranApi/Views/SessionEvaluations/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2Vzc2lvbkV2YWx1YXRpb25zXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Madrasaty-BE/QuranApi/QuranApi/Views/Sessions/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2Vzc2lvbnNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Madrasaty-BE/QuranApi/QuranApi/Views/Sessions/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2Vzc2lvbnNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Madrasaty-BE/QuranApi/QuranApi/Views/Sessions/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2Vzc2lvbnNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Madrasaty-BE/QuranApi/QuranApi/Views/Sessions/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2Vzc2lvbnNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Madrasaty-BE/QuranApi/QuranApi/Views/Sessions/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2Vzc2lvbnNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Madrasaty-BE/QuranApi/QuranApi/Views/Students/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudHNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Madrasaty-BE/QuranApi/QuranApi/Views/Students/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudHNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Madrasaty-BE/QuranApi/QuranApi/Views/Students/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudHNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Madrasaty-BE/QuranApi/QuranApi/Views/Students/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudHNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Madrasaty-BE/QuranApi/QuranApi/Views/Students/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudHNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Madrasaty-BE/QuranApi/QuranApi/Views/TajweedErrors/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFqd2VlZEVycm9yc1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Madrasaty-BE/QuranApi/QuranApi/Views/TajweedErrors/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFqd2VlZEVycm9yc1xEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Madrasaty-BE/QuranApi/QuranApi/Views/TajweedErrors/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFqd2VlZEVycm9yc1xEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Madrasaty-BE/QuranApi/QuranApi/Views/TajweedErrors/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFqd2VlZEVycm9yc1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Madrasaty-BE/QuranApi/QuranApi/Views/TajweedErrors/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFqd2VlZEVycm9yc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 

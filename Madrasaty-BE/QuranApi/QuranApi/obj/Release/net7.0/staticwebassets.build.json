@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "Hash": "oHx9bY0OTbX/IwmY0eejMUDtis9sMH2mAZG3qvFvPwI=",
+  "Source": "QuranApi",
+  "BasePath": "_content/QuranApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "QuranApi\\wwwroot",
+      "Source": "QuranApi",
+      "ContentRoot": "E:\\Madrasaty-BE\\QuranApi\\QuranApi\\wwwroot\\",
+      "BasePath": "_content/QuranApi",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "E:\\Madrasaty-BE\\QuranApi\\QuranApi\\wwwroot\\images\\profiles\\student1.jpg",
+      "SourceId": "QuranApi",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Madrasaty-BE\\QuranApi\\QuranApi\\wwwroot\\",
+      "BasePath": "_content/QuranApi",
+      "RelativePath": "images/profiles/student1.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\profiles\\student1.jpg"
+    }
+  ]
+}

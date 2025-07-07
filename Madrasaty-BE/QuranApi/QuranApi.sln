@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33122.133
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuranApi", "QuranApi\QuranApi.csproj", "{03D96F9A-CFA6-490A-A5E6-D75B8B41FF76}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuranModels", "QuranModels\QuranModels.csproj", "{5DD9FF53-0411-4D83-BAA6-A0D1C6F4730A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{03D96F9A-CFA6-490A-A5E6-D75B8B41FF76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03D96F9A-CFA6-490A-A5E6-D75B8B41FF76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03D96F9A-CFA6-490A-A5E6-D75B8B41FF76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03D96F9A-CFA6-490A-A5E6-D75B8B41FF76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DD9FF53-0411-4D83-BAA6-A0D1C6F4730A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DD9FF53-0411-4D83-BAA6-A0D1C6F4730A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DD9FF53-0411-4D83-BAA6-A0D1C6F4730A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DD9FF53-0411-4D83-BAA6-A0D1C6F4730A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {792F0D39-9B5B-4175-A0C9-590E356163B4}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,25 @@
+{
+  "Files": [
+    {
+      "Id": "E:\\Madrasaty-BE\\QuranApi\\QuranApi\\wwwroot\\images\\profiles\\student1.jpg",
+      "PackagePath": "staticwebassets\\images\\profiles\\student1.jpg"
+    },
+    {
+      "Id": "obj\\Release\\net7.0\\staticwebassets\\msbuild.QuranApi.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Release\\net7.0\\staticwebassets\\msbuild.build.QuranApi.props",
+      "PackagePath": "build\\QuranApi.props"
+    },
+    {
+      "Id": "obj\\Release\\net7.0\\staticwebassets\\msbuild.buildMultiTargeting.QuranApi.props",
+      "PackagePath": "buildMultiTargeting\\QuranApi.props"
+    },
+    {
+      "Id": "obj\\Release\\net7.0\\staticwebassets\\msbuild.buildTransitive.QuranApi.props",
+      "PackagePath": "buildTransitive\\QuranApi.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
