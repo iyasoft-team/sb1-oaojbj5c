@@ -350,7 +350,7 @@ body::before {
   align-items: center !important;
   justify-content: center !important;
   line-height: 1 !important;
-  overflow:visible
+  overflow:visible !important;
 }
 
 .mat-icon.on-dark {
