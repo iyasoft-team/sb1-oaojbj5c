@@ -28,6 +28,26 @@ namespace QuranApi.Controllers
             return await _context.Students.ToListAsync();
         }
 
+
+        [HttpGet("with-last-eval")]
+        public async Task<ActionResult<IEnumerable<object>>> GetStudentsWithLastEval()
+        {
+            var studentsWithLastEval = await _context.Students
+                .Select(student => new
+                {
+                    student.Id,
+                    student.FullName,
+                    student.Email,
+                    LastEval = _context.AyahEval
+                        .Where(e => e.StudentId == student.Id)
+                        .OrderByDescending(e => e.Id)
+                        .FirstOrDefault()
+                })
+                .ToListAsync();
+
+            return Ok(studentsWithLastEval);
+        }
+
         [HttpGet("{id}")]
         public async Task<ActionResult<Student>> GetStudent(int id)
         {

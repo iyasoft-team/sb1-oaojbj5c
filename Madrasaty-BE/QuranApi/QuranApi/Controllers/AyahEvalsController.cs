@@ -42,6 +42,21 @@ namespace QuranApi.Controllers
             return ayahEval;
         }
 
+        [HttpGet("last/students/{studentId}")]
+        public async Task<ActionResult<AyahEval>> GetlastAyahEval(int studentId)
+        {
+            var lastEval = await _context.AyahEval
+                .Where(e => e.StudentId == studentId)
+                .OrderByDescending(e => e.Id) // or use Session.StartDate if available
+                .FirstOrDefaultAsync();
+
+                    if (lastEval == null)
+                    {
+                        return NotFound();
+                    }
+
+            return Ok(lastEval);
+        }
         // PUT: api/AyahEvals/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
@@ -104,6 +119,8 @@ namespace QuranApi.Controllers
 
             return NoContent();
         }
+
+
 
         private bool AyahEvalExists(int id)
         {
