@@ -9,11 +9,11 @@ import { Router } from '@angular/router';
 import { SessionService } from '../../../services/session.service';
 import { AuthService } from '../../../services/auth.service';
 import { Session } from '../../../models/session.model';
-import { CalendarComponent } from '../calendar.component';
-import { SessionListComponent } from '../session-list.component';
-import { ScheduleSessionModalComponent } from '../schedule-session-modal.component';
+import { CalendarComponent } from '../calendar/calendar.component';
 import { NavigationComponent, MenuItem, TEACHER_MENU_ITEMS } from '../../shared/navigation/navigation.component';
 import { LanguageService, Translation } from '../../../services/language.service';
+import { SessionListComponent } from '../session-list/session-list.component';
+import { ScheduleSessionModalComponent } from '../schedule-session/schedule-session-modal.component';
 
 @Component({
   selector: 'app-teacher-sessions',
@@ -26,8 +26,7 @@ import { LanguageService, Translation } from '../../../services/language.service
     MatTooltipModule,
     MatDialogModule,
     CalendarComponent,
-    SessionListComponent,
-    NavigationComponent
+    SessionListComponent
   ],
   templateUrl: './teacher-sessions.component.html',
   styleUrls: ['./teacher-sessions.component.css']

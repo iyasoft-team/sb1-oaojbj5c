@@ -4,8 +4,9 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatChipsModule } from '@angular/material/chips';
-import { Session } from '../../models/session.model';
-import { LanguageService, Translation } from '../../services/language.service';
+import { Session } from '../../../models/session.model';
+import { LanguageService, Translation } from '../../../services/language.service';
+
 
 @Component({
   selector: 'app-session-list',

@@ -12,5 +12,6 @@ namespace QuranApi.Contexts
         public DbSet<SessionEvaluation> SessionEvaluations { get; set; }
         public DbSet<TajweedError> TajweedErrors { get; set; }
         public DbSet<LastProgress> LastProgresses { get; set; }
+        public DbSet<QuranModels.AyahEval> AyahEval { get; set; } = default!;
     }
 }

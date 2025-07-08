@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { MatRadioModule } from '@angular/material/radio';
 import { Subscription } from 'rxjs';
 import { StateService } from '../../../services/notificationService';
+import { Ayah } from '../../../models/TajweedID';
 
 @Component({
   selector: 'app-ayah-eval',
@@ -13,23 +14,33 @@ import { StateService } from '../../../services/notificationService';
 })
 export class AyahEvalComponent {
   constructor(private sharedService: StateService) { }
-  recitationErrors: string[] = [
-    "Récitation correcte",
-    "Récitation modeste",
-    "Ne connaît pas cette āyah",
-    "Récitation incorrecte"
-  ];
+ recitationErrors = [
+  { id: 1, label: "Récitation correcte" },
+  { id: 2, label: "Récitation modeste" },
+  { id: 3, label: "Ne connaît pas cette āyah" },
+  { id: 4, label: "Récitation incorrecte" }
+];
   private sub: Subscription;
-  selectedAyahNumber : number = 0 ; ; 
-  selectedError: string = '';
+  selectedAyah : Ayah  ;
+  selectedError: any ;
   ngOnInit()
   {
      this.sub = this.sharedService.ayahNumberSelected$.subscribe(ayahnumber => {
-      this.selectedAyahNumber = ayahnumber;
+      this.selectedAyah = ayahnumber;
      })
   }
   ngOnDestroy(): void {
     this.sub.unsubscribe();
   }
+
+  onRecitationErrorChange(event: any): void {
+  if (this.selectedAyah) {
+    this.selectedAyah.ayahEval = {
+      ...this.selectedAyah.ayahEval,
+      RecitationStatus: this.selectedError.id // or map severity if separate
+    };
+    console.log(this.selectedAyah);
+  }
+}
 
 }

@@ -1,0 +1,190 @@
+.modal-header {
+      padding: 24px 24px 16px;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+      position: relative;
+      background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    }
+
+    .modal-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #0f4c75, #d4af37, #0f4c75);
+    }
+
+    .modal-header h2 {
+      margin: 0;
+      color: #0f4c75;
+      font-size: 1.5rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .modal-header h2 mat-icon {
+      color: #d4af37 !important;
+      font-size: 28px !important;
+    }
+
+    .modal-subtitle {
+      font-family: 'Amiri', serif;
+      color: #5d6d7e;
+      font-size: 0.9rem;
+      margin-top: 4px;
+      text-align: right;
+      direction: rtl;
+    }
+
+    .modal-content {
+      padding: 24px;
+      min-width: 500px;
+      max-height: 70vh;
+      overflow-y: auto;
+    }
+
+    .schedule-form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .full-width {
+      width: 100%;
+    }
+
+    .time-row {
+      display: flex;
+      gap: 16px;
+    }
+
+    .half-width {
+      flex: 1;
+    }
+
+    .modal-actions {
+      padding: 16px 24px;
+      border-top: 1px solid rgba(212, 175, 55, 0.2);
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+    }
+
+    .cancel-btn {
+      background: transparent !important;
+      border: 2px solid #666 !important;
+      color: #666 !important;
+      box-shadow: none !important;
+      transition: all 0.3s ease !important;
+    }
+
+    .cancel-btn:hover {
+      background: rgba(102, 102, 102, 0.05) !important;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(102, 102, 102, 0.2) !important;
+    }
+
+    .cancel-btn mat-icon {
+      color: #666 !important;
+    }
+
+    .schedule-btn {
+      background: transparent !important;
+      border: 2px solid #0f4c75 !important;
+      color: #0f4c75 !important;
+      box-shadow: none !important;
+      transition: all 0.3s ease !important;
+    }
+
+    .schedule-btn:hover:not(:disabled) {
+      background: rgba(15, 76, 117, 0.05) !important;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(15, 76, 117, 0.2) !important;
+    }
+
+    .schedule-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none !important;
+      box-shadow: none !important;
+    }
+
+    .schedule-btn mat-icon {
+      color: #0f4c75 !important;
+    }
+
+    /* Form field styling */
+    .mat-mdc-form-field {
+      margin-bottom: 8px;
+    }
+
+    .mat-mdc-form-field .mat-mdc-form-field-outline {
+      border-radius: 10px !important;
+      border-color: rgba(15, 76, 117, 0.3) !important;
+    }
+
+    .mat-mdc-form-field.mat-focused .mat-mdc-form-field-outline {
+      border-color: #0f4c75 !important;
+      border-width: 2px !important;
+    }
+
+    .mat-mdc-form-field-label {
+      color: #5d6d7e !important;
+      font-weight: 500 !important;
+    }
+
+    .mat-mdc-input-element {
+      color: #2c3e50 !important;
+      font-weight: 500 !important;
+    }
+
+    .mat-mdc-form-field .mat-mdc-form-field-icon-suffix mat-icon {
+      color: #0f4c75 !important;
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+      .modal-content {
+        min-width: 90vw;
+        padding: 16px;
+      }
+
+      .time-row {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .half-width {
+        width: 100%;
+      }
+
+      .modal-actions {
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .modal-header h2 {
+        font-size: 1.3rem;
+      }
+    }
+
+    /* Animation */
+    :host {
+      display: block;
+      animation: modalSlideIn 0.3s ease-out;
+    }
+
+    @keyframes modalSlideIn {
+      from {
+        opacity: 0;
+        transform: scale(0.95) translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }

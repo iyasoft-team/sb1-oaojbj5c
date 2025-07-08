@@ -1,13 +1,13 @@
 // shared.service.ts
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { AyahChar } from '../models/TajweedID';
+import { Ayah, AyahChar } from '../models/TajweedID';
 
 
 @Injectable({ providedIn: 'root' })
 export class StateService {
   private ayahSelectedSubject = new Subject<AyahChar>();
-  private ayahNumberSelectedSubject = new Subject<number>();
+  private ayahNumberSelectedSubject = new Subject<Ayah>();
 //  private languageSelectedSubject = new Subject<lang>();
 
   ayahSelected$ = this.ayahSelectedSubject.asObservable();
@@ -15,13 +15,13 @@ export class StateService {
   
   // languageChanged$ = this.languageSelectedSubject.asObservable();
 
-  selectAyah(AyahChar: AyahChar): void {
+  selectAyahChar(AyahChar: AyahChar): void {
     this.ayahSelectedSubject.next(AyahChar);
   }
   reset(): void {
     this.ayahSelectedSubject.next(null);
   }
-  selectAyahNumber(clickedNumber : number ) 
+  selectAyah(clickedNumber : Ayah ) 
   {
     this.ayahNumberSelectedSubject.next(clickedNumber);
   }

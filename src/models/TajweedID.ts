@@ -1,3 +1,5 @@
+import { AyahEval } from "./session.model";
+
 export class TajweedInfo{
     surah : number ;
     ayah : number ;
@@ -28,6 +30,7 @@ export class AyahTajweedData {
 
 export class Ayah
 {
+    surahid? : number;
     ayahNumber : number;
     text:string;
     isEnd:boolean;
@@ -35,6 +38,7 @@ export class Ayah
     startWordIndex : number;
     wordCount : number;
     annotations?: TajweedAnnotation[] = []; 
+    ayahEval? : AyahEval;
 }
 export class PageLine
   {
@@ -69,3 +73,4 @@ export class TajweedRuleInfo {
   description: string;
   possible_errors: string[];
 }
+

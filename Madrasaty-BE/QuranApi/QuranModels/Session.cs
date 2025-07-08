@@ -29,6 +29,6 @@ namespace QuranModels
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public string Status { get; set; } = "Planned";
-        public string?  StudentName { get; set; }
+        public StudentDto? Student { get; set; }
     }
 }

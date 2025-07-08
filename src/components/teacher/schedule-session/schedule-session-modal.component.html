@@ -1,0 +1,59 @@
+<div class="modal-header">
+      <h2 mat-dialog-title>
+        <mat-icon>event_note</mat-icon>
+        {{ translations.scheduleNewSession }}
+      </h2>
+    </div>
+
+    <mat-dialog-content class="modal-content">
+      <form #scheduleForm="ngForm" class="schedule-form">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>{{ translations.selectStudent }}</mat-label>
+          <mat-select [(ngModel)]="newSession.studentId" name="studentId" required>
+            <mat-option *ngFor="let student of students" [value]="student.id">
+              {{ student.name }}
+            </mat-option>
+          </mat-select>
+          <mat-icon matSuffix>person</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>{{ translations.topic }}</mat-label>
+          <input matInput [(ngModel)]="newSession.topic" name="topic" 
+                 placeholder="e.g., Quran Recitation - Surah Al-Fatiha">
+          <mat-icon matSuffix>menu_book</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>{{ translations.sessionDate }}</mat-label>
+          <input matInput [matDatepicker]="picker" [(ngModel)]="newSession.date" name="date" required>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <div class="time-row">
+          <mat-form-field appearance="outline" class="half-width">
+            <mat-label>{{ translations.startTime }}</mat-label>
+            <input matInput type="time" [(ngModel)]="newSession.startTime" name="startTime" required>
+            <mat-icon matSuffix>schedule</mat-icon>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="half-width">
+            <mat-label>{{ translations.endTime }}</mat-label>
+            <input matInput type="time" [(ngModel)]="newSession.endTime" name="endTime" required>
+            <mat-icon matSuffix>schedule</mat-icon>
+          </mat-form-field>
+        </div>
+      </form>
+    </mat-dialog-content>
+
+    <mat-dialog-actions class="modal-actions">
+      <button mat-button (click)="onCancel()" class="cancel-btn">
+        <mat-icon>close</mat-icon>
+        {{ translations.cancel }}
+      </button>
+      <button mat-raised-button (click)="onSubmit()" [disabled]="!scheduleForm.valid" class="schedule-btn">
+        <mat-icon>event</mat-icon>
+        {{ translations.scheduleSession }}
+      </button>
+    </mat-dialog-actions>

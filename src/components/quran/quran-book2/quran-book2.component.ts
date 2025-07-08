@@ -90,16 +90,7 @@ applyModeHighlighting() {
   }, 100);
 }
 
-loadTajweedIntoAyahs(data: AyahTajweedData[], ayahs: Ayah[],surahid:number) {
 
-  ayahs.forEach(ayah => {
-    let match = data.find(d => d.surah === surahid && d.ayah === ayah.ayahNumber);
-    if (match) {
-      ayah.annotations = match.annotations;
-    }
-  });
-  
-}
   decrement() {
     if (this.pageNumber > this.surahMin) {
       this.pageNumber--;

@@ -8,7 +8,7 @@
     <mat-card class="session-card" *ngFor="let session of sortedSessions">
     
       <mat-card-header>
-        <mat-card-title>{{ session.studentName }}</mat-card-title>
+        <mat-card-title>{{ session.student?.fullName }}</mat-card-title>
         <mat-card-subtitle>{{ session.topic || translations.generalSession }}</mat-card-subtitle>
       </mat-card-header>
 
@@ -24,7 +24,7 @@
           </div>
           <div class="detail-item">
             <mat-icon>person</mat-icon>
-            <span>{{ session.studentName }}</span>
+            <span>{{ session.student?.fullName }}</span>
           </div>
         </div>
 

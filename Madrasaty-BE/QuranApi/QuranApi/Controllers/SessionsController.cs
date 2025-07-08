@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using QuranApi.Contexts;
@@ -20,55 +21,112 @@ namespace QuranApi.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<SessionDto>>> GetSessions()
         {
-            return await _context.Sessions.Include(s=>s.Student).Select(s => new SessionDto
+            var sessions  = await _context.Sessions.Include(s=>s.Student).Select(s => new SessionDto
             {
                 Id = s.Id,
                 Subject = s.Subject,
                 StartDate = s.StartDate,
                 EndDate = s.EndDate,
-                Status = s.Status,
-                StudentName = s.Student.FullName
+                Status = s.Status,  
+                StudentId = s.StudentId
             }).ToListAsync();
+
+            foreach (var item in sessions)
+            {             
+                 var stdnt  = await _context.Students.Select(x=> new StudentDto
+                {
+                    Id = x.Id,
+                    FullName = x.FullName,
+                    Email = x.Email,
+                    BirthDate = x.BirthDate,
+                    ProfileImageUrl = $"{Request.Scheme}://{Request.Host}/" + x.ProfileImageUrl
+                 }).FirstOrDefaultAsync(Student => Student.Id == item.StudentId);
+                item.Student = stdnt;
+            }
+            return sessions;
         }
 
         [HttpGet("teacher/{id}")]
         public async Task<ActionResult<IEnumerable<SessionDto>>> GetTeacherSessions(int id)
         {
-            return await _context.Sessions.Where(s=>s.TeacherId == id).Include(s => s.Student).Select(s => new SessionDto
+            var sessions = await _context.Sessions.Where(s=>s.TeacherId == id).Include(s => s.Student).Select(s => new SessionDto
             {
                 Id = s.Id,
                 Subject = s.Subject,
                 StartDate = s.StartDate,
                 EndDate = s.EndDate,
                 Status = s.Status,
-                StudentName = s.Student.FullName
+                StudentId = s.StudentId
             }).ToListAsync();
+            
+            foreach (var item in sessions)
+            {
+                item.Student = await _context.Students.Select(x => new StudentDto
+                {
+                    Id = x.Id,
+                    FullName = x.FullName,
+                    Email = x.Email,
+                    BirthDate = x.BirthDate,
+                    ProfileImageUrl = $"{Request.Scheme}://{Request.Host}/" + x.ProfileImageUrl
+                }).FirstOrDefaultAsync(Student => Student.Id == item.StudentId);
+            }
+            return sessions;
         }
         
         [HttpGet("student/{id}")]
         public async Task<ActionResult<IEnumerable<SessionDto>>> GetStudentSessions(int id)
         {
-            return await _context.Sessions.Where(s => s.StudentId == id).Include(s => s.Student).Select(s => new SessionDto
+            var sessions =  await _context.Sessions.Where(s => s.StudentId == id).Include(s => s.Student).Select(s => new SessionDto
             {
                 Id = s.Id,
                 Subject = s.Subject,
                 StartDate = s.StartDate,
                 EndDate = s.EndDate,
                 Status = s.Status,
-                StudentName = s.Student.FullName
+                StudentId = s.StudentId
             }).ToListAsync();
+
+            foreach (var item in sessions)
+            {
+                item.Student = await _context.Students.Select(x => new StudentDto
+                {
+                    Id = x.Id,
+                    FullName = x.FullName,
+                    Email = x.Email,
+                    BirthDate = x.BirthDate,
+                    ProfileImageUrl = $"{Request.Scheme}://{Request.Host}/"+ x.ProfileImageUrl
+                }).FirstOrDefaultAsync(Student => Student.Id == item.StudentId);
+            }
+            return sessions;
         }
 
         // GET: api/sessions/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Session>> GetSession(int id)
+        public async Task<ActionResult<SessionDto>> GetSession(int id)
         {
             var session = await _context.Sessions
-                .Include(s => s.Student)
+                .Select(s => new SessionDto
+                {
+                    Id = s.Id,
+                    Subject = s.Subject,
+                    StartDate = s.StartDate,
+                    EndDate = s.EndDate,
+                    Status = s.Status,
+                    StudentId = s.StudentId
+                })
                 .FirstOrDefaultAsync(s => s.Id == id);
 
             if (session == null)
                 return NotFound();
+
+            session.Student = await _context.Students.Select(x => new StudentDto
+            {
+                Id = x.Id,
+                FullName = x.FullName,
+                Email = x.Email,
+                BirthDate = x.BirthDate,
+                ProfileImageUrl = $"{Request.Scheme}://{Request.Host}/" + x.ProfileImageUrl
+            }).FirstOrDefaultAsync(Student => Student.Id == session.StudentId);
 
             return session;
         }

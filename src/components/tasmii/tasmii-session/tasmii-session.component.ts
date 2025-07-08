@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TajweedEvalComponent } from '../../evaluation/tajweed-eval/tajweed-eval.component';
 import { AyahEvalComponent } from '../../evaluation/ayah-eval/ayah-eval.component';
@@ -14,6 +14,12 @@ import { AuthService } from '../../../services/auth.service';
 import { LanguageService, Translation } from '../../../services/language.service';
 import { StudentService } from '../../../services/student.service';
 import { Student } from '../../../models/user.model';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AyahEval, Session } from '../../../models/session.model';
+import { SessionService } from '../../../services/session.service';
+import { MatButtonModule } from '@angular/material/button';
+import { AyahEvalService } from '../../../services/ayahEval.service';
+
 
 @Component({
   selector: 'app-tasmii-session',
@@ -21,22 +27,28 @@ import { Student } from '../../../models/user.model';
             QuranBook2Component,
             TajweedEvalComponent,
             AyahEvalComponent,
-            GeneralEvalComponent,MatExpansionModule,MatIconModule,NavigationComponent],
+            GeneralEvalComponent,MatExpansionModule,MatIconModule,MatButtonModule],
   templateUrl: './tasmii-session.component.html',
   styleUrl: './tasmii-session.component.css'
 })
 export class TasmiiSessionComponent {
+  
+  @ViewChild(QuranBook2Component)
+  quranBook2Component!: QuranBook2Component;
   public sidebarCollapsed = false;
   translations: Translation;
   currentUser = this.authService.getCurrentUser();
   menuItems: MenuItem[] = [...TEACHER_MENU_ITEMS];
   student: Student | null = null;
+  session : Session | null = null;
   constructor(
     private sharedService: StateService,
     private authService: AuthService,
     private languageService: LanguageService,
+    private route: ActivatedRoute,
+    private sessionService : SessionService,
 
-    private studentService : StudentService
+    private ayahEvalService : AyahEvalService 
   ) {
     this.translations = this.languageService.getTranslations();
     this.languageService.translations$.subscribe(translations => {
@@ -48,7 +60,11 @@ export class TasmiiSessionComponent {
 
   selectedchar: AyahChar;
   ngOnInit() {
-    this.studentService.getStudent(1).subscribe(s => this.student = s); // replace 1 with actual ID
+  let sessionid = this.route.snapshot.paramMap.get('id')
+    this.sessionService.getSession(sessionid).subscribe(
+      result => {
+      this.session = result
+      });
   }
   OnCharClick(char:AyahChar){
     this.selectedchar = char;
@@ -78,5 +94,25 @@ export class TasmiiSessionComponent {
 
   onSidebarToggle(collapsed: boolean): void {
     this.sidebarCollapsed = collapsed;
+  }
+
+  Save():void
+  { 
+    let ayahevals:AyahEval[] = []
+    const ayahs = this.quranBook2Component.pageLines.flatMap(line => line.ayahs);
+    ayahs.forEach(element => {
+      
+      if(element.ayahEval)
+      {
+        element.ayahEval.surahNumber = element.surahid;
+        element.ayahEval.sessionId = this.session.id;
+        element.ayahEval.studentId = this.session.student.id.toString();
+        element.ayahEval.ayahNumber = element.ayahNumber;
+        ayahevals.push(element.ayahEval) ;
+      }
+    });
+
+    this.ayahEvalService.postMultiple(ayahevals).subscribe();
+    console.log('Saving these ayahs:', ayahevals);
   }
 }

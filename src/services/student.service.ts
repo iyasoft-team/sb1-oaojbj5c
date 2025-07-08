@@ -17,7 +17,7 @@ export class StudentService {
   }
 
   // Get student by ID
-  getStudent(id: number): Observable<Student> {  
+  getStudent(id: string): Observable<Student> {  
     return this.http.get<Student>(`${environment.apiUrl}/Students/${id}`);
   }
 

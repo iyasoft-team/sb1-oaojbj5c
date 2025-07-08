@@ -7,9 +7,11 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, Router } from '@angular/router';
-import { SessionService } from '../../services/session.service';
-import { Session } from '../../models/session.model';
-import { LanguageService, Translation } from '../../services/language.service';
+import { LanguageService, Translation } from '../../../services/language.service';
+import { Session } from '../../../models/session.model';
+import { SessionService } from '../../../services/session.service';
+
+
 
 @Component({
   selector: 'app-session-notes',

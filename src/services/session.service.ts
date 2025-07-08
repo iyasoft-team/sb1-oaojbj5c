@@ -12,7 +12,9 @@ export class SessionService {
   private baseUrl = environment.apiUrl; // adjust to your backend
 
   constructor(private http: HttpClient) {}
-
+  getSession(id:string): Observable<Session> {
+    return this.http.get<Session>(`${this.baseUrl}/Sessions/${id}`);
+  }
   getSessions(): Observable<Session[]> {
     return this.http.get<Session[]>(`${this.baseUrl}/Sessions`);
   }

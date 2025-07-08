@@ -19,9 +19,9 @@ export class QuranLineComponent {
     OnAyahNumberClick(char: any) {
     this.ayahClicked.emit(char.ayahNumber); // adjust if needed
   }
-   highlight(ayahNumber: number) {
-    this.ayahClicked.emit(ayahNumber);
-    this.sharedService.selectAyahNumber(ayahNumber)
+   highlight(ayahNumber: Ayah) {
+    this.ayahClicked.emit(ayahNumber.ayahNumber);
+    this.sharedService.selectAyah(ayahNumber)
     this.sharedService.reset();
   }
     html: SafeHtml = '';
@@ -35,7 +35,7 @@ ngOnInit(): void {
   const words = ayah.text2.split(' ');
   let wordIndex = ayah.startWordIndex ?? 0;
   let pendingRule: TajweedAnnotation | null = null;
-
+  ayah.surahid = line.surahId;
   for (const word of words) {
     const chars = [...word];
 
@@ -107,7 +107,7 @@ getTajweedClass(rule: TajweedRule): string {
 
 OnCharClick(char:AyahChar){
   if(char.isTajweed)
-    this.sharedService.selectAyah(char);
+    this.sharedService.selectAyahChar(char);
   }
 
 }

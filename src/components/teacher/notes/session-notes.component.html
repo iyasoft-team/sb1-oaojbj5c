@@ -4,7 +4,7 @@
       <mat-icon>arrow_back</mat-icon>
     </button>
     <div class="session-info">
-      <h1>Session {{ translations.with }} {{ session.studentName }}</h1>
+      <h1>Session {{ translations.with }} {{ session.student.fullName }}</h1>
       <p>{{ formatDate(session.date) }} • {{ session.startDate.getHours() }} - {{ session.endDate.getHours() }}</p>
       <p *ngIf="session.topic"><strong>Topic:</strong> {{ session.topic }}</p>
     </div>

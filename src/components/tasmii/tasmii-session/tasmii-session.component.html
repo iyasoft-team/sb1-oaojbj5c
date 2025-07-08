@@ -4,8 +4,8 @@
   <mat-expansion-panel-header>
     <mat-panel-title class="student-header">
       <img 
-        *ngIf="student?.profileImageUrl; else defaultIcon"
-        [src]="student.profileImageUrl" 
+        *ngIf="session.student?.profileImageUrl; else defaultIcon"
+        [src]="session.student.profileImageUrl" 
         alt="Student Photo"
         class="student-avatar" />
 
@@ -13,18 +13,19 @@
         <mat-icon>account_circle</mat-icon>
       </ng-template>
 
-  <span class="student-name">{{ student?.fullName }}</span>
+  <span class="student-name">{{ session.student?.fullName }}</span>
       
     </mat-panel-title>
     <mat-panel-description>
       from baqarah ayah1 -> ayah10 : page 20
     </mat-panel-description>
+  
   </mat-expansion-panel-header>
 
   <!-- Expanded Content -->
 
 </mat-expansion-panel>
-
+<button mat-raised-button color="primary" (click)="Save()">Save</button>
   <div class="horizontal-div tasmii-main gap-20" (click)="reset()">
     <app-quran-book2 (OnCharClick)="OnCharClick($event)"></app-quran-book2>
     <div class="vertical-div tasmii-eval gap-10">
