@@ -20,14 +20,19 @@
       from baqarah ayah1 -> ayah10 : page 20
     </mat-panel-description>
   
+    <button mat-raised-button color="primary" style="margin-right: 10px;" (click)="Save();$event.stopPropagation();">Save</button>
   </mat-expansion-panel-header>
 
   <!-- Expanded Content -->
 
 </mat-expansion-panel>
-<button mat-raised-button color="primary" (click)="Save()">Save</button>
-  <div class="horizontal-div tasmii-main gap-20" (click)="reset()">
-    <app-quran-book2 (OnCharClick)="OnCharClick($event)"></app-quran-book2>
+
+    <div class="horizontal-div tasmii-main gap-20" (click)="reset()">
+        <app-quran-book2
+          [startAyahNumber]="session.startAyah"
+          [startSurahNumber]="session.startSurah" 
+          (OnCharClick)="OnCharClick($event)">
+        </app-quran-book2>
     <div class="vertical-div tasmii-eval gap-10">
       <app-tajweed-eval></app-tajweed-eval>
       <app-ayah-eval></app-ayah-eval>

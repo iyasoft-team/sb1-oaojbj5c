@@ -20,6 +20,8 @@ export class TajweedAnnotation {
   start: number;      // start index within the word
   end: number;        // end index within the word
   rule: TajweedRule;  // rule type as enum or string
+
+
 }
 export class AyahTajweedData {
   surah :  number;
@@ -43,7 +45,7 @@ export class Ayah
 export class PageLine
   {
     id: number;
-    page: number;
+    pageNumber: number;
     chapter: number;
     lineText: string;
     lineNumber: number;
@@ -54,7 +56,7 @@ export class PageLine
     surahId: number;
   }
 
-  export class AyahChar {
+export class AyahChar {
   char: string;
   index: number;
   word: number;

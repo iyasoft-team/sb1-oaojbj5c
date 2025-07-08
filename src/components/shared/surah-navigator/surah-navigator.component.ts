@@ -28,7 +28,7 @@ export class SurahNavigatorComponent {
     shrService = inject(StateService) 
 onInputChange(newValue: number) {
   this.Onmanual.emit(newValue); 
-  this.shrService.reset()
+  this.shrService.resetChar()
 }
 
 inputValue: number;

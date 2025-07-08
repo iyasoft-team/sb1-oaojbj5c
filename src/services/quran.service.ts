@@ -21,4 +21,14 @@ export class QuranService {
       })
     );
   }
+
+   loadPageBySurahAyah(surah: number,ayah:number): Observable<PageLine[]> {
+   
+    return this.http.get<PageLine[]>(`${environment.apiUrl}/quran/pagebysurahayah/${surah}/${ayah}`).pipe(
+      catchError((err) => {
+        console.error('Failed to load tajweed annotations:', err);
+        return throwError(() => err);
+      })
+    );
+  }
 }

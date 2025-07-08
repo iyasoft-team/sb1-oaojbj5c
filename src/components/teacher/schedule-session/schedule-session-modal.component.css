@@ -56,7 +56,7 @@
       width: 100%;
     }
 
-    .time-row {
+    .single-row {
       display: flex;
       gap: 16px;
     }

@@ -1,3 +1,5 @@
+import { AyahEval } from "./session.model";
+
 export interface User {
   id: string;
   email: string;
@@ -16,4 +18,11 @@ export interface Student {
   email?: string;
   birthDate?: string;
   profileImageUrl?: string;
+}
+
+export interface StudentlEval {
+  id: number;
+  fullName: string;
+  email: string;
+  lastEval: AyahEval | null;
 }

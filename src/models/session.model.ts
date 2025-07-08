@@ -9,6 +9,8 @@ export class Session {
   date?:Date;
   startDate: Date;
   endDate: Date;
+  startSurah: number;
+  startAyah: number;
   topic?: string;
   notes?: string;
   status: 'scheduled' | 'in-progress' | 'completed' | 'cancelled';

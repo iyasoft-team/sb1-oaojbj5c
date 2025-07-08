@@ -9,7 +9,6 @@
     
       <mat-card-header>
         <mat-card-title>{{ session.student?.fullName }}</mat-card-title>
-        <mat-card-subtitle>{{ session.topic || translations.generalSession }}</mat-card-subtitle>
       </mat-card-header>
 
       <mat-card-content>
@@ -23,8 +22,8 @@
             <span>{{ formathours(session.startDate)  }} - {{ formathours(session.endDate)}}</span>
           </div>
           <div class="detail-item">
-            <mat-icon>person</mat-icon>
-            <span>{{ session.student?.fullName }}</span>
+            <mat-icon>info</mat-icon>
+            <span>{{ session | surahAyah }}</span>          
           </div>
         </div>
 
@@ -56,6 +55,7 @@
         </button>
 
         <button 
+              *ngIf="session.status !== 'completed'"
                 mat-icon-button 
                 color="warn"
                 (click)="onDeleteSession(session)">

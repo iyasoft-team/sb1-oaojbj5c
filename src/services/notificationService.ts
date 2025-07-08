@@ -18,8 +18,11 @@ export class StateService {
   selectAyahChar(AyahChar: AyahChar): void {
     this.ayahSelectedSubject.next(AyahChar);
   }
-  reset(): void {
+  resetChar(): void {
     this.ayahSelectedSubject.next(null);
+  }
+   resetAyah(): void {
+    this.ayahNumberSelectedSubject.next(null);
   }
   selectAyah(clickedNumber : Ayah ) 
   {

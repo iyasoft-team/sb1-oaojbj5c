@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Component, EventEmitter, Inject, Output } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { QuranLineComponent } from '../quran-line/quran-line.component';
@@ -22,9 +22,12 @@ export class QuranBook2Component {
 ayahs: Ayah[] = [];
 pageLines: PageLine[] = [];
 parsedHtml: SafeHtml = '';
-pageNumber : number = 5 ; 
+pageNumber : number  ; 
 surahMin : number = 1 ; 
 surahMax : number = 604 ; 
+
+@Input() startSurahNumber : number  = 1
+@Input() startAyahNumber : number  = 1
 @Output() OnCharClick = new EventEmitter<AyahChar>();
 
   constructor(private sanitizer: DomSanitizer,
@@ -54,17 +57,33 @@ toggleMode() {
 closeNoteModal() {
   this.activeAyah = null;
 }
-loadSurahPage()
-{
-   this.QuranSrv.loadPage(this.pageNumber).subscribe({
+loadSurahPage(page:number=0)
+  {
+    
+  if(!page)
+  {
+     this.QuranSrv.loadPageBySurahAyah(this.startSurahNumber,this.startAyahNumber).subscribe({
     next: (response: PageLine[]) => {
       this.pageLines = response
-
+      this.pageNumber=this.pageLines[0].pageNumber
     },
     error: (err) => {
       console.error('Failed to load ayah:', err);
     }
   });
+  }else
+  {
+    
+     this.QuranSrv.loadPage(page).subscribe({
+    next: (response: PageLine[]) => {
+      this.pageLines = response
+    },
+    error: (err) => {
+      console.error('Failed to load ayah:', err);
+    }
+  });
+  }
+  
 }
 applyModeHighlighting() {
   setTimeout(() => {
@@ -94,7 +113,7 @@ applyModeHighlighting() {
   decrement() {
     if (this.pageNumber > this.surahMin) {
       this.pageNumber--;
-      this.loadSurahPage();
+      this.loadSurahPage(this.pageNumber);
 
     }
   }
@@ -102,14 +121,14 @@ applyModeHighlighting() {
   increment() {
     if (this.pageNumber < this.surahMax) {
       this.pageNumber++;
-      this.loadSurahPage();
+      this.loadSurahPage(this.pageNumber);
 
     }
   }
   handleManualInput(inputValue: number) {
   const page = Math.max(this.surahMin, Math.min(inputValue, this.surahMax));
   this.pageNumber = page;
-  this.loadSurahPage(); 
+  this.loadSurahPage(page); 
 }
 }
 

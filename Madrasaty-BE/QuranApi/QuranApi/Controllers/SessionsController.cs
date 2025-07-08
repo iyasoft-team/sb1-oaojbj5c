@@ -56,7 +56,9 @@ namespace QuranApi.Controllers
                 StartDate = s.StartDate,
                 EndDate = s.EndDate,
                 Status = s.Status,
-                StudentId = s.StudentId
+                StudentId = s.StudentId,
+                StartSurah = s.StartSurah,
+                StartAyah = s.StartAyah
             }).ToListAsync();
             
             foreach (var item in sessions)
@@ -112,7 +114,9 @@ namespace QuranApi.Controllers
                     StartDate = s.StartDate,
                     EndDate = s.EndDate,
                     Status = s.Status,
-                    StudentId = s.StudentId
+                    StudentId = s.StudentId,
+                    StartSurah = s.StartSurah,
+                    StartAyah = s.StartAyah
                 })
                 .FirstOrDefaultAsync(s => s.Id == id);
 
@@ -143,7 +147,9 @@ namespace QuranApi.Controllers
                 Subject = sessionDto.Subject,
                 StartDate = sessionDto.StartDate,
                 EndDate = sessionDto.EndDate,
-                Status = sessionDto.Status
+                Status = sessionDto.Status,
+                StartSurah = sessionDto.StartSurah,
+                StartAyah  = sessionDto.StartAyah            
             };
 
             _context.Sessions.Add(session);
@@ -171,6 +177,32 @@ namespace QuranApi.Controllers
                     return NotFound();
                 else
                     throw;
+            }
+
+            return NoContent();
+        }
+
+
+        // PUT: api/sessions/5
+        [HttpGet("Complete/{id}")]
+        public async Task<IActionResult> CompleteSession(int id)
+        {
+            var session = await _context.Sessions.FirstOrDefaultAsync(s => s.Id == id);
+
+            if (session == null)
+                return NotFound();
+
+            try
+            {
+                session.Status = "completed";
+
+                _context.Entry(session).State = EntityState.Modified;
+
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception e)
+            {
+                throw; 
             }
 
             return NoContent();

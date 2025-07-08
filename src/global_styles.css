@@ -194,7 +194,7 @@ body::before {
 
 .mat-mdc-card-content {
   color: var(--text-primary) !important;
-  padding: 16px !important;
+  padding: 0 16px !important;
 }
 
 .mat-mdc-card-header {
@@ -222,8 +222,7 @@ body::before {
 }
 
 .mat-mdc-button:hover, .mat-mdc-raised-button:hover, .mat-mdc-stroked-button:hover {
-  background: rgba(15, 76, 117, 0.05) !important;
-  transform: translateY(-1px);
+  background: rgba(15, 76, 117, 0.3) !important;
   box-shadow: 0 3px 8px rgba(15, 76, 117, 0.2) !important;
 }
 
@@ -654,7 +653,7 @@ transform: scale(0.5);
   h3 { font-size: 1rem; }
   
   .mat-mdc-card-content {
-    padding: 12px !important;
+   padding: 0 16px !important;
   }
   
   .mat-mdc-card-header {

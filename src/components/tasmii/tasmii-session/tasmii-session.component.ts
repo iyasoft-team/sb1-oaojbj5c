@@ -48,7 +48,9 @@ export class TasmiiSessionComponent {
     private route: ActivatedRoute,
     private sessionService : SessionService,
 
-    private ayahEvalService : AyahEvalService 
+    private ayahEvalService : AyahEvalService ,
+
+     private router: Router
   ) {
     this.translations = this.languageService.getTranslations();
     this.languageService.translations$.subscribe(translations => {
@@ -113,6 +115,11 @@ export class TasmiiSessionComponent {
     });
 
     this.ayahEvalService.postMultiple(ayahevals).subscribe();
-    console.log('Saving these ayahs:', ayahevals);
-  }
+    this.session.status = "completed"
+
+    this.sessionService.completeSession(this.session.id).subscribe();
+   
+    this.router.navigate(['/teacher/sessions']);
+}
+
 }

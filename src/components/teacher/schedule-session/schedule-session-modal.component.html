@@ -9,14 +9,37 @@
       <form #scheduleForm="ngForm" class="schedule-form">
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>{{ translations.selectStudent }}</mat-label>
-          <mat-select [(ngModel)]="newSession.studentId" name="studentId" required>
+          <mat-select [(ngModel)]="newSession.studentId" name="studentId" required (selectionChange)="onStudentChanged($event.value)">
             <mat-option *ngFor="let student of students" [value]="student.id">
-              {{ student.name }}
+              {{ student.fullName }}
             </mat-option>
           </mat-select>
           <mat-icon matSuffix>person</mat-icon>
         </mat-form-field>
 
+
+          <div class="single-row">
+            <!-- Surah Dropdown -->
+            <mat-form-field appearance="outline" class="half-width">
+              <mat-label>Chapter</mat-label>
+              <mat-select [(ngModel)]="selectedSurahNumber" (selectionChange)="onSurahChange($event.value)" name="surah">
+                <mat-option *ngFor="let surah of surahs" [value]="surah.number">
+                  {{ surah.number }} - {{ surah.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <!-- Ayah Dropdown -->
+            <mat-form-field appearance="outline" class="half-width" *ngIf="ayahNumbers.length > 0">
+              <mat-label>Verse</mat-label>
+              <mat-select [(ngModel)]="selectedAyahNumber" name="ayah">
+                <mat-option *ngFor="let ayahNum of ayahNumbers" [value]="ayahNum">
+                  {{ ayahNum }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>{{ translations.topic }}</mat-label>
           <input matInput [(ngModel)]="newSession.topic" name="topic" 
@@ -31,7 +54,7 @@
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
 
-        <div class="time-row">
+        <div class="single-row">
           <mat-form-field appearance="outline" class="half-width">
             <mat-label>{{ translations.startTime }}</mat-label>
             <input matInput type="time" [(ngModel)]="newSession.startTime" name="startTime" required>

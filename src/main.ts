@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
 import { RouterOutlet, Router, NavigationEnd } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
 import { LoginComponent } from './components/login/login.component';
-import { TeacherSessionsComponent } from './components/teacher/sessions/teacher-sessions.component';
+import { TeacherSessionsComponent } from './components/teacher/sessions-main/teacher-sessions.component';
 import { StudentDashboardComponent } from './components/student/student-dashboard.component';
 import { LanguageService } from './services/language.service';
 import { TasmiiSessionComponent } from './components/tasmii/tasmii-session/tasmii-session.component';

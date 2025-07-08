@@ -87,10 +87,6 @@ export class SessionNotesComponent implements OnInit {
 
   saveAndComplete(): void {
     if (!this.sessionId || !this.notes.trim()) return;
-
-    this.sessionService.completeSession(this.sessionId, this.notes).subscribe(() => {
-      this.router.navigate(['/teacher']);
-    });
   }
 
   goBack(): void {

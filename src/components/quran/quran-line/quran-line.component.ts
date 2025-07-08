@@ -20,9 +20,10 @@ export class QuranLineComponent {
     this.ayahClicked.emit(char.ayahNumber); // adjust if needed
   }
    highlight(ayahNumber: Ayah) {
-    this.ayahClicked.emit(ayahNumber.ayahNumber);
+    this.sharedService.resetAyah()
+    this.ayahClicked.emit(ayahNumber.ayahNumber); 
     this.sharedService.selectAyah(ayahNumber)
-    this.sharedService.reset();
+    this.sharedService.resetChar();
   }
     html: SafeHtml = '';
 
@@ -58,7 +59,7 @@ ngOnInit(): void {
         isTajweed: activeRule ? true : false,
         ayah: ayah.ayahNumber,
         surah: line.surahId,
-        page: line.page,
+        page: line.pageNumber,
         rule: activeRule?.rule || '',
       });
 
@@ -74,7 +75,7 @@ ngOnInit(): void {
       isTajweed: false,
       ayah: ayah.ayahNumber,
       surah: line.surahId,
-      page: line.page,
+      page: line.pageNumber,
       rule: '',
       text: '',
     });

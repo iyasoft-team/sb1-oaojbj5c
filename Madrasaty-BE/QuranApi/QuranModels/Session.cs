@@ -14,10 +14,17 @@ namespace QuranModels
         public string? Subject { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-
+        public int StartSurah { get; set; }
+        public int StartAyah { get; set; }
+        public int EndSurah { get; set; }
+        public int EndAyah { get; set; }
         public string Status { get; set; } = "Planned";
-        public Student Student { get; set; }
-        public ICollection<SessionEvaluation> Evaluations { get; set; }
+        public Student? Student { get; set; }
+        public ICollection<AyahEval>? Evaluations { get; set; }
+
+        public ICollection<TajweedEval>? Tajweeds { get; set; }
+
+        public int OverallRating { get; set; }
     }
 
     public class SessionDto
@@ -28,6 +35,8 @@ namespace QuranModels
         public string? Subject { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
+        public int StartSurah { get; set; }
+        public int StartAyah { get; set; }
         public string Status { get; set; } = "Planned";
         public StudentDto? Student { get; set; }
     }

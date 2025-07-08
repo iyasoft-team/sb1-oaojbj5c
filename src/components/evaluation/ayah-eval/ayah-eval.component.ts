@@ -27,6 +27,8 @@ export class AyahEvalComponent {
   {
      this.sub = this.sharedService.ayahNumberSelected$.subscribe(ayahnumber => {
       this.selectedAyah = ayahnumber;
+      if(!ayahnumber)
+        this.selectedError = null
      })
   }
   ngOnDestroy(): void {
