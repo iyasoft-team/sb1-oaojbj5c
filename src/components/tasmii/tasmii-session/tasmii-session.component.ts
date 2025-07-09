@@ -100,17 +100,19 @@ export class TasmiiSessionComponent {
 
   Save():void
   { 
-    let ayahevals:AyahEval[] = []
+    let ayahevals:AyahEval[] =  []
     const ayahs = this.quranBook2Component.pageLines.flatMap(line => line.ayahs);
     ayahs.forEach(element => {
       
-      if(element.ayahEval)
+      if(element.selectedError)
       {
-        element.ayahEval.surahNumber = element.surahid;
-        element.ayahEval.sessionId = this.session.id;
-        element.ayahEval.studentId = this.session.student.id.toString();
-        element.ayahEval.ayahNumber = element.ayahNumber;
-        ayahevals.push(element.ayahEval) ;
+        let ayahEval = new AyahEval() ; 
+        ayahEval.surahNumber = element.surahid;
+        ayahEval.sessionId = this.session.id;
+        ayahEval.studentId = this.session.student.id.toString();
+        ayahEval.ayahNumber = element.ayahNumber;
+        ayahEval.RecitationStatus = element.selectedError.id;
+        ayahevals.push(ayahEval) ;
       }
     });
 

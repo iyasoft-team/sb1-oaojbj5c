@@ -20,7 +20,7 @@ export class QuranLineComponent {
     this.ayahClicked.emit(char.ayahNumber); // adjust if needed
   }
    highlight(ayahNumber: Ayah) {
-    this.sharedService.resetAyah()
+    //this.sharedService.resetAyah()
     this.ayahClicked.emit(ayahNumber.ayahNumber); 
     this.sharedService.selectAyah(ayahNumber)
     this.sharedService.resetChar();

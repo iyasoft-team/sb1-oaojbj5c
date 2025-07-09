@@ -23,7 +23,7 @@ export interface SessionNote {
   timestamp: Date;
 }
 
-export interface AyahEval {
+export class AyahEval {
   id?: number;          
   sessionId : string; // optional when posting
   studentId : string;

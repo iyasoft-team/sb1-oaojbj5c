@@ -36,12 +36,13 @@ export class AyahEvalComponent {
   }
 
   onRecitationErrorChange(event: any): void {
+    console.log(this.selectedAyah);
   if (this.selectedAyah) {
     this.selectedAyah.ayahEval = {
       ...this.selectedAyah.ayahEval,
-      RecitationStatus: this.selectedError.id // or map severity if separate
+      RecitationStatus: this.selectedAyah.selectedError.id // or map severity if separate
     };
-    console.log(this.selectedAyah);
+    
   }
 }
 

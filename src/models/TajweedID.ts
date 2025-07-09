@@ -41,6 +41,7 @@ export class Ayah
     wordCount : number;
     annotations?: TajweedAnnotation[] = []; 
     ayahEval? : AyahEval;
+    selectedError?:any;
 }
 export class PageLine
   {
@@ -54,6 +55,7 @@ export class PageLine
     lineTextClean: string;
     ayahs: Ayah[];
     surahId: number;
+
   }
 
 export class AyahChar {
