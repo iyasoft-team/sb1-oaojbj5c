@@ -880,3 +880,37 @@ gap:5px
   background-color: rgb(241, 223, 241);
   transition: background-color 0.4s ease, box-shadow 0.4s ease;
 }
+
+
+.mat-step-icon {
+  background-color: white !important;
+  color: #3f51b5;
+  border: 2px solid #3f51b5;
+  font-weight: bold;
+}
+
+ .mat-step-icon.mat-step-icon-selected {
+  background-color: white !important;
+  color: #3f51b5 !important;
+  border: 2px solid #3f51b5 !important;
+}
+
+.mat-step-icon.mat-step-icon-state-done {
+  background-color: white !important;
+  color: #4caf50 !important;
+  border: 2px solid #4caf50 !important;
+}
+
+.mat-horizontal-stepper-header {
+    display: flex;
+    overflow: hidden;
+    align-items: center;
+    padding: 0 18px !important;
+    height: var(--mat-stepper-header-height, 72px);
+    border-radius: 10px !important;
+  }
+
+  .mat-horizontal-content-container {
+    overflow: hidden;
+    padding: 0 24px 0px 24px !important;
+}

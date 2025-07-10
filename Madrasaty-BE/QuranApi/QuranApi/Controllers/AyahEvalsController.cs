@@ -25,14 +25,14 @@ namespace QuranApi.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<AyahEval>>> GetAyahEval()
         {
-            return await _context.AyahEval.ToListAsync();
+            return await _context.AyahEvals.ToListAsync();
         }
 
         // GET: api/AyahEvals/5
         [HttpGet("{id}")]
         public async Task<ActionResult<AyahEval>> GetAyahEval(int id)
         {
-            var ayahEval = await _context.AyahEval.FindAsync(id);
+            var ayahEval = await _context.AyahEvals.FindAsync(id);
 
             if (ayahEval == null)
             {
@@ -45,7 +45,7 @@ namespace QuranApi.Controllers
         [HttpGet("last/students/{studentId}")]
         public async Task<ActionResult<AyahEval>> GetlastAyahEval(int studentId)
         {
-            var lastEval = await _context.AyahEval
+            var lastEval = await _context.AyahEvals
                 .Where(e => e.StudentId == studentId)
                 .OrderByDescending(e => e.Id) // or use Session.StartDate if available
                 .FirstOrDefaultAsync();
@@ -98,7 +98,7 @@ namespace QuranApi.Controllers
                 return BadRequest("No evaluations provided.");
             }
 
-            _context.AyahEval.AddRange(ayahEvals);
+            _context.AyahEvals.AddRange(ayahEvals);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("Created Ayah Evals",ayahEvals);
@@ -108,13 +108,13 @@ namespace QuranApi.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAyahEval(int id)
         {
-            var ayahEval = await _context.AyahEval.FindAsync(id);
+            var ayahEval = await _context.AyahEvals.FindAsync(id);
             if (ayahEval == null)
             {
                 return NotFound();
             }
 
-            _context.AyahEval.Remove(ayahEval);
+            _context.AyahEvals.Remove(ayahEval);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -124,7 +124,7 @@ namespace QuranApi.Controllers
 
         private bool AyahEvalExists(int id)
         {
-            return _context.AyahEval.Any(e => e.Id == id);
+            return _context.AyahEvals.Any(e => e.Id == id);
         }
     }
 }

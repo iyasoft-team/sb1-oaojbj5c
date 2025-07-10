@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, importProvidersFrom } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { provideRouter, Routes } from '@angular/router';
 import { provideAnimations } from '@angular/platform-browser/animations';
@@ -16,6 +16,8 @@ import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@a
 import { filter } from 'rxjs/operators';
 import { AuthInterceptor } from './services/auth.interceptor';
 import { DateInterceptor } from './services/date.interceptor';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-root',
@@ -120,6 +122,7 @@ const routes: Routes = [
 
 bootstrapApplication(App, {
   providers: [
+    importProvidersFrom(MatDatepickerModule, MatNativeDateModule),
     provideRouter(routes),
     provideAnimations(),
     provideHttpClient(withInterceptorsFromDi()),

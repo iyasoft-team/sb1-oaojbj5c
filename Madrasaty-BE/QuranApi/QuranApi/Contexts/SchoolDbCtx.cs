@@ -8,10 +8,8 @@ namespace QuranApi.Contexts
         public SchoolDbCtx(DbContextOptions<SchoolDbCtx> options) : base(options) { }
 
         public DbSet<Student> Students { get; set; }
-        public DbSet<Session> Sessions { get; set; }
-        public DbSet<SessionEvaluation> SessionEvaluations { get; set; }
-        public DbSet<TajweedError> TajweedErrors { get; set; }
-        public DbSet<LastProgress> LastProgresses { get; set; }
-        public DbSet<QuranModels.AyahEval> AyahEval { get; set; } = default!;
+        public DbSet<SessionDay> SessionDays { get; set; }
+        public DbSet<QuranModels.AyahEval> AyahEvals { get; set; } = default!;
+        public DbSet<QuranModels.SessionSchedule> SessionSchedules { get; set; } = default!;
     }
 }

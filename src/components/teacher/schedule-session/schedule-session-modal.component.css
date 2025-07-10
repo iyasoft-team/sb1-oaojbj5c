@@ -188,3 +188,22 @@
         transform: scale(1) translateY(0);
       }
     }
+    .full-width {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.student-row {
+  margin: 8px 0;
+}
+
+.actions {
+  margin-top: 20px;
+  display: flex;
+  justify-content: end;
+}
+.step-content
+{
+  min-height: 300px;
+  margin-top: 10px;
+}

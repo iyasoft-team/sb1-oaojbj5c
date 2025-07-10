@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, map, Observable, of } from 'rxjs';
-import { Session, SessionNote } from '../models/session.model';
+import { Session, SessionNote, TassmiiSession } from '../models/session.model';
 import { AuthService } from './auth.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../environment/environment';
@@ -10,6 +10,8 @@ import { environment } from '../environment/environment';
 })
 export class SessionService {
   private baseUrl = environment.apiUrl+'/sessions'; // adjust to your backend
+  private TasmiiSessionUrl = environment.apiUrl+'/Tasmiisessions'; // adjust to your backend
+
 
   constructor(private http: HttpClient) {}
   getSession(id:string): Observable<Session> {
@@ -29,6 +31,9 @@ export class SessionService {
 
   createSession(session: Omit<Session, 'id' | 'createdAt'>): Observable<Session> {
     return this.http.post<Session>(`${this.baseUrl}`, session);
+  }
+  createMainTasmiiSession(session: Omit<TassmiiSession, 'id' | 'createdAt'>): Observable<TassmiiSession> {
+    return this.http.post<TassmiiSession>(`${this.TasmiiSessionUrl}`, session);
   }
 
   updateSession(sessionId: string, updates: Partial<Session>): Observable<Session> {

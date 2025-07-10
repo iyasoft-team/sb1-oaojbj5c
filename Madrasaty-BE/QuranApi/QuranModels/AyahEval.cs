@@ -9,12 +9,12 @@ namespace QuranModels
     public class AyahEval
     {
             public int? Id { get; set; }
-            public int SessionId { get; set; }
+            public int TasmiiId { get; set; }
             public int StudentId { get; set; }
             public int SurahNumber { get; set; }
             public int? AyahNumber { get; set; }
             public RecitationStatus RecitationStatus { get; set; } // Correct, Modest, Incorrect, etc.
-            public Session? Session { get; set; }
+            public Tasmii? Tasmii { get; set; }
             public Student? Student { get; set; }
     }
 

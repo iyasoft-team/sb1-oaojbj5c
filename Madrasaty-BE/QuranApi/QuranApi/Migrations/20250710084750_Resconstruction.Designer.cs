@@ -12,8 +12,8 @@ using QuranApi.Contexts;
 namespace QuranApi.Migrations
 {
     [DbContext(typeof(SchoolDbCtx))]
-    [Migration("20250708133128_sessionupdatetajweeds")]
-    partial class sessionupdatetajweeds
+    [Migration("20250710084750_Resconstruction")]
+    partial class Resconstruction
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -39,20 +39,20 @@ namespace QuranApi.Migrations
                     b.Property<int>("RecitationStatus")
                         .HasColumnType("int");
 
-                    b.Property<int>("SessionId")
-                        .HasColumnType("int");
-
                     b.Property<int>("StudentId")
                         .HasColumnType("int");
 
                     b.Property<int>("SurahNumber")
                         .HasColumnType("int");
 
+                    b.Property<int>("TasmiiId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("SessionId");
-
                     b.HasIndex("StudentId");
+
+                    b.HasIndex("TasmiiId");
 
                     b.ToTable("AyahEval");
                 });
@@ -82,7 +82,7 @@ namespace QuranApi.Migrations
                     b.ToTable("LastProgresses");
                 });
 
-            modelBuilder.Entity("QuranModels.Session", b =>
+            modelBuilder.Entity("QuranModels.Participation", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -90,76 +90,126 @@ namespace QuranApi.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("EndAyah")
+                    b.Property<int>("DurationMinutes")
                         .HasColumnType("int");
-
-                    b.Property<DateTime>("EndDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("EndSurah")
-                        .HasColumnType("int");
-
-                    b.Property<int>("OverallRating")
-                        .HasColumnType("int");
-
-                    b.Property<int>("StartAyah")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("StartSurah")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("StudentId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Subject")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("TeacherId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("StudentId");
-
-                    b.ToTable("Sessions");
-                });
-
-            modelBuilder.Entity("QuranModels.SessionEvaluation", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("AyahNumber")
-                        .HasColumnType("int");
-
-                    b.Property<int>("OverallRating")
-                        .HasColumnType("int");
-
-                    b.Property<string>("RecitationStatus")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("SessionId")
                         .HasColumnType("int");
 
-                    b.Property<int>("SurahNumber")
+                    b.Property<DateTime>("StartTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StudentId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("SessionId");
 
-                    b.ToTable("SessionEvaluations");
+                    b.HasIndex("StudentId");
+
+                    b.ToTable("Participation");
+                });
+
+            modelBuilder.Entity("QuranModels.ParticipationTemplate", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("DurationMinutes")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SessionScheduleId")
+                        .HasColumnType("int");
+
+                    b.Property<TimeSpan>("StartTime")
+                        .HasColumnType("time");
+
+                    b.Property<int>("StudentId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SessionScheduleId");
+
+                    b.HasIndex("StudentId");
+
+                    b.ToTable("ParticipationTemplate");
+                });
+
+            modelBuilder.Entity("QuranModels.SessionDay", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDefault")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("SessionScheduleId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("StudentId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TeacherId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SessionScheduleId");
+
+                    b.HasIndex("StudentId");
+
+                    b.ToTable("Sessions");
+                });
+
+            modelBuilder.Entity("QuranModels.SessionSchedule", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime?>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Recurrence")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("TeacherId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("ToEndOfYear")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SessionPlanings");
                 });
 
             modelBuilder.Entity("QuranModels.Student", b =>
@@ -188,35 +238,6 @@ namespace QuranApi.Migrations
                     b.ToTable("Students");
                 });
 
-            modelBuilder.Entity("QuranModels.TajweedError", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int?>("CharIndex")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ErrorDescription")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("EvaluationId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("RuleType")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EvaluationId");
-
-                    b.ToTable("TajweedErrors");
-                });
-
             modelBuilder.Entity("QuranModels.TajweedEval", b =>
                 {
                     b.Property<int>("Id")
@@ -242,9 +263,6 @@ namespace QuranApi.Migrations
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("TRule");
 
-                    b.Property<int>("SessionId")
-                        .HasColumnType("int");
-
                     b.Property<int>("Start")
                         .HasColumnType("int")
                         .HasColumnName("TStart");
@@ -256,36 +274,66 @@ namespace QuranApi.Migrations
                         .HasColumnType("int")
                         .HasColumnName("Surah");
 
+                    b.Property<int>("TasmiiId")
+                        .HasColumnType("int");
+
                     b.Property<int>("WordIndex")
                         .HasColumnType("int")
                         .HasColumnName("WordIndex");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("SessionId");
-
                     b.HasIndex("StudentId");
+
+                    b.HasIndex("TasmiiId");
 
                     b.ToTable("TajweedEval");
                 });
 
+            modelBuilder.Entity("QuranModels.Tasmii", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ParticipationId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Rating")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StudentId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ParticipationId")
+                        .IsUnique();
+
+                    b.HasIndex("StudentId");
+
+                    b.ToTable("Tasmii");
+                });
+
             modelBuilder.Entity("QuranModels.AyahEval", b =>
                 {
-                    b.HasOne("QuranModels.Session", "Session")
-                        .WithMany("Evaluations")
-                        .HasForeignKey("SessionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("QuranModels.Student", "Student")
                         .WithMany()
                         .HasForeignKey("StudentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Session");
+                    b.HasOne("QuranModels.Tasmii", "Tasmii")
+                        .WithMany("AyahEvals")
+                        .HasForeignKey("TasmiiId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Student");
+
+                    b.Navigation("Tasmii");
                 });
 
             modelBuilder.Entity("QuranModels.LastProgress", b =>
@@ -299,44 +347,83 @@ namespace QuranApi.Migrations
                     b.Navigation("Student");
                 });
 
-            modelBuilder.Entity("QuranModels.Session", b =>
+            modelBuilder.Entity("QuranModels.Participation", b =>
                 {
-                    b.HasOne("QuranModels.Student", "Student")
-                        .WithMany("Sessions")
-                        .HasForeignKey("StudentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Student");
-                });
-
-            modelBuilder.Entity("QuranModels.SessionEvaluation", b =>
-                {
-                    b.HasOne("QuranModels.Session", "Session")
-                        .WithMany()
+                    b.HasOne("QuranModels.SessionDay", "Session")
+                        .WithMany("Participants")
                         .HasForeignKey("SessionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Session");
-                });
-
-            modelBuilder.Entity("QuranModels.TajweedError", b =>
-                {
-                    b.HasOne("QuranModels.SessionEvaluation", "Evaluation")
-                        .WithMany("TajweedErrors")
-                        .HasForeignKey("EvaluationId")
+                    b.HasOne("QuranModels.Student", "Student")
+                        .WithMany()
+                        .HasForeignKey("StudentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Evaluation");
+                    b.Navigation("Session");
+
+                    b.Navigation("Student");
+                });
+
+            modelBuilder.Entity("QuranModels.ParticipationTemplate", b =>
+                {
+                    b.HasOne("QuranModels.SessionSchedule", "SessionSchedule")
+                        .WithMany("DefaultParticipants")
+                        .HasForeignKey("SessionScheduleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("QuranModels.Student", "Student")
+                        .WithMany()
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("SessionSchedule");
+
+                    b.Navigation("Student");
+                });
+
+            modelBuilder.Entity("QuranModels.SessionDay", b =>
+                {
+                    b.HasOne("QuranModels.SessionSchedule", "SessionSchedule")
+                        .WithMany("SessionDays")
+                        .HasForeignKey("SessionScheduleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("QuranModels.Student", null)
+                        .WithMany("Sessions")
+                        .HasForeignKey("StudentId");
+
+                    b.Navigation("SessionSchedule");
                 });
 
             modelBuilder.Entity("QuranModels.TajweedEval", b =>
                 {
-                    b.HasOne("QuranModels.Session", "Session")
-                        .WithMany("Tajweeds")
-                        .HasForeignKey("SessionId")
+                    b.HasOne("QuranModels.Student", "Student")
+                        .WithMany()
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("QuranModels.Tasmii", "Tasmii")
+                        .WithMany("TajweedEvals")
+                        .HasForeignKey("TasmiiId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Student");
+
+                    b.Navigation("Tasmii");
+                });
+
+            modelBuilder.Entity("QuranModels.Tasmii", b =>
+                {
+                    b.HasOne("QuranModels.Participation", "Participation")
+                        .WithOne("Tasmii")
+                        .HasForeignKey("QuranModels.Tasmii", "ParticipationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -346,21 +433,26 @@ namespace QuranApi.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Session");
+                    b.Navigation("Participation");
 
                     b.Navigation("Student");
                 });
 
-            modelBuilder.Entity("QuranModels.Session", b =>
+            modelBuilder.Entity("QuranModels.Participation", b =>
                 {
-                    b.Navigation("Evaluations");
-
-                    b.Navigation("Tajweeds");
+                    b.Navigation("Tasmii");
                 });
 
-            modelBuilder.Entity("QuranModels.SessionEvaluation", b =>
+            modelBuilder.Entity("QuranModels.SessionDay", b =>
                 {
-                    b.Navigation("TajweedErrors");
+                    b.Navigation("Participants");
+                });
+
+            modelBuilder.Entity("QuranModels.SessionSchedule", b =>
+                {
+                    b.Navigation("DefaultParticipants");
+
+                    b.Navigation("SessionDays");
                 });
 
             modelBuilder.Entity("QuranModels.Student", b =>
@@ -368,6 +460,13 @@ namespace QuranApi.Migrations
                     b.Navigation("LastProgress");
 
                     b.Navigation("Sessions");
+                });
+
+            modelBuilder.Entity("QuranModels.Tasmii", b =>
+                {
+                    b.Navigation("AyahEvals");
+
+                    b.Navigation("TajweedEvals");
                 });
 #pragma warning restore 612, 618
         }

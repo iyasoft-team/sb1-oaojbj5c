@@ -1,82 +1,81 @@
 <div class="modal-header">
-      <h2 mat-dialog-title>
-        <mat-icon>event_note</mat-icon>
-        {{ translations.scheduleNewSession }}
-      </h2>
+  <h2 mat-dialog-title>
+    <mat-icon>event_note</mat-icon>
+    {{ translations.scheduleNewSession }}
+  </h2>
+</div>
+
+<mat-dialog-content class="modal-content">
+<mat-horizontal-stepper>
+  <!-- Step 1 -->
+  <mat-step label="Time & Recurrence">
+    <div class="step-content">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Start Time</mat-label>
+      <input matInput type="time">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>End Time</mat-label>
+      <input matInput type="time">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Recurrence</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let r of recurrenceOptions" [value]="r">{{ r }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-checkbox>To End of Year</mat-checkbox>
+
+   
+    </div>
+     <div class="actions">
+      <button mat-raised-button color="primary" matStepperNext >Next</button>
+    </div>
+  </mat-step>
+
+  <!-- Step 2 -->
+  <mat-step label="Select Students">
+    <div class="step-content">
+    <div *ngFor="let student of students" class="student-row">
+      <mat-checkbox [(ngModel)]="student.selected">
+        {{ student.fullName }}
+      </mat-checkbox>
     </div>
 
-    <mat-dialog-content class="modal-content">
-      <form #scheduleForm="ngForm" class="schedule-form">
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>{{ translations.selectStudent }}</mat-label>
-          <mat-select [(ngModel)]="newSession.studentId" name="studentId" required (selectionChange)="onStudentChanged($event.value)">
-            <mat-option *ngFor="let student of students" [value]="student.id">
-              {{ student.fullName }}
-            </mat-option>
-          </mat-select>
-          <mat-icon matSuffix>person</mat-icon>
-        </mat-form-field>
+   
+    </div>
+     <div class="actions">
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-raised-button color="primary" matStepperNext>Next</button>
+    </div>
+  </mat-step>
+
+  <!-- Step 3 -->
+  <mat-step label="Timeline">
+    <div class="step-content">
+    <p>Organize students into a timeline (coming soon).</p>
+
+  
+    </div>
+      <div class="actions">
+      <button mat-button matStepperPrevious>Back</button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>
 
 
-          <div class="single-row">
-            <!-- Surah Dropdown -->
-            <mat-form-field appearance="outline" class="half-width">
-              <mat-label>Chapter</mat-label>
-              <mat-select [(ngModel)]="selectedSurahNumber" (selectionChange)="onSurahChange($event.value)" name="surah">
-                <mat-option *ngFor="let surah of surahs" [value]="surah.number">
-                  {{ surah.number }} - {{ surah.name }}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
+</mat-dialog-content>
 
-            <!-- Ayah Dropdown -->
-            <mat-form-field appearance="outline" class="half-width" *ngIf="ayahNumbers.length > 0">
-              <mat-label>Verse</mat-label>
-              <mat-select [(ngModel)]="selectedAyahNumber" name="ayah">
-                <mat-option *ngFor="let ayahNum of ayahNumbers" [value]="ayahNum">
-                  {{ ayahNum }}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
-        
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>{{ translations.topic }}</mat-label>
-          <input matInput [(ngModel)]="newSession.topic" name="topic" 
-                 placeholder="e.g., Quran Recitation - Surah Al-Fatiha">
-          <mat-icon matSuffix>menu_book</mat-icon>
-        </mat-form-field>
-
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>{{ translations.sessionDate }}</mat-label>
-          <input matInput [matDatepicker]="picker" [(ngModel)]="newSession.date" name="date" required>
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
-
-        <div class="single-row">
-          <mat-form-field appearance="outline" class="half-width">
-            <mat-label>{{ translations.startTime }}</mat-label>
-            <input matInput type="time" [(ngModel)]="newSession.startTime" name="startTime" required>
-            <mat-icon matSuffix>schedule</mat-icon>
-          </mat-form-field>
-
-          <mat-form-field appearance="outline" class="half-width">
-            <mat-label>{{ translations.endTime }}</mat-label>
-            <input matInput type="time" [(ngModel)]="newSession.endTime" name="endTime" required>
-            <mat-icon matSuffix>schedule</mat-icon>
-          </mat-form-field>
-        </div>
-      </form>
-    </mat-dialog-content>
-
-    <mat-dialog-actions class="modal-actions">
-      <button mat-button (click)="onCancel()" class="cancel-btn">
-        <mat-icon>close</mat-icon>
-        {{ translations.cancel }}
-      </button>
-      <button mat-raised-button (click)="onSubmit()" [disabled]="!scheduleForm.valid" class="schedule-btn">
-        <mat-icon>event</mat-icon>
-        {{ translations.scheduleSession }}
-      </button>
-    </mat-dialog-actions>
+<mat-dialog-actions class="modal-actions">
+  <button mat-button (click)="onCancel()">
+    <mat-icon>close</mat-icon>
+    {{ translations.cancel }}
+  </button>
+  <button mat-raised-button color="primary" (click)="onSubmit()" >
+    <mat-icon>event</mat-icon>
+    {{ translations.scheduleSession }}
+  </button>
+</mat-dialog-actions>

@@ -1,10 +1,6 @@
 import { AyahEval } from "./session.model";
 
-export class TajweedInfo{
-    surah : number ;
-    ayah : number ;
-    tajweedRuleOcc : number ; 
-}
+
 export enum TajweedRule {
   HamzatWasl = 'hamzat_wasl',
   LamShamsiyyah = 'lam_shamsiyyah',
@@ -20,8 +16,7 @@ export class TajweedAnnotation {
   start: number;      // start index within the word
   end: number;        // end index within the word
   rule: TajweedRule;  // rule type as enum or string
-
-
+  evaluation:any;
 }
 export class AyahTajweedData {
   surah :  number;
@@ -29,7 +24,6 @@ export class AyahTajweedData {
   cleanedText: string;                // Full cleaned ayah text
   annotations: TajweedAnnotation[];  // Word-based annotations
 }
-
 export class Ayah
 {
     surahid? : number;
@@ -57,7 +51,6 @@ export class PageLine
     surahId: number;
 
   }
-
 export class AyahChar {
   char: string;
   index: number;
@@ -69,6 +62,7 @@ export class AyahChar {
   page:number;
   rule : string;
   text:string;
+  evaluation?: number;
 }
 
 export class TajweedRuleInfo {

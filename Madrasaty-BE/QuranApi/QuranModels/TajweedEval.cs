@@ -31,10 +31,14 @@ namespace QuranModels
         [Column("TRule")]
         [MaxLength(50)]
         public string Rule { get; set; }
+        
+        
         public int Evaluation { get; set; }
-        public Session? Session { get; set; }
-        public int SessionId { get; set; }
-        public Student? Student { get; set; }
+        public int TasmiiId { get; set; }
         public int StudentId { get; set; }
+        
+
+        public Tasmii? Tasmii { get; set; }
+        public Student? Student { get; set; }       
     }
 }

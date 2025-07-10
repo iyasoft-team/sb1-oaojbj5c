@@ -38,7 +38,7 @@ namespace QuranApi.Controllers
                     student.Id,
                     student.FullName,
                     student.Email,
-                    LastEval = _context.AyahEval
+                    LastEval = _context.AyahEvals
                         .Where(e => e.StudentId == student.Id)
                         .OrderByDescending(e => e.Id)
                         .FirstOrDefault()

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using QuranApi.Contexts;
 
@@ -11,9 +12,11 @@ using QuranApi.Contexts;
 namespace QuranApi.Migrations
 {
     [DbContext(typeof(SchoolDbCtx))]
-    partial class SchoolDbCtxModelSnapshot : ModelSnapshot
+    [Migration("20250710085830_Renaming")]
+    partial class Renaming
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -299,18 +302,6 @@ namespace QuranApi.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("Rating")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ScheduledAyah")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ScheduledSurah")
-                        .HasColumnType("int");
-
-                    b.Property<int>("StartAyah")
-                        .HasColumnType("int");
-
-                    b.Property<int>("StartSurah")
                         .HasColumnType("int");
 
                     b.Property<int>("StudentId")
