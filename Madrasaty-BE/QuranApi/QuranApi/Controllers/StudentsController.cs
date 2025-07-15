@@ -23,11 +23,18 @@ namespace QuranApi.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Student>>> GetStudents()
+        public async Task<ActionResult<IEnumerable<object>>> GetStudents()
         {
-            return await _context.Students.ToListAsync();
+            return await _context.Students
+                     .Select(s => new {
+                         s.Id,
+                         s.FullName,
+                         s.Email,
+                         s.BirthDate,
+                         ProfileImageUrl = $"{Request.Scheme}://{Request.Host}/{s.ProfileImageUrl}"
+                     })
+                    .ToListAsync();
         }
-
 
         [HttpGet("with-last-eval")]
         public async Task<ActionResult<IEnumerable<object>>> GetStudentsWithLastEval()

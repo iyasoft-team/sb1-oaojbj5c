@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Student, StudentlEval } from '../models/user.model';
 import { environment } from '../environment/environment';
 
@@ -12,9 +12,13 @@ export class StudentService {
   constructor(private http: HttpClient) {}
 
   // Get all students
-  getStudents(): Observable<Student[]> {
-    return this.http.get<Student[]>(`${environment.apiUrl}/Students`);
-  }
+  
+getStudents(): Observable<Student[]> {
+  return this.http.get<Student[]>(`${environment.apiUrl}/Students`)
+}
+  // getStudents(): Observable<Student[]> {
+  //   return this.http.get<Student[]>(`${environment.apiUrl}/Students`);
+  // }
 
    getStudentsWithLastEval(): Observable<StudentlEval[]> {
     return this.http.get<StudentlEval[]>(`${environment.apiUrl}/Students/with-last-eval`);

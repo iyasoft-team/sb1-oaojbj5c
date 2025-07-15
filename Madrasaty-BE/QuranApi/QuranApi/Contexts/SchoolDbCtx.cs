@@ -11,5 +11,8 @@ namespace QuranApi.Contexts
         public DbSet<SessionDay> SessionDays { get; set; }
         public DbSet<QuranModels.AyahEval> AyahEvals { get; set; } = default!;
         public DbSet<QuranModels.SessionSchedule> SessionSchedules { get; set; } = default!;
+        public DbSet<ParticipationTemplate> ParticipationTemplate { get; set; }
+        public DbSet<Participation> Participation { get; set; }
+
     }
 }

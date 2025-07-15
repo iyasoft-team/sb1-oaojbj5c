@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using QuranApi.Contexts;
 
@@ -11,9 +12,11 @@ using QuranApi.Contexts;
 namespace QuranApi.Migrations
 {
     [DbContext(typeof(SchoolDbCtx))]
-    partial class SchoolDbCtxModelSnapshot : ModelSnapshot
+    [Migration("20250711103048_firstMigration")]
+    partial class firstMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -125,8 +128,8 @@ namespace QuranApi.Migrations
                     b.Property<int>("SessionScheduleId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("StartTime")
-                        .HasColumnType("datetime2");
+                    b.Property<TimeSpan>("StartTime")
+                        .HasColumnType("time");
 
                     b.Property<int>("StudentId")
                         .HasColumnType("int");

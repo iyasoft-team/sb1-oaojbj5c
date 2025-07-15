@@ -1,0 +1,47 @@
+<!-- Drag list wrapper -->
+<div cdkDropList (cdkDropListDropped)="drop($event)" [cdkDropListData]="students">
+
+  <mat-table [dataSource]="students" class="mat-elevation-z2">
+    
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef> Student Name </mat-header-cell>
+      <mat-cell *matCellDef="let student"> {{ student.name }} </mat-cell>
+    </ng-container>
+
+    <!-- Start Time -->
+    <ng-container matColumnDef="startTime">
+      <mat-header-cell *matHeaderCellDef> Start Time </mat-header-cell>
+      <mat-cell *matCellDef="let student; let i = index">
+        <input
+          type="time"
+          [value]="formatTimeInput(student.startTime)"
+          (change)="onStartTimeChange(i, $event)"
+        />
+      </mat-cell>
+    </ng-container>
+
+    <!-- Duration -->
+    <ng-container matColumnDef="duration">
+      <mat-header-cell *matHeaderCellDef> Duration (min) </mat-header-cell>
+      <mat-cell *matCellDef="let student; let i = index">
+        <input
+          type="number"
+          min="1"
+          [value]="student.duration"
+          (change)="onDurationChange(i, $event)"
+          style="width: 60px"
+        />
+      </mat-cell>
+    </ng-container>
+   
+
+    <!-- Header and Draggable Rows -->
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row
+      *matRowDef="let row; columns: displayedColumns"
+      cdkDrag
+    ></mat-row>
+    
+  </mat-table>
+</div>

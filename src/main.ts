@@ -18,6 +18,7 @@ import { AuthInterceptor } from './services/auth.interceptor';
 import { DateInterceptor } from './services/date.interceptor';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { RecitationList } from './components/teacher/recitation-list/recitation-list';
 
 @Component({
   selector: 'app-root',
@@ -110,6 +111,11 @@ const routes: Routes = [
   { 
     path: 'teacher/session/:id', 
     component: TasmiiSessionComponent,
+     /*canActivate: [AuthGuard]*/
+  },
+   { 
+    path: 'teacher/Recitation', 
+    component: RecitationList,
      /*canActivate: [AuthGuard]*/
   },
   { 

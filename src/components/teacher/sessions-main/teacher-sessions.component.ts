@@ -14,6 +14,8 @@ import { NavigationComponent, MenuItem, TEACHER_MENU_ITEMS } from '../../shared/
 import { LanguageService, Translation } from '../../../services/language.service';
 import { SessionListComponent } from '../session-list/session-list.component';
 import { ScheduleSessionModalComponent } from '../schedule-session/schedule-session-modal.component';
+import { SessionDayService } from '../../../services/session-day.service';
+import { SessionDay } from '../../../models/Sessions.model';
 
 @Component({
   selector: 'app-teacher-sessions',
@@ -32,7 +34,7 @@ import { ScheduleSessionModalComponent } from '../schedule-session/schedule-sess
   styleUrls: ['./teacher-sessions.component.css']
 })
 export class TeacherSessionsComponent implements OnInit {
-  sessions: Session[] = [];
+  sessions: SessionDay[] = [];
   currentUser = this.authService.getCurrentUser();
   currentView: 'calendar' | 'list' = 'list';
   sidebarCollapsed = false;
@@ -42,6 +44,7 @@ export class TeacherSessionsComponent implements OnInit {
 
   constructor(
     private sessionService: SessionService,
+    private sessionsService : SessionDayService,
     private authService: AuthService,
     private router: Router,
     private dialog: MatDialog,
@@ -61,7 +64,7 @@ export class TeacherSessionsComponent implements OnInit {
 
   loadSessions(): void {
     if (this.currentUser) {
-      this.sessionService.getTeacherSessions(this.currentUser.id).subscribe(sessions => {
+      this.sessionsService.getSessionDaysByTeacher(this.currentUser.id).subscribe(sessions => {
         this.sessions = sessions;
       });
     }
@@ -96,17 +99,13 @@ export class TeacherSessionsComponent implements OnInit {
     });
   }
 
-  onSessionAction(event: { action: string; session: Session }): void {
+  onSessionAction(event: { action: string; session: SessionDay }): void {
     if (event.action === 'start') {
-      this.router.navigate(['/teacher/session', event.session.id]);
-    }
-    else if (event.action === 'start')
-    {
-
+      this.router.navigate(['/teacher/Recitation'/*, event.session.id*/]);
     }
     else if (event.action === 'delete')
     {
-      this.sessionService.DeleteSession(event.session.id).subscribe(result => {
+      this.sessionService.DeleteSession(event.session.id.toString()).subscribe(result => {
         this.loadSessions();     
     });
     }

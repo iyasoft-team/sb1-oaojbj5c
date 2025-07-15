@@ -6,31 +6,36 @@
 
   <div class="sessions-grid" *ngIf="sessions.length > 0; else noSessions">
     <mat-card class="session-card" *ngFor="let session of sortedSessions">
-    
+
       <mat-card-header>
-        <mat-card-title>{{ session.student?.fullName }}</mat-card-title>
+        <mat-card-title>{{ session.date | date:'fullDate' }}</mat-card-title>
       </mat-card-header>
 
       <mat-card-content>
         <div class="session-details">
           <div class="detail-item">
             <mat-icon>event</mat-icon>
-            <span>{{ session.startDate.toDateString() }}</span>
+            <span>{{ formatStatus(session.status) }}</span>
           </div>
           <div class="detail-item">
             <mat-icon>schedule</mat-icon>
-            <span>{{ formathours(session.startDate)  }} - {{ formathours(session.endDate)}}</span>
+            <span>{{ session.date | date:'shortTime' }} - {{ session.date | date:'shortTime' }}</span>
+            <!-- Replace with actual start/end times if stored separately -->
           </div>
-          <div class="detail-item">
-            <mat-icon>info</mat-icon>
-            <span>{{ session | surahAyah }}</span>          
-          </div>
+          <div class="detail-item participant-avatars" *ngIf="session.participants?.length">
+          <img
+            *ngFor="let p of session.participants"
+            [src]="p.student?.profileImageUrl || 'assets/default-avatar.png'"
+            [alt]="p.student?.fullName"
+            class="student-avatar"
+            
+          />
         </div>
-
+        </div>
         <div class="session-status">
-          <mat-chip [class]="'status-chip status-' + session.status">
+          <!-- <mat-chip [class]="'status-chip status-' + session.status">
             {{ formatStatus(session.status) }}
-          </mat-chip>
+          </mat-chip> -->
         </div>
       </mat-card-content>
 
@@ -38,30 +43,27 @@
         <button 
           mat-raised-button 
           color="primary" 
-          *ngIf="session.status === 'scheduled'"
-          (click)="onStartSession(session)"
-        >
+          [disabled]="!isToday(session.date)"
+          (click)="onStartSession(session)">
           <mat-icon>play_arrow</mat-icon>
           {{ translations.startSession }}
         </button>
-        
+
         <button 
           mat-stroked-button 
-          *ngIf="session.status === 'completed'"
-          (click)="onViewNotes(session)"
-        >
+          *ngIf="session.status === 1"
+          (click)="onViewNotes(session)">
           <mat-icon>notes</mat-icon>
           {{ translations.viewNotes }}
         </button>
 
         <button 
-              *ngIf="session.status !== 'completed'"
-                mat-icon-button 
-                color="warn"
-                (click)="onDeleteSession(session)">
-                <mat-icon>delete</mat-icon>
+          *ngIf="session.status !== 2"
+          mat-icon-button 
+          color="warn"
+          (click)="onDeleteSession(session)">
+          <mat-icon>delete</mat-icon>
         </button>
-
       </mat-card-actions>
     </mat-card>
   </div>

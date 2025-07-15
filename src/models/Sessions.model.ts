@@ -1,23 +1,22 @@
+import { NumericLiteral } from "typescript";
 import { AyahEval } from "./session.model";
 import { AyahChar } from "./TajweedID";
 
 export enum Recurrence {
-  None = 'None',
-  Daily = 'Daily',
-  Weekly = 'Weekly',
-  BiWeekly = 'BiWeekly',
-  Monthly = 'Monthly',
-  Quarterly = 'Quarterly',
-  Yearly = 'Yearly',
-  WeekdaysOnly = 'WeekdaysOnly',
-  Custom = 'Custom'
+  None = 0,
+  Daily = 1,
+  Weekly = 2,
+  Monthly = 3,
+  Yearly = 4,
+  Custom = 5
 }
 
 export interface ParticipationTemplate {
-  id: number;
   studentId: number;
-
-  // Add other fields if needed
+  durationMinutes:number ;
+  startTime : Date ; 
+  startTimeNumber? : number ;
+  duration? : number ;
 }
 
 export interface SessionDay {
@@ -25,22 +24,22 @@ export interface SessionDay {
   teacherId: number;
   sessionScheduleId: number;
   date: Date;
-  status: Status; // Replace with enum if applicable
+  status: Status; 
   isDefault: boolean;
   modifiedAt?: Date;
   modifiedBy?: string;
-  participants?: any[]; // Or use a specific type if you have it
+  participants?: any[]; 
 }
 
 export interface SessionSchedule {
-  id: number;
+  id?: string;
   teacherId: string;
   startDate: Date;
   endDate?: Date;
   toEndOfYear: boolean;
-  recurrence: Recurrence;
-  defaultParticipants: ParticipationTemplate[];
-  sessionDays: SessionDay[];
+  Recurrence: Recurrence;
+  defaultParticipants?: ParticipationTemplate[];
+  sessionDays? : SessionDay[];
 }
  export enum Status
  {
@@ -48,6 +47,7 @@ export interface SessionSchedule {
      Finished,  
      Canceled
  }
+
 export interface Tasmii {
   id: number;
   studentId: number;
@@ -58,7 +58,7 @@ export interface Tasmii {
   scheduledSurah : number;
   scheduledAyah : number;
   ayahEvals?: AyahEval[];
-  tajweedEvals?: AyahChar[]; //Considered as tajweedeval
+  tajweedEvals?: AyahChar[]; 
 
 }
 

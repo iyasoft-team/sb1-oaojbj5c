@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace QuranModels
@@ -14,10 +15,9 @@ namespace QuranModels
         public ParticipationStatus Status { get; set; }      
         public DateTime StartTime { get; set; }//the start hour scheduled for this student 
         public int DurationMinutes { get; set; }//how many minutes will the tasmii lasts 
-
-
         public Tasmii? Tasmii { get; set; }
         public Student? Student { get; set; }
+        [JsonIgnore]
         public SessionDay? Session { get; set; }
 
     }
@@ -26,7 +26,7 @@ namespace QuranModels
     {
         public int Id { get; set; }
         public int StudentId { get; set; }
-        public TimeSpan StartTime { get; set; }
+        public DateTime StartTime { get; set; }
         public int DurationMinutes { get; set; }
         public int SessionScheduleId { get; set; }
 
@@ -42,4 +42,12 @@ namespace QuranModels
         Done,
         Canceled
     }
+    public class ParticipationTemplateDto
+    {
+        public int StudentId { get; set; }
+        public DateTime StartTime { get; set; }
+        public int DurationMinutes { get; set; }
+
+    }
+
 }

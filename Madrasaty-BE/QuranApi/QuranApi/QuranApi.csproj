@@ -26,8 +26,4 @@
     <ProjectReference Include="..\QuranModels\QuranModels.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="wwwroot\images\profiles\" />
-  </ItemGroup>
-
 </Project>

@@ -1,0 +1,32 @@
+.student-tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.student-tab {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f7f7f7;
+  border-radius: 8px;
+  padding: 8px 12px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.student-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.student-order {
+  font-weight: bold;
+  color: #555;
+  width: 32px;
+}
+
+.status-chip {
+  margin-left: auto;
+  margin-right: 16px;
+}

@@ -12,6 +12,7 @@
       z-index: 1000;
       overflow: hidden;
       box-shadow: 2px 0 8px rgba(15, 76, 117, 0.08);
+      
     }
 
     .sidebar-container::before {

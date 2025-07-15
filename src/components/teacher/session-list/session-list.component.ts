@@ -8,6 +8,7 @@ import { Session } from '../../../models/session.model';
 import { LanguageService, Translation } from '../../../services/language.service';
 import { surahs } from '../../../models/Surahs';
 import { SurahAyahPipe } from "../../../pipes/SurahAyahFormatter.pipe";
+import { SessionDay, Status } from '../../../models/Sessions.model';
 
 
 @Component({
@@ -18,8 +19,9 @@ import { SurahAyahPipe } from "../../../pipes/SurahAyahFormatter.pipe";
   styleUrls: ['./session-list.component.css']
 })
 export class SessionListComponent {
-  @Input() sessions: Session[] = [];
-  @Output() sessionAction = new EventEmitter<{ action: string; session: Session }>();
+  
+  @Input() sessions: SessionDay[] = [];
+  @Output() sessionAction = new EventEmitter<{ action: string; session: SessionDay }>();
 
   translations: Translation;
   
@@ -30,7 +32,7 @@ export class SessionListComponent {
     });
   }
 
-  get sortedSessions(): Session[] {
+  get sortedSessions(): SessionDay[] {
     return [...this.sessions].sort((a, b) => 
       new Date(a.date).getTime() - new Date(b.date).getTime()
     );
@@ -46,36 +48,46 @@ export class SessionListComponent {
     });
   }
 
-  formatStatus(status: string): string {
+  formatStatus(status: Status): string {
     switch (status) {
-      case 'scheduled': return this.translations.scheduled;
-      case 'in-progress': return this.translations.inProgress;
-      case 'completed': return this.translations.completed;
-      case 'cancelled': return this.translations.cancelled;
+      case Status.PenDing: return this.translations.scheduled;
+      case Status.Canceled: return this.translations.inProgress;
+      case Status.Finished: return this.translations.completed;
       default: return status;
     }
 
     
   }
+
+  isToday(date: Date): boolean {
+  const d = new Date(date);
+  const today = new Date();
+  return (
+    d.getDate() === today.getDate() &&
+    d.getMonth() === today.getMonth() &&
+    d.getFullYear() === today.getFullYear()
+  );
+}
+
   formathours(date : Date) : number
     {
       return date?.getHours();
     }
-  onStartSession(session: Session): void {
+  onStartSession(session: SessionDay): void {
     this.sessionAction.emit({ action: 'start', session });
   }
 
-  onViewNotes(session: Session): void {
+  onViewNotes(session: SessionDay): void {
     this.sessionAction.emit({ action: 'view-notes', session });
   }
 
-  onDeleteSession(session: Session): void {
+  onDeleteSession(session: SessionDay): void {
     this.sessionAction.emit({ action: 'delete', session });
   }
-  formatSurahAyah(session : Session)
-  {
-    let surahName = surahs.find(s => s.number === session.startSurah).name; 
-    return `سورة ${surahName}، الآية ${session.startAyah}`;
+  // formatSurahAyah(session : SessionDay)
+  // {
+  //   let surahName = surahs.find(s => s.number === session.startSurah).name; 
+  //   return `سورة ${surahName}، الآية ${session.startAyah}`;
 
-  }
+  // }
 }

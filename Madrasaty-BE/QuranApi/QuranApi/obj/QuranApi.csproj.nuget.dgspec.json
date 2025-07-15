@@ -1,45 +1,41 @@
 {
   "format": 1,
   "restore": {
-    "E:\\sb1-oaojbj5c\\Madrasaty-BE\\QuranApi\\QuranApi\\QuranApi.csproj": {}
+    "D:\\Madrasaty\\Madrasaty-all-prod\\Madrasaty-BE\\QuranApi\\QuranApi\\QuranApi.csproj": {}
   },
   "projects": {
-    "E:\\sb1-oaojbj5c\\Madrasaty-BE\\QuranApi\\QuranApi\\QuranApi.csproj": {
+    "D:\\Madrasaty\\Madrasaty-all-prod\\Madrasaty-BE\\QuranApi\\QuranApi\\QuranApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\sb1-oaojbj5c\\Madrasaty-BE\\QuranApi\\QuranApi\\QuranApi.csproj",
+        "projectUniqueName": "D:\\Madrasaty\\Madrasaty-all-prod\\Madrasaty-BE\\QuranApi\\QuranApi\\QuranApi.csproj",
         "projectName": "QuranApi",
-        "projectPath": "E:\\sb1-oaojbj5c\\Madrasaty-BE\\QuranApi\\QuranApi\\QuranApi.csproj",
-        "packagesPath": "C:\\Users\\mom\\.nuget\\packages\\",
-        "outputPath": "E:\\sb1-oaojbj5c\\Madrasaty-BE\\QuranApi\\QuranApi\\obj\\",
+        "projectPath": "D:\\Madrasaty\\Madrasaty-all-prod\\Madrasaty-BE\\QuranApi\\QuranApi\\QuranApi.csproj",
+        "packagesPath": "C:\\Users\\PC03\\.nuget\\packages\\",
+        "outputPath": "D:\\Madrasaty\\Madrasaty-all-prod\\Madrasaty-BE\\QuranApi\\QuranApi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files (x86)\\Progress\\ToolboxNuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\mom\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\PC03\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Telerik UI for WinForms.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files (x86)\\Progress2\\Telerik UI for Blazor 7.0.0\\packages": {},
           "C:\\Program Files\\dotnet\\library-packs": {},
-          "C:\\Users\\mom\\Desktop\\packages": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://nuget.devexpress.com/fbRidW2TaYz7FSpeCAqar7ZaDhxfPVo5ClGXjoADiUl61yu8Xf/api": {}
+          "C:\\Users\\PC03\\Documents\\packages": {},
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "E:\\sb1-oaojbj5c\\Madrasaty-BE\\QuranApi\\QuranModels\\QuranModels.csproj": {
-                "projectPath": "E:\\sb1-oaojbj5c\\Madrasaty-BE\\QuranApi\\QuranModels\\QuranModels.csproj"
+              "D:\\Madrasaty\\Madrasaty-all-prod\\Madrasaty-BE\\QuranApi\\QuranModels\\QuranModels.csproj": {
+                "projectPath": "D:\\Madrasaty\\Madrasaty-all-prod\\Madrasaty-BE\\QuranApi\\QuranModels\\QuranModels.csproj"
               }
             }
           }
@@ -53,8 +49,7 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "9.0.300"
+        }
       },
       "frameworks": {
         "net8.0": {
@@ -112,39 +107,35 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.301/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "E:\\sb1-oaojbj5c\\Madrasaty-BE\\QuranApi\\QuranModels\\QuranModels.csproj": {
+    "D:\\Madrasaty\\Madrasaty-all-prod\\Madrasaty-BE\\QuranApi\\QuranModels\\QuranModels.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\sb1-oaojbj5c\\Madrasaty-BE\\QuranApi\\QuranModels\\QuranModels.csproj",
+        "projectUniqueName": "D:\\Madrasaty\\Madrasaty-all-prod\\Madrasaty-BE\\QuranApi\\QuranModels\\QuranModels.csproj",
         "projectName": "QuranModels",
-        "projectPath": "E:\\sb1-oaojbj5c\\Madrasaty-BE\\QuranApi\\QuranModels\\QuranModels.csproj",
-        "packagesPath": "C:\\Users\\mom\\.nuget\\packages\\",
-        "outputPath": "E:\\sb1-oaojbj5c\\Madrasaty-BE\\QuranApi\\QuranModels\\obj\\",
+        "projectPath": "D:\\Madrasaty\\Madrasaty-all-prod\\Madrasaty-BE\\QuranApi\\QuranModels\\QuranModels.csproj",
+        "packagesPath": "C:\\Users\\PC03\\.nuget\\packages\\",
+        "outputPath": "D:\\Madrasaty\\Madrasaty-all-prod\\Madrasaty-BE\\QuranApi\\QuranModels\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files (x86)\\Progress\\ToolboxNuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\mom\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\PC03\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Telerik UI for WinForms.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files (x86)\\Progress2\\Telerik UI for Blazor 7.0.0\\packages": {},
           "C:\\Program Files\\dotnet\\library-packs": {},
-          "C:\\Users\\mom\\Desktop\\packages": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://nuget.devexpress.com/fbRidW2TaYz7FSpeCAqar7ZaDhxfPVo5ClGXjoADiUl61yu8Xf/api": {}
+          "C:\\Users\\PC03\\Documents\\packages": {},
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
@@ -161,8 +152,7 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "9.0.300"
+        }
       },
       "frameworks": {
         "net8.0": {
@@ -183,7 +173,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.301/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
