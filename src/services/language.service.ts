@@ -54,6 +54,7 @@ export interface Translation {
 
   // Schedule Modal
   scheduleNewSession: string;
+  editsessionDay : string;
   selectStudent: string;
   topic: string;
   sessionDate: string;
@@ -144,6 +145,7 @@ const FRENCH_TRANSLATIONS: Translation = {
 
   // Schedule Modal
   scheduleNewSession: 'Planifier une nouvelle session',
+  editsessionDay : 'modifier la seance',
   selectStudent: 'Sélectionner un étudiant',
   topic: 'Sujet',
   sessionDate: 'Date de la session',
@@ -234,6 +236,7 @@ const ENGLISH_TRANSLATIONS: Translation = {
 
   // Schedule Modal
   scheduleNewSession: 'Schedule New Session',
+  editsessionDay : 'edit sessionDay',
   selectStudent: 'Select Student',
   topic: 'Topic/Subject',
   sessionDate: 'Session Date',
@@ -324,6 +327,7 @@ const ARABIC_TRANSLATIONS: Translation = {
 
   // Schedule Modal
   scheduleNewSession: 'جدولة جلسة جديدة',
+  editsessionDay: 'Not Transalted Yet',
   selectStudent: 'اختر الطالب',
   topic: 'الموضوع',
   sessionDate: 'تاريخ الجلسة',

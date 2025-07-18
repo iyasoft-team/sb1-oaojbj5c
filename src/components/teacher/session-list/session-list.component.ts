@@ -9,12 +9,15 @@ import { LanguageService, Translation } from '../../../services/language.service
 import { surahs } from '../../../models/Surahs';
 import { SurahAyahPipe } from "../../../pipes/SurahAyahFormatter.pipe";
 import { SessionDay, Status } from '../../../models/Sessions.model';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { ScheduleSessionModalComponent } from '../schedule-session/schedule-session-modal.component';
+import { EditSessionDayModal } from '../sessionday-schedule/edit-session-day-modal';
 
 
 @Component({
   selector: 'app-session-list',
   standalone: true,
-  imports: [CommonModule, MatCardModule, MatButtonModule, MatIconModule, MatChipsModule, SurahAyahPipe],
+  imports: [CommonModule, MatCardModule, MatButtonModule, MatIconModule, MatChipsModule, SurahAyahPipe,MatDialogModule,EditSessionDayModal],
   templateUrl: './session-list.component.html',
   styleUrls: ['./session-list.component.css']
 })
@@ -25,7 +28,7 @@ export class SessionListComponent {
 
   translations: Translation;
   
-  constructor(private languageService: LanguageService) {
+  constructor(private languageService: LanguageService,private dialog: MatDialog) {
     this.translations = this.languageService.getTranslations();
     this.languageService.translations$.subscribe(translations => {
       this.translations = translations;
@@ -90,8 +93,15 @@ export class SessionListComponent {
   //   return `سورة ${surahName}، الآية ${session.startAyah}`;
 
   // }
-  onEditSession(session : any)
+  onEditSession(sessionDay : SessionDay)
   {
-
+    const dialogRef = this.dialog.open(EditSessionDayModal, {
+      width: '600px',
+      maxWidth: '90vw',
+      disableClose: false,
+      autoFocus: true,
+      panelClass: 'schedule-modal-panel',
+      data: sessionDay
+    });
   }
 }

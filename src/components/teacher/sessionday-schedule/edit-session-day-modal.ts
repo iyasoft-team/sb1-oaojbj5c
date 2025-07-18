@@ -1,47 +1,34 @@
-import { Component, Inject, OnInit, ViewChild } from '@angular/core';
-import {
-  CommonModule
-} from '@angular/common';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import {
-  MatDialogModule,
-  MatDialogRef,
-  MAT_DIALOG_DATA
-} from '@angular/material/dialog';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatSelectModule } from '@angular/material/select';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
+import { CommonModule } from '@angular/common';
+import { Component, Inject, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
-
+import { MatInputModule } from '@angular/material/input';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSelectModule } from '@angular/material/select';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { MatTimepickerModule } from '@angular/material/timepicker';
+import { StudentTimeLine } from '../../shared/student-time-line/student-time-line';
+import { Student } from '../../../models/user.model';
+import { LanguageService, Translation } from '../../../services/language.service';
+import { Recurrence } from '../../../models/session.model';
+import { ParticipationTemplate, SessionDay, SessionSchedule } from '../../../models/Sessions.model';
 import { SessionService } from '../../../services/session.service';
 import { AuthService } from '../../../services/auth.service';
-import { Student } from '../../../models/user.model';
-import {
-  Recurrence,
-  SessionSchedule,
-  ParticipationTemplate,
-  
-} from '../../../models/Sessions.model';
-import { LanguageService, Translation } from '../../../services/language.service';
-import { StudentService } from '../../../services/student.service';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { MatStepperModule } from '@angular/material/stepper';
-import { MatTimepickerModule } from '@angular/material/timepicker';
-import { SelectionModel } from '@angular/cdk/collections';
-import { MatPaginator } from '@angular/material/paginator';
 import { SessionScheduleService } from '../../../services/session-schedule.service';
-import { StudentTimeLine } from '../../shared/student-time-line/student-time-line';
+import { ScheduleSessionModalComponent } from '../schedule-session/schedule-session-modal.component';
+import { StudentService } from '../../../services/student.service';
 import { SessionDayService } from '../../../services/session-day.service';
+import { SelectionModel } from '@angular/cdk/collections';
 
 @Component({
-  selector: 'app-schedule-session-modal',
-  standalone: true,
-  templateUrl: './schedule-session-modal.component.html',
-  styleUrl: './schedule-session-modal.component.css',
+  selector: 'app-edit-session-day-modal',
   imports: [
     CommonModule,
     FormsModule,
@@ -60,9 +47,12 @@ import { SessionDayService } from '../../../services/session-day.service';
     MatTimepickerModule,
     MatPaginator,
     StudentTimeLine
-  ]
+  ],
+  templateUrl: './edit-session-day-modal.html',
+  styleUrl: './edit-session-day-modal.css'
 })
-export class ScheduleSessionModalComponent implements OnInit {
+export class EditSessionDayModal {
+
   students: (Student & { selected?: boolean })[] = [];
   currentUser = this.authService.getCurrentUser();
   translations: Translation;
@@ -71,18 +61,18 @@ export class ScheduleSessionModalComponent implements OnInit {
     .map(k => ({
       label: Recurrence[Number(k)], // "None", "Daily", ...
       value: Number(k)              // 0, 1, 2, ...
-    }));  
-  defaultParticipants : ParticipationTemplate[]
-//  newSessionFormModel = {
-//   date: new Date(),
-//   startTime: '09:00',
-//   endTime: '10:00',
-//   recurrence: Recurrence.None,
-//   toEndOfYear: false,
-//   classroomId: '', // for UI use, not part of SessionSchedule directly
-//   selectedStudents: [] as number[] // student IDs
-// };
-  
+    }));
+  defaultParticipants: ParticipationTemplate[]
+  //  newSessionFormModel = {
+  //   date: new Date(),
+  //   startTime: '09:00',
+  //   endTime: '10:00',
+  //   recurrence: Recurrence.None,
+  //   toEndOfYear: false,
+  //   classroomId: '', // for UI use, not part of SessionSchedule directly
+  //   selectedStudents: [] as number[] // student IDs
+  // };
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   step1Form: FormGroup;
@@ -91,12 +81,12 @@ export class ScheduleSessionModalComponent implements OnInit {
   constructor(
     private sessionService: SessionService,
     private authService: AuthService,
-    private sessionScheduleService : SessionScheduleService,
+    private sessionScheduleService: SessionScheduleService,
     private dialogRef: MatDialogRef<ScheduleSessionModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
+    @Inject(MAT_DIALOG_DATA) public data: SessionDay,
     private languageService: LanguageService,
     private studentService: StudentService,
-    private sessionDayService : SessionDayService,
+    private sessionDayService: SessionDayService,
     private fb: FormBuilder
   ) {
     this.translations = this.languageService.getTranslations();
@@ -105,11 +95,11 @@ export class ScheduleSessionModalComponent implements OnInit {
 
 
     this.step1Form = this.fb.group({
-       sessionDate : [new Date()],
-       startTime: ['08:00'],
-       endTime: [new Date()],
-       recurrence: Recurrence.None,
-       toEndOfYear: [false]
+      sessionDate: [new Date()],
+      startTime: ['08:00'],
+      endTime: [new Date()],
+      recurrence: Recurrence.None,
+      toEndOfYear: [false]
     });
 
 
@@ -127,18 +117,18 @@ export class ScheduleSessionModalComponent implements OnInit {
   ngOnInit(): void {
     this.studentService.getStudents().subscribe(data => {
       this.students = data;
-      this.dataSource.data = data; 
+      this.dataSource.data = data;
     });
     const tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);
     this.step1Form.get('toEndOfYear')?.valueChanges.subscribe((checked: boolean) => {
-  const sessionDateControl = this.step1Form.get('endTime');
-  if (checked) {
-    sessionDateControl?.disable();
-  } else {
-    sessionDateControl?.enable();
-  }
-});
+      const sessionDateControl = this.step1Form.get('endTime');
+      if (checked) {
+        sessionDateControl?.disable();
+      } else {
+        sessionDateControl?.enable();
+      }
+    });
 
   }
   ngAfterViewInit(): void {
@@ -183,11 +173,11 @@ export class ScheduleSessionModalComponent implements OnInit {
       endDate: endDate,
       toEndOfYear: form.toEndOfYear,
       Recurrence: form.recurrence,
-      defaultParticipants : this.defaultParticipants
+      defaultParticipants: this.defaultParticipants
     };
 
     this.sessionScheduleService.createSession(payload).subscribe({
-      next: res =>  this.dialogRef.close(true),
+      next: res => this.dialogRef.close(true),
       error: err => this.dialogRef.close(true)
     });
   }
@@ -197,8 +187,7 @@ export class ScheduleSessionModalComponent implements OnInit {
   onCancel(): void {
     this.dialogRef.close(false);
   }
-  OnSave() : void 
-  {
+  OnSave(): void {
     // this.sessionScheduleService.createSession(this.step1Form.value).subscribe({
     //   next(value) {
     //     console.log(value);
@@ -210,24 +199,25 @@ export class ScheduleSessionModalComponent implements OnInit {
     // this.step1Form.value
     console.log(this.step1Form.value)
   }
-  
-    // Filter method
-applyFilter(event: Event) {
-  const filterValue = (event.target as HTMLInputElement).value;
-  this.dataSource.filter = filterValue.trim().toLowerCase();
+
+  // Filter method
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  // Selection helpers
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.filteredData.length;
+    return numSelected === numRows;
+  }
+
+  toggleAllRows() {
+    this.isAllSelected()
+      ? this.selection.clear()
+      : this.dataSource.filteredData.forEach(row => this.selection.select(row));
+  }
+
 }
 
-// Selection helpers
-isAllSelected() {
-  const numSelected = this.selection.selected.length;
-  const numRows = this.dataSource.filteredData.length;
-  return numSelected === numRows;
-}
-
-toggleAllRows() {
-  this.isAllSelected()
-    ? this.selection.clear()
-    : this.dataSource.filteredData.forEach(row => this.selection.select(row));
-}
-
-}

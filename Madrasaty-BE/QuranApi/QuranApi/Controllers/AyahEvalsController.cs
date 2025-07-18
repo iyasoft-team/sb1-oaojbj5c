@@ -101,7 +101,7 @@ namespace QuranApi.Controllers
             _context.AyahEvals.AddRange(ayahEvals);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("Created Ayah Evals",ayahEvals);
+            return Created(string.Empty, ayahEvals);
         }
 
         // DELETE: api/AyahEvals/5

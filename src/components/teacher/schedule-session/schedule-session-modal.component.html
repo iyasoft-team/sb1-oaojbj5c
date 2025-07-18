@@ -1,7 +1,7 @@
 <div class="modal-header">
   <h2 mat-dialog-title>
     <mat-icon>event_note</mat-icon>
-    {{ translations.scheduleNewSession }}
+    {{ translations.editsessionDay }}
   </h2>
 </div>
 
@@ -27,11 +27,10 @@
 
 
 
-    <mat-form-field appearance="outline" class="full-width">
+    <!-- <mat-form-field appearance="outline" class="full-width">
       <mat-label>End Time</mat-label>
       <input matInput type="time" formControlName="endTime">
-    </mat-form-field>
-
+    </mat-form-field> -->
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Recurrence</mat-label>
         <mat-select formControlName="recurrence">
@@ -40,8 +39,24 @@
         </mat-option>
   </mat-select>
     </mat-form-field>
+    <mat-checkbox class="year-checkbox"  formControlName="toEndOfYear">To End of Year</mat-checkbox>
 
-    <mat-checkbox formControlName="toEndOfYear">To End of Year</mat-checkbox>
+<mat-form-field appearance="outline" class="full-width">
+  <mat-label>Fin de Classe Tasmii</mat-label>
+  <input
+    matInput
+    [matDatepicker]="picker"
+    formControlName="endTime"
+    [disabled]="step1Form.get('toEndOfYear')?.value"
+  />
+  <mat-datepicker-toggle
+    matSuffix
+    [for]="picker"
+    [disabled]="step1Form.get('toEndOfYear')?.value"
+  ></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>
+
 
   </form>
 </mat-step>
