@@ -1,6 +1,7 @@
 import { NumericLiteral } from "typescript";
 import { AyahEval } from "./session.model";
 import { AyahChar } from "./TajweedID";
+import { Student } from "./user.model";
 
 export enum Recurrence {
   None = 0,
@@ -24,6 +25,7 @@ export interface SessionDay {
   teacherId: number;
   sessionScheduleId: number;
   date: Date;
+  title : string ; 
   status: Status; 
   isDefault: boolean;
   modifiedAt?: Date;
@@ -48,17 +50,23 @@ export interface SessionSchedule {
      Canceled
  }
 
-export interface Tasmii {
-  id: number;
+export interface Recitation {
+  id? : number ; 
   studentId: number;
-  participationId: number;
+  startSurah: number;
+  startAyah: number;
+  scheduledSurah: number;
+  scheduledAyah: number;
+
+  startTime: string; 
+  durationMinutes: number;
+  status: Status; 
+  sessionId: number;
   rating: number;
-  startSurah : number;
-  startAyah : number;
-  scheduledSurah : number;
-  scheduledAyah : number;
+
   ayahEvals?: AyahEval[];
-  tajweedEvals?: AyahChar[]; 
+  tajweedEvals?: AyahChar[];
+  student? : Student;
 
 }
 

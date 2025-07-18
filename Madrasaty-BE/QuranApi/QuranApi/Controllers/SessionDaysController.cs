@@ -21,13 +21,13 @@ namespace QuranApi.Controllers
             _context = context;
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("GetSessionDaysByTeacherID/{id}")]
         public async Task<ActionResult<IEnumerable<SessionDay>>> GetSessionDaysByTeacherID(int id)
         {
 
             var sessionDays = await _context.SessionDays
                 .Where(t => t.TeacherId == id)
-                .Include(t => t.Participants)
+                .Include(t => t.Recitations)
             .ThenInclude(p => p.Student)
         .ToListAsync();
 
@@ -36,7 +36,7 @@ namespace QuranApi.Controllers
 
             foreach (var day in sessionDays)
             {
-                foreach (var participant in day.Participants)
+                foreach (var participant in day.Recitations)
                 {
                     var student = participant.Student;
                     if (student != null && !string.IsNullOrEmpty(student.ProfileImageUrl) && !student.ProfileImageUrl.StartsWith("http"))
@@ -48,7 +48,17 @@ namespace QuranApi.Controllers
 
             return sessionDays;
         }
+        [HttpGet("GetSessionDayByID/{id}")]
+        public async Task<ActionResult<SessionDay>> GetSessionDayByID(int id)
+        {
+            var sessionDay = await _context.SessionDays
+                .FirstOrDefaultAsync(t => t.Id == id);
 
+            if (sessionDay == null)
+                return NotFound();
+
+            return sessionDay;
+        }
         [HttpPut("{id}")]
         public async Task<IActionResult> PutSessionDay(int id, SessionDay sessionDay)
         {

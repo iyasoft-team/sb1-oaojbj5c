@@ -7,15 +7,26 @@
   <div class="sessions-grid" *ngIf="sessions.length > 0; else noSessions">
     <mat-card class="session-card" *ngFor="let session of sortedSessions">
 
-      <mat-card-header>
-        <mat-card-title>{{ session.date | date:'fullDate' }}</mat-card-title>
-      </mat-card-header>
-
+    <mat-card-header>
+      <mat-card-title>
+        <ng-container *ngIf="session.title; else showDate">
+          {{ session.title }}
+        </ng-container>
+        <ng-template #showDate>
+          {{ session.date | date: 'EEEE, MMMM d' }}
+        </ng-template>
+      </mat-card-title> 
+     </mat-card-header>
       <mat-card-content>
         <div class="session-details">
           <div class="detail-item">
             <mat-icon>event</mat-icon>
-            <span>{{ formatStatus(session.status) }}</span>
+            <ng-container *ngIf="session.title; else showStatus">
+              <span>{{ session.date | date: 'EEEE, MMMM d' }}</span>
+            </ng-container>
+            <ng-template #showStatus>
+              {{ formatStatus(session.status) }}
+            </ng-template>
           </div>
           <div class="detail-item">
             <mat-icon>schedule</mat-icon>
@@ -27,8 +38,7 @@
             *ngFor="let p of session.participants"
             [src]="p.student?.profileImageUrl || 'assets/default-avatar.png'"
             [alt]="p.student?.fullName"
-            class="student-avatar"
-            
+            class="student-avatar"    
           />
         </div>
         </div>
@@ -56,7 +66,12 @@
           <mat-icon>notes</mat-icon>
           {{ translations.viewNotes }}
         </button>
-
+          <button 
+          mat-icon-button 
+          color="accent" 
+          (click)="onEditSession(session)">
+          <mat-icon>edit</mat-icon>
+        </button>
         <button 
           *ngIf="session.status !== 2"
           mat-icon-button 

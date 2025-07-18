@@ -101,6 +101,7 @@ namespace QuranApi.Controllers
             {
                 TeacherId = sessionSchedule.TeacherId,
                 StartDate = sessionSchedule.StartDate,
+                Title = sessionSchedule.Title,
                 EndDate = sessionSchedule.EndDate,
                 Recurrence = sessionSchedule.Recurrence,
                 ToEndOfYear = sessionSchedule.ToEndOfYear,
@@ -120,11 +121,11 @@ namespace QuranApi.Controllers
 
             // Step 2: Save SessionDays
             // Step 3: Create Participation list for each SessionDay from DefaultParticipants
-            var allParticipations = new List<Participation>();
+            var allParticipations = new List<Recitation>();
 
             foreach (var sessionDay in sessionDays)
             {
-                var participants = sessionSchedule.DefaultParticipants.Select(template => new Participation
+                var participants = sessionSchedule.DefaultParticipants.Select(template => new Recitation
                 {
                     StudentId = template.StudentId,
                     SessionId = sessionDay.Id, // will be correctly set after SaveChanges
@@ -133,7 +134,7 @@ namespace QuranApi.Controllers
                     Status = ParticipationStatus.Pending
                 }).ToList();
 
-                sessionDay.Participants = participants;
+                sessionDay.Recitations = participants;
                 allParticipations.AddRange(participants);
             }
 
@@ -212,9 +213,10 @@ namespace QuranApi.Controllers
                 TeacherId = schedule.TeacherId,
                 SessionScheduleId = schedule.Id,
                 Date = date,
+                Title = schedule.Title,
                 Status = Status.PenDing, // or your default enum value
                 IsDefault = true,
-                Participants = schedule.DefaultParticipants?.Select(pt => new Participation
+                Recitations = schedule.DefaultParticipants?.Select(pt => new Recitation
                 {
                     StudentId = pt.StudentId,
                     StartTime = date.Date.AddHours(pt.StartTime.Hour).AddMinutes(pt.StartTime.Minute),

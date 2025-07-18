@@ -13,6 +13,8 @@ namespace QuranModels
 
         public int TeacherId { get; set; }
 
+        public string? Title { get; set; }
+
         public DateTime StartDate { get; set; }
 
         public DateTime? EndDate { get; set; }
@@ -44,6 +46,8 @@ namespace QuranModels
         public DateTime EndDate { get; set; }
         public Recurrence Recurrence { get; set; }
         public bool ToEndOfYear { get; set; }
+        public string? Title { get; set; }
+
         public ICollection<ParticipationTemplateDto>? DefaultParticipants { get; set; }
 
     }

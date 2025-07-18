@@ -16,7 +16,10 @@ export class SessionDayService {
   constructor(private http: HttpClient) {}
   
   getSessionDaysByTeacher(id : string): Observable<SessionDay[]> {
-    return this.http.get<SessionDay[]>(`${this.baseUrl}/${id}`);
+    return this.http.get<SessionDay[]>(`${this.baseUrl}/GetSessionDaysByTeacherID/${id}`);
+  }
+  GetSessionDayByID(id : string): Observable<SessionDay> {
+    return this.http.get<SessionDay>(`${this.baseUrl}/GetSessionDayByID/${id}`);
   }
 
   

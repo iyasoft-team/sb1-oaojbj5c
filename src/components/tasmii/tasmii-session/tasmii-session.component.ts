@@ -19,6 +19,9 @@ import { AyahEval, Session } from '../../../models/session.model';
 import { SessionService } from '../../../services/session.service';
 import { MatButtonModule } from '@angular/material/button';
 import { AyahEvalService } from '../../../services/ayahEval.service';
+import { SessionDayService } from '../../../services/session-day.service';
+import { Recitation, SessionDay, Status } from '../../../models/Sessions.model';
+import { RecitationService } from '../../../services/recitation.service';
 
 
 @Component({
@@ -40,14 +43,14 @@ export class TasmiiSessionComponent {
   currentUser = this.authService.getCurrentUser();
   menuItems: MenuItem[] = [...TEACHER_MENU_ITEMS];
   student: Student | null = null;
-  session : Session | null = null;
+  session : Recitation | null = null;
   constructor(
     private sharedService: StateService,
     private authService: AuthService,
     private languageService: LanguageService,
     private route: ActivatedRoute,
-    private sessionService : SessionService,
-
+    //private sessionService : SessionService,
+    private recitationService : RecitationService,
     private ayahEvalService : AyahEvalService ,
 
      private router: Router
@@ -62,8 +65,8 @@ export class TasmiiSessionComponent {
 
   selectedchar: AyahChar;
   ngOnInit() {
-  let sessionid = this.route.snapshot.paramMap.get('id')
-    this.sessionService.getSession(sessionid).subscribe(
+  let recitationId = this.route.snapshot.paramMap.get('id')
+    this.recitationService.getRecitationByID(recitationId).subscribe(
       result => {
       this.session = result
       });
@@ -108,20 +111,21 @@ export class TasmiiSessionComponent {
       {
         let ayahEval = new AyahEval() ; 
         ayahEval.surahNumber = element.surahid;
-        ayahEval.sessionId = this.session.id;
-        ayahEval.studentId = this.session.student.id.toString();
+        ayahEval.sessionId = this.session.sessionId.toString();
+        ayahEval.studentId = this.session.studentId.toString() ; 
         ayahEval.ayahNumber = element.ayahNumber;
         ayahEval.RecitationStatus = element.selectedError.id;
+        ayahEval.tasmiiId = this.session.id ; 
         ayahevals.push(ayahEval) ;
       }
     });
 
     this.ayahEvalService.postMultiple(ayahevals).subscribe();
-    this.session.status = "completed"
+    this.session.status = Status.Finished ;
 
-    this.sessionService.completeSession(this.session.id).subscribe();
+    //this.sessionService.completeSession(this.session.id).subscribe();
    
-    this.router.navigate(['/teacher/sessions']);
+    this.router.navigate(['teacher/Recitation',this.session.sessionId]);
 }
 
 }

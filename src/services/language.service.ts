@@ -135,7 +135,7 @@ const FRENCH_TRANSLATIONS: Translation = {
   inProgress: 'En cours',
   completed: 'Terminée',
   cancelled: 'Annulée',
-  startSession: 'Commencer la session',
+  startSession: 'Commencer',
   viewNotes: 'Voir les notes',
   teacherNotes: 'Notes du professeur',
   sessionNotes: 'Notes de session',

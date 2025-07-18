@@ -90,4 +90,8 @@ export class SessionListComponent {
   //   return `سورة ${surahName}، الآية ${session.startAyah}`;
 
   // }
+  onEditSession(session : any)
+  {
+
+  }
 }

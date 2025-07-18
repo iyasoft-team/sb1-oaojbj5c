@@ -15,7 +15,7 @@ namespace QuranModels
         public ParticipationStatus Status { get; set; }      
         public DateTime StartTime { get; set; }//the start hour scheduled for this student 
         public int DurationMinutes { get; set; }//how many minutes will the tasmii lasts 
-        public Tasmii? Tasmii { get; set; }
+        public Recitation? Tasmii { get; set; }
         public Student? Student { get; set; }
         [JsonIgnore]
         public SessionDay? Session { get; set; }

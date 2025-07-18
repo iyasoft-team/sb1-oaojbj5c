@@ -108,16 +108,17 @@ const routes: Routes = [
     component: TeacherSessionsComponent,
     /*canActivate: [AuthGuard]*/
   },
-  { 
-    path: 'teacher/session/:id', 
-    component: TasmiiSessionComponent,
-     /*canActivate: [AuthGuard]*/
-  },
    { 
-    path: 'teacher/Recitation', 
+    path: 'teacher/Recitation/:id', 
     component: RecitationList,
      /*canActivate: [AuthGuard]*/
   },
+  { 
+    path: 'teacher/Tasmii/:id', 
+    component: TasmiiSessionComponent,
+     /*canActivate: [AuthGuard]*/
+  },
+  
   { 
     path: 'student', 
     component: StudentDashboardComponent,

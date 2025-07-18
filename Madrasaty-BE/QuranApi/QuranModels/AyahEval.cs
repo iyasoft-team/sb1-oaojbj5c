@@ -14,7 +14,7 @@ namespace QuranModels
             public int SurahNumber { get; set; }
             public int? AyahNumber { get; set; }
             public RecitationStatus RecitationStatus { get; set; } // Correct, Modest, Incorrect, etc.
-            public Tasmii? Tasmii { get; set; }
+            public Recitation? Tasmii { get; set; }
             public Student? Student { get; set; }
     }
 

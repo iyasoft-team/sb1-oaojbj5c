@@ -101,7 +101,7 @@ export class TeacherSessionsComponent implements OnInit {
 
   onSessionAction(event: { action: string; session: SessionDay }): void {
     if (event.action === 'start') {
-      this.router.navigate(['/teacher/Recitation'/*, event.session.id*/]);
+      this.router.navigate(['/teacher/Recitation', event.session.id]);
     }
     else if (event.action === 'delete')
     {

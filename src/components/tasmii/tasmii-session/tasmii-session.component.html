@@ -28,11 +28,11 @@
 </mat-expansion-panel>
 
     <div class="horizontal-div tasmii-main gap-20" (click)="reset()">
-        <app-quran-book2
-          [startAyahNumber]="session.startAyah"
-          [startSurahNumber]="session.startSurah" 
-          (OnCharClick)="OnCharClick($event)">
-        </app-quran-book2>
+    <app-quran-book2
+      [startAyahNumber]="session.startAyah === 0 ? 1 : session.startAyah"
+      [startSurahNumber]="session.startSurah === 0 ? 1 : session.startSurah"
+      (OnCharClick)="OnCharClick($event)">
+    </app-quran-book2>
     <div class="vertical-div tasmii-eval gap-10">
       <app-tajweed-eval></app-tajweed-eval>
       <app-ayah-eval></app-ayah-eval>

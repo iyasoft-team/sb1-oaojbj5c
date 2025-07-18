@@ -30,6 +30,7 @@ export class AyahEval {
   surahNumber: number;
   ayahNumber: number;
   RecitationStatus: number;
+  tasmiiId : number ;  
 }
 export class TassmiiSession {
   teacherId!: string;

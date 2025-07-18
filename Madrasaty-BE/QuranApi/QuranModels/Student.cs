@@ -14,8 +14,6 @@ namespace QuranModels
         public string? Email { get; set; }
         public DateTime? BirthDate { get; set; }
         public string? ProfileImageUrl { get; set; }
-        public ICollection<SessionDay>? Sessions { get; set; }
-        public LastProgress? LastProgress { get; set; }
     }
 
     public class StudentDto

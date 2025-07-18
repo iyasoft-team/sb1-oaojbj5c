@@ -16,11 +16,16 @@
 
 app-navigation {
   flex-shrink: 0;
-  width: 59px;
+  width: 280px;
   transition: width 0.3s ease;
 }
 
-
+app-navigation.collapsed {
+  width: 60px;
+}
+/* app-navigation {
+  width: 60px;
+} */
 
 .main-content {
  

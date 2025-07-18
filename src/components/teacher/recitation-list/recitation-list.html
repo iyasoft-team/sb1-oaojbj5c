@@ -1,16 +1,51 @@
+
+<header class="dashboard-header">
+      <div class="header-content">
+        <div class="header-title">
+          <div class="title-group">
+              <h1>
+              {{ session?.title ?? "séance tasmii d'aujourd'hui" }}
+              </h1>
+          </div>
+        </div>
+      </div>
+    </header>
 <div class="student-tabs">
-  <div *ngFor="let student of session.participants; let i = index" class="student-tab">
+  <div *ngFor="let participant of participants; let i = index" class="student-tab">
     <div class="student-info">
       <div class="student-order">#{{ i + 1 }}</div>
-      <div class="student-name">{{ student.fullName }}</div>
+      <div class="detail-item participant-avatars">
+        <img
+          [src]="participant.student?.profileImageUrl || 'assets/kid.png'"
+          [alt]="participant.student?.fullName"
+          class="student-avatar"
+        />
+      </div>
+      <div class="student-name">{{ participant.student.fullName }}</div>
     </div>
 
-    <div class="status-chip">
-      <mat-chip color="warn" selected>Pending</mat-chip>
+    <div class="status-chip-group">
+      <mat-chip class="time-chip" selected>{{ participant.startTime | date: 'hh:mm a' }}</mat-chip>
+      <mat-chip class="duration-chip" selected>{{ participant.durationMinutes }} min</mat-chip>
+  <mat-chip
+    [ngClass]="{
+      'pending-chip': participant.status == 0,
+      'completed-chip': participant.status == 1,
+      'canceled-chip': participant.status == 2}"
+    selected
+    [matMenuTriggerFor]="statusMenu"
+  >
+  {{ getStatusLabel(participant.status) }}
+  </mat-chip>
+      <mat-menu #statusMenu="matMenu">
+        <button mat-menu-item (click)="updateStatus(participant, 0)">Pending</button>
+        <button mat-menu-item (click)="updateStatus(participant, 2)">Canceled</button>
+      </mat-menu> 
+      <mat-chip class="play-chip" selected>
+        <button mat-icon-button aria-label="Start" (click)="StartTasmii(participant)">
+          <mat-icon>play_arrow</mat-icon>
+        </button>
+      </mat-chip>
     </div>
-
-    <button mat-icon-button color="primary" >
-      <mat-icon>play_arrow</mat-icon>
-    </button>
   </div>
 </div>
