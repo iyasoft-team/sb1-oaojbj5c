@@ -2,12 +2,13 @@ import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatChip, MatChipsModule } from '@angular/material/chips';
-import { MatIcon, MatIconModule } from '@angular/material/icon';
+import { MatIcon, MatIconModule, MatIconRegistry } from '@angular/material/icon';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RecitationService } from '../../../services/recitation.service';
 import { Recitation, SessionDay, Status } from '../../../models/Sessions.model';
 import { SessionDayService } from '../../../services/session-day.service';
 import { MatMenu, MatMenuModule } from '@angular/material/menu';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-recitation-list',
@@ -16,10 +17,20 @@ import { MatMenu, MatMenuModule } from '@angular/material/menu';
   styleUrl: './recitation-list.css'
 })
 export class RecitationList {
-  participants : Recitation[] = [] ; 
+  recitations : Recitation[] = [] ; 
   session : SessionDay  ; 
   status : Status ; 
-  constructor(private activeRouter : ActivatedRoute,private recitationService  : RecitationService, private router : Router , private sessionDayService : SessionDayService){}
+  constructor(  
+    private iconRegistry: MatIconRegistry,
+    private sanitizer: DomSanitizer,
+    private activeRouter : ActivatedRoute,private recitationService  : RecitationService, private router : Router , private sessionDayService : SessionDayService){
+    this.iconRegistry.addSvgIcon(
+      'whatsapp',
+      this.sanitizer.bypassSecurityTrustResourceUrl('assets/image/whatsapp.svg')
+    );
+
+    // Your other constructor logic...
+  }
  ngOnInit() {
     const sessionId = this.activeRouter.snapshot.params["id"];
     console.log('Session ID from route:', sessionId);
@@ -35,7 +46,7 @@ export class RecitationList {
     this.recitationService.getRecitationsBySessionID(sessionId).subscribe({
   next: (recitations) => {
     // handle the response here
-    this.participants = recitations;
+    this.recitations = recitations;
   },
   error: (err) => {
     console.error('Failed to fetch recitations:', err);
@@ -46,14 +57,15 @@ StartTasmii(participant : any)
 {
   this.router.navigate(['teacher/Tasmii',participant.id])
 }
-getStatusLabel(status: number): string {
+getStatusLabelFr(status: number): string {
   switch (status) {
-    case 0: return 'Pending';
-    case 1: return 'Finished';
-    case 2: return 'Canceled';
-    default: return 'Unknown';
+    case 0: return 'En attente';
+    case 1: return 'Terminé';
+    case 2: return 'Annulée';
+    default: return 'Inconnu';
   }
 }
+
 updateStatus(participant: any, newStatus: number) {
   participant.status = newStatus;
 }

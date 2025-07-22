@@ -1,24 +1,72 @@
-.student-tabs {
+.main-session-container {
+  padding: 24px;
+  background: #f5f5f5;
+}
+
+.white-container {
+  background-color: white;
+  padding: 24px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.white-header-container {
+  background-color: white;
+  padding: 24px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.header-card {
+  margin-bottom: 16px;
+}
+
+.student-tabs-wrapper {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  padding: 8px;
+  gap: 12px;
+}
+
+.student-tab-row {
+  display: flex;
+  align-items: stretch;
+  border-radius: 8px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+  background: #fff;
+  overflow: hidden;
+}
+
+.tab-time-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 80px;
+  padding: 0 12px;
+  background-color: #fff;
+}
+
+.divider {
+  width: 1px;
+  background-color: #e0e0e0;
+}
+
+.time-chip {
+  background-color: #fce4e4;
+  color: #c62828;
+  font-weight: 500;
+  font-size: 0.75rem;
+  padding: 6px 12px;
+  border-radius: 8px;
 }
 
 .student-tab {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  background: #f9f9f9;
-  border-left: 4px solid #4caf50; /* green accent */
-  border-radius: 6px;
-  padding: 6px 10px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-  transition: background 0.2s ease;
-}
-
-.student-tab:hover {
-  background: #edf1f8;
+  align-items: center;
+  padding: 12px 16px;
+  flex: 1;
 }
 
 .student-info {
@@ -30,107 +78,102 @@
 .student-order {
   font-weight: bold;
   color: #4caf50;
-  font-size: 0.85rem;
-  width: 28px;
+  font-size: 0.9rem;
 }
 
 .student-name {
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   color: #333;
 }
 
-.status-chip {
-  margin-left: auto;
-  margin-right: 12px;
-  font-size: 0.75rem;
-}
-
-.pending-chip {
-  background-color: #e8f5e9 !important; /* light green */
-  color: #2e7d32 !important;
-  font-weight: 500;
-}
-
-.canceled-chip {
-  background-color: #ffebee !important; /* light red */
-  color: #c62828 !important;
-  font-weight: 500;
-}
-
-.completed-chip {
-  background-color: #e3f2fd !important; /* light blue */
-  color: #1565c0 !important;
-  font-weight: 500;
-}
-.start-btn {
-  background-color: #c8e6c9 !important; /* lighter green shade for button */
-  border: 1px solid #4caf50;            /* optional: green border */
-  border-radius: 8px;                   /* optional: rounded */
-  padding: 6px;
-}
-
-.start-btn:hover {
-  background-color: #a5d6a7 !important; /* darker on hover */
-}
-
-.start-btn mat-icon {
-  color: #2e7d32 !important; /* darker green for the icon */
-}
-.student-avatar {
-  width: 36px;        /* You can go down to 28px if needed */
-  height: 36px;
-  border-radius: 50%; /* Makes it perfectly circular */
-  object-fit: cover;  /* Prevent distortion */
-  margin-right: 8px;  /* Space between image and name */
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2); /* Optional: subtle shadow */
-  border: 1px solid #ddd; /* Optional: light border for clarity */
-  vertical-align: middle;
-}
-.student-extra {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-right: 12px;
-}
-
-.time-chip {
-  background-color: #fce4e4 !important;
-  color: #c62828;
-}
-
-.duration-chip {
-  background-color: #e3f2fd !important;
-  color: #1565c0;
-}
-
-.start-btn {
-  background-color: #c8e6c9;
-  border: 1px solid #388e3c;
-  color: #388e3c;
-  border-radius: 6px;
-}
+/* -------- BUTTON GROUP FIX -------- */
 .status-chip-group {
   display: flex;
   align-items: center;
   gap: 8px;
+  height: 40px;
 }
 
-.play-chip button {
-  padding: 0;
-  height: 0px;
-  width: 0px;
-  line-height: 32px;
+.status-chip-group button,
+.status-chip-group mat-chip,
+.status-chip-group .whatsapp-btn {
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
+  border-radius: 6px;
 }
-.play-chip button:hover {
-  cursor: pointer;
+
+/* Start Button */
+.start-btn {
+  background-color: #c8e6c9;
+  border: 1px solid #25d366;
+  padding: 0 10px;
 }
-.play-chip mat-icon {
+
+.start-btn:hover {
+  background-color: #a5d6a7;
+}
+
+.start-btn mat-icon {
+  color: #2e7d32;
+}
+
+/* Mat Chip like a button */
+.status-chip {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  height: 40px !important;
+  padding: 0 14px !important;
+  border-radius: 6px !important;
+  border: 1px solid #25d366 !important;
+  background-color: #e8f5e9 !important;
   color: #2e7d32 !important;
+  font-weight: 500;
+  font-size: 0.85rem;
+  box-sizing: border-box;
+  cursor: pointer;
+  line-height: 1;
 }
-.play-chip {
-  background-color: #d0f0d0  !important;
-  padding: 0;
+
+.pending-chip {
+  background-color: #e8f5e9 !important;
+  color: #2e7d32 !important;
+  border-color: #25d366 !important;
+}
+
+.completed-chip {
+  background-color: #e3f2fd !important;
+  color: #1565c0 !important;
+  border-color: #1565c0 !important;
+}
+
+.canceled-chip {
+  background-color: #ffebee !important;
+  color: #c62828 !important;
+  border-color: #c62828 !important;
+}
+
+/* WhatsApp Button – Clean */
+.whatsapp-btn {
+  background-color: transparent !important;
+  padding: 0 10px;
+  border: 1px solid #25d366;
+}
+
+.whatsapp-btn mat-icon {
+  color: #25d366 !important;
+  font-size: 20px;
+}
+
+/* Avatar */
+.student-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  border: 1px solid #ddd;
 }

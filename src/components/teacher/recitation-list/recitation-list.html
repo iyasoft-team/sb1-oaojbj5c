@@ -1,51 +1,77 @@
-
-<header class="dashboard-header">
+<div class="main-session-container">
+  <!-- Header inside white card -->
+  <div class="white-container header-card">
+    <header class="dashboard-header">
       <div class="header-content">
         <div class="header-title">
           <div class="title-group">
-              <h1>
-              {{ session?.title ?? "séance tasmii d'aujourd'hui" }}
-              </h1>
+            <h1>{{ session?.title ?? "Séance tasmii d'aujourd'hui" }}</h1>
           </div>
         </div>
       </div>
     </header>
-<div class="student-tabs">
-  <div *ngFor="let participant of participants; let i = index" class="student-tab">
-    <div class="student-info">
-      <div class="student-order">#{{ i + 1 }}</div>
-      <div class="detail-item participant-avatars">
-        <img
-          [src]="participant.student?.profileImageUrl || 'assets/kid.png'"
-          [alt]="participant.student?.fullName"
-          class="student-avatar"
-        />
-      </div>
-      <div class="student-name">{{ participant.student.fullName }}</div>
-    </div>
+  </div>
 
-    <div class="status-chip-group">
-      <mat-chip class="time-chip" selected>{{ participant.startTime | date: 'hh:mm a' }}</mat-chip>
-      <mat-chip class="duration-chip" selected>{{ participant.durationMinutes }} min</mat-chip>
+  <!-- Content in white container -->
+  <div class="white-container">
+    <div class="student-tabs-wrapper">
+      <div *ngFor="let participant of recitations; let i = index" class="student-tab-row">
+        
+        <!-- Time Box -->
+        <div class="tab-time-box">
+          <div class="time-chip">{{ participant.startTime | date: 'HH:mm' }}</div>
+        </div>
+
+        <!-- Vertical Divider -->
+        <div class="divider"></div>
+
+        <!-- Student Tab Content -->
+        <div class="student-tab">
+          <!-- Student Info -->
+          <div class="student-info">
+            <div class="student-order">#{{ i + 1 }}</div>
+            <div class="detail-item participant-avatars">
+              <img
+                [src]="participant.student?.profileImageUrl || 'assets/kid.png'"
+                [alt]="participant.student?.fullName"
+                class="student-avatar"
+              />
+            </div>
+            <div class="student-name">{{ participant.student.fullName }}</div>
+          </div>
+
+          <!-- Actions -->
+<div class="status-chip-group">
+  <button mat-icon-button aria-label="Démarrer" (click)="StartTasmii(participant)" class="start-btn">
+    <mat-icon>play_arrow</mat-icon>
+  </button>
+
   <mat-chip
+    class="status-chip"
     [ngClass]="{
       'pending-chip': participant.status == 0,
       'completed-chip': participant.status == 1,
-      'canceled-chip': participant.status == 2}"
+      'canceled-chip': participant.status == 2
+    }"
     selected
-    [matMenuTriggerFor]="statusMenu"
+    [matMenuTriggerFor]="menu"
   >
-  {{ getStatusLabel(participant.status) }}
+    {{ getStatusLabelFr(participant.status) }}
   </mat-chip>
-      <mat-menu #statusMenu="matMenu">
-        <button mat-menu-item (click)="updateStatus(participant, 0)">Pending</button>
-        <button mat-menu-item (click)="updateStatus(participant, 2)">Canceled</button>
-      </mat-menu> 
-      <mat-chip class="play-chip" selected>
-        <button mat-icon-button aria-label="Start" (click)="StartTasmii(participant)">
-          <mat-icon>play_arrow</mat-icon>
-        </button>
-      </mat-chip>
+
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="updateStatus(participant, 0)">En attente</button>
+    <button mat-menu-item (click)="updateStatus(participant, 2)">Annulée</button>
+  </mat-menu>
+
+  <button mat-icon-button class="whatsapp-btn">
+    <mat-icon svgIcon="whatsapp"></mat-icon>
+  </button>
+</div>
+
+
+        </div>
+      </div>
     </div>
   </div>
 </div>
