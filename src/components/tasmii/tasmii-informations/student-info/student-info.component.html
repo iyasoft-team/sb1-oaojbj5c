@@ -1,1 +1,18 @@
-<p>student-info works!</p>
+<mat-card class="student-card">
+  <div class="student-card-content">
+    <div class="profile-section">
+      <img *ngIf="imageUrl; else defaultIcon" [src]="imageUrl" alt="Student Photo" class="student-avatar" />
+      <ng-template #defaultIcon>
+        <mat-icon class="default-icon">account_circle</mat-icon>
+      </ng-template>
+    </div>
+
+    <div class="info-section">
+      <div><strong>Nom</strong>: Ahmad Bin Yusuf</div>
+      <div><strong>Classe</strong>: 4ème A</div>
+      <div><strong>Professeur</strong>: M. Ali Souissi</div>
+      <div><strong>Récitation</strong>: Al-Baqarah (1–10)</div>
+      <div><strong>Âge</strong>: 10 ans</div>
+    </div>
+  </div>
+</mat-card>

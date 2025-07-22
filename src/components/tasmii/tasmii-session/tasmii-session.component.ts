@@ -22,11 +22,15 @@ import { AyahEvalService } from '../../../services/ayahEval.service';
 import { SessionDayService } from '../../../services/session-day.service';
 import { Recitation, SessionDay, Status } from '../../../models/Sessions.model';
 import { RecitationService } from '../../../services/recitation.service';
+import { StudentInfoComponent } from '../tasmii-informations/student-info/student-info.component';
+import { RecitationInfoComponent } from '../tasmii-informations/recitation-Info/recitation-info.component';
 
 
 @Component({
   selector: 'app-tasmii-session',
   imports: [FormsModule,CommonModule,
+            RecitationInfoComponent,
+            StudentInfoComponent,
             QuranBook2Component,
             TajweedEvalComponent,
             AyahEvalComponent,

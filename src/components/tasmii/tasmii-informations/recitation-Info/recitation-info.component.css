@@ -1,0 +1,27 @@
+.history-panel {
+  max-height: 200px; /* Match student card height */
+  overflow: hidden;
+}
+
+.recitation-history {
+  max-height: 130px; /* Adjust based on visual balance */
+  overflow-y: auto;
+  padding: 8px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.recitation-item {
+  display: flex;
+  align-items: center;
+  background: #f8f9fa;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.history-icon {
+  margin-right: 8px;
+  color: #0f4c75;
+}

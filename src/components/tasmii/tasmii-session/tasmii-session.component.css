@@ -115,3 +115,27 @@ mat-expansion-panel {
   border: 1px solid #ddd; /* Optional: light border for clarity */
   vertical-align: middle;
 }
+.info-section-wrapper {
+    display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.info-section-wrapper app-student-info,
+.info-section-wrapper app-recitation-info {
+  flex: 1;
+  min-width: 300px;
+}
+.main-session-container {
+  padding: 24px;
+  background: #f5f5f5;
+}
+.white-container {
+  background-color: white;
+  padding: 24px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+.header-card {
+  margin-bottom: 16px;
+}

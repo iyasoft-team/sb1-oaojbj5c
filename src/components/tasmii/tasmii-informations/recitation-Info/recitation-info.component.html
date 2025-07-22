@@ -1,1 +1,20 @@
-<p>recitation-info works!</p>
+<mat-expansion-panel class="history-panel">
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      <mat-slide-toggle [(ngModel)]="isRevision" color="primary">
+        {{ isRevision ? 'Révision' : 'Apprentissage' }}
+      </mat-slide-toggle>
+    </mat-panel-title>
+    <mat-panel-description>
+      Historique des récitations
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+
+  <!-- Scrollable Content Area -->
+  <div class="recitation-history">
+    <div class="recitation-item" *ngFor="let item of dummyHistory">
+      <mat-icon class="history-icon">book</mat-icon>
+      <div class="recitation-text">{{ item }}</div>
+    </div>
+  </div>
+</mat-expansion-panel>
