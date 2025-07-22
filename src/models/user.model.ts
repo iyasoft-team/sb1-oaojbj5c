@@ -18,6 +18,7 @@ export interface Student {
   email?: string;
   birthDate?: string;
   profileImageUrl?: string;
+  professorName? : string ;
 }
 
 export interface StudentlEval {

@@ -30,7 +30,7 @@ export interface SessionDay {
   isDefault: boolean;
   modifiedAt?: Date;
   modifiedBy?: string;
-  participants?: any[]; 
+  recitations?: any[]; 
 }
 
 export interface SessionSchedule {
@@ -38,6 +38,7 @@ export interface SessionSchedule {
   teacherId: string;
   startDate: Date;
   endDate?: Date;
+  title? : string ;
   toEndOfYear: boolean;
   Recurrence: Recurrence;
   defaultParticipants?: ParticipationTemplate[];

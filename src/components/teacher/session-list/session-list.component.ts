@@ -34,7 +34,7 @@ export class SessionListComponent {
       this.translations = translations;
     });
   }
-
+  
   get sortedSessions(): SessionDay[] {
     return [...this.sessions].sort((a, b) => 
       new Date(a.date).getTime() - new Date(b.date).getTime()

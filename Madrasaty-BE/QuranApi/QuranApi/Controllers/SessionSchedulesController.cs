@@ -178,21 +178,23 @@ namespace QuranApi.Controllers
             var sessionDays = new List<SessionDay>();
 
             DateTime current = schedule.StartDate.Date;
+
+            // Determine session end date
             DateTime end = schedule.ToEndOfYear
-                ? new DateTime(schedule.StartDate.Year,12, 30) // assuming school year ends June 30
+                ? new DateTime(schedule.StartDate.Year, 12, 31) // Year ends in December
                 : schedule.EndDate?.Date ?? schedule.StartDate.Date;
 
+            // Calculate recurrence interval
             TimeSpan interval = schedule.Recurrence switch
             {
                 Recurrence.Daily => TimeSpan.FromDays(1),
                 Recurrence.Weekly => TimeSpan.FromDays(7),
-                Recurrence.Monthly => TimeSpan.FromDays(30),
-                _ => TimeSpan.Zero // None or Custom
+                Recurrence.Monthly => TimeSpan.FromDays(30), // or consider AddMonths for precision
+                _ => TimeSpan.Zero
             };
 
             if (interval == TimeSpan.Zero)
             {
-                // Only one session day in this case
                 sessionDays.Add(CreateSessionDay(schedule, current));
                 return sessionDays;
             }

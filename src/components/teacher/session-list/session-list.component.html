@@ -1,19 +1,18 @@
 <div class="session-list-container">
   <div class="list-header">
     <h3>{{ translations.upcomingSessions }}</h3>
-    <p>{{ sessions.length }} session(s) scheduled</p>
+    <p>{{ sessions.length }} séance(s) planifiée(s)</p>
   </div>
 
   <div class="sessions-grid" *ngIf="sessions.length > 0; else noSessions">
-    <mat-card class="session-card" *ngFor="let session of sortedSessions">
-
+<mat-card class="session-card compact-card" *ngFor="let session of sortedSessions">
     <mat-card-header>
       <mat-card-title>
         <ng-container *ngIf="session.title; else showDate">
           {{ session.title }}
         </ng-container>
         <ng-template #showDate>
-          {{ session.date | date: 'EEEE, MMMM d' }}
+           {{ session.date | date: 'EEEE, MMMM d' }}
         </ng-template>
       </mat-card-title> 
      </mat-card-header>
@@ -22,7 +21,7 @@
           <div class="detail-item">
             <mat-icon>event</mat-icon>
             <ng-container *ngIf="session.title; else showStatus">
-              <span>{{ session.date | date: 'EEEE, MMMM d' }}</span>
+              <span>Planifié le :{{ session.date | date: 'EEEE, MMMM d' }}</span>
             </ng-container>
             <ng-template #showStatus>
               {{ formatStatus(session.status) }}
@@ -30,12 +29,12 @@
           </div>
           <div class="detail-item">
             <mat-icon>schedule</mat-icon>
-            <span>{{ session.date | date:'shortTime' }} - {{ session.date | date:'shortTime' }}</span>
+            <span>{{ session.date | date:'shortTime' }}</span>
             <!-- Replace with actual start/end times if stored separately -->
           </div>
-          <div class="detail-item participant-avatars" *ngIf="session.participants?.length">
+          <div class="detail-item participant-avatars" *ngIf="session.recitations?.length">
           <img
-            *ngFor="let p of session.participants"
+            *ngFor="let p of session.recitations"
             [src]="p.student?.profileImageUrl || 'assets/default-avatar.png'"
             [alt]="p.student?.fullName"
             class="student-avatar"    

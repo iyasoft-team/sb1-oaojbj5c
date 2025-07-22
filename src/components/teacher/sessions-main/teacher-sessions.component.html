@@ -1,5 +1,5 @@
 <div class="dashboard-layout">
-  <div class="main-content" [style.margin-left]="sidebarCollapsed ? '60px' : '280px'">
+  <div class="main-content">
     <header class="dashboard-header">
       <div class="header-content">
         <div class="header-title">
@@ -41,9 +41,9 @@
         </div>
         <div class="view-label">
           <span *ngIf="currentView === 'calendar'">{{ translations.calendarView }} / عرض التقويم</span>
-          <span *ngIf="currentView === 'list'">{{ translations.sessionList }} / قائمة الجلسات</span>
+          <span *ngIf="currentView === 'list'">{{ translations.sessionList }} </span>
           <span *ngIf="currentView === 'calendar'">{{ translations.calendarView }}</span>
-          <span *ngIf="currentView === 'list'">{{ translations.sessionList }}</span>
+          <span *ngIf="currentView === 'list'"></span>
         </div>
       </div>
 

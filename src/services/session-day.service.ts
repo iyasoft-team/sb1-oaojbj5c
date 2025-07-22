@@ -21,6 +21,9 @@ export class SessionDayService {
   GetSessionDayByID(id : string): Observable<SessionDay> {
     return this.http.get<SessionDay>(`${this.baseUrl}/GetSessionDayByID/${id}`);
   }
-
   
+  putSessionDay(id: number, sessionDay: SessionDay): Observable<void> {
+    return this.http.put<void>(`${this.baseUrl}/${id}`, sessionDay);
+  }
 }
+  

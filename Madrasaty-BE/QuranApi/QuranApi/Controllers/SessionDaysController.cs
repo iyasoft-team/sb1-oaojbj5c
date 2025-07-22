@@ -63,30 +63,65 @@ namespace QuranApi.Controllers
         public async Task<IActionResult> PutSessionDay(int id, SessionDay sessionDay)
         {
             if (id != sessionDay.Id)
-            {
                 return BadRequest();
+
+            var existing = await _context.SessionDays
+                .Include(sd => sd.Recitations)
+                .FirstOrDefaultAsync(sd => sd.Id == id);
+
+            if (existing == null)
+                return NotFound();
+
+            // Update scalar fields
+            existing.Date = sessionDay.Date;
+            existing.Title = sessionDay.Title;
+            existing.ModifiedAt = DateTime.UtcNow;
+            existing.ModifiedBy = sessionDay.ModifiedBy;
+
+            // Track incoming IDs
+            var incomingIds = sessionDay.Recitations?.Where(r => r.Id != 0).Select(r => r.Id).ToList() ?? new List<int>();
+
+            // 1. Remove recitations that are no longer included
+            var toRemove = existing.Recitations
+                .Where(r => !incomingIds.Contains(r.Id))
+                .ToList();
+
+            _context.Recitations.RemoveRange(toRemove);
+
+            // 2. Update existing ones
+            foreach (var existingRec in existing.Recitations)
+            {
+                var updatedRec = sessionDay.Recitations?.FirstOrDefault(r => r.Id == existingRec.Id);
+                if (updatedRec != null)
+                {
+                    existingRec.StartTime = updatedRec.StartTime;
+                    existingRec.DurationMinutes = updatedRec.DurationMinutes;
+                    existingRec.StudentId = updatedRec.StudentId;
+                    existingRec.Status = updatedRec.Status;
+                    // ... update other fields if needed
+                }
             }
 
-            _context.Entry(sessionDay).State = EntityState.Modified;
+            // 3. Add new recitations
+            var newRecs = sessionDay.Recitations?
+                .Where(r => r.Id == 0)
+                .ToList();
 
-            try
+            if (newRecs?.Any() == true)
             {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!SessionDayExists(id))
+                foreach (var rec in newRecs)
                 {
-                    return NotFound();
+                    rec.SessionId = existing.Id;
                 }
-                else
-                {
-                    throw;
-                }
+
+                _context.Recitations.AddRange(newRecs);
             }
+
+            await _context.SaveChangesAsync();
 
             return NoContent();
         }
+
 
         [HttpPost]
         public async Task<ActionResult<SessionDay>> PostSessionDay(SessionDay sessionDay)

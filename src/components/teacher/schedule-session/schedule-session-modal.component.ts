@@ -104,13 +104,13 @@ export class ScheduleSessionModalComponent implements OnInit {
 
 
 
-    this.step1Form = this.fb.group({
-       sessionDate : [new Date()],
-       startTime: ['08:00'],
-       endTime: [new Date()],
-       recurrence: Recurrence.None,
-       toEndOfYear: [false]
-    });
+      this.step1Form = this.fb.group({
+      title: ['', Validators.required],
+      sessionDate: ['', Validators.required],
+      startTime: ['', Validators.required],
+      endTime: [null], 
+      toEndOfYear: [false],
+      recurrence: [0, Validators.required] });
 
 
 
@@ -123,11 +123,14 @@ export class ScheduleSessionModalComponent implements OnInit {
   selection = new SelectionModel<Student>(true, []);
   displayedColumns: string[] = ['select', 'profile', 'fullName'];
   defaultProfileImage = 'assets/image/kid.png';
-
+  studentFilter = '';
+  selectedProfessor = '';
+  professorOptions: string[] = [];
   ngOnInit(): void {
     this.studentService.getStudents().subscribe(data => {
       this.students = data;
       this.dataSource.data = data; 
+      
     });
     const tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);
@@ -144,53 +147,103 @@ export class ScheduleSessionModalComponent implements OnInit {
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
   }
-  onSubmit(): void {
-    const form = this.step1Form.value;
+  // onSubmit(): void {
+  //   const form = this.step1Form.value;
 
-    const sessionDate = new Date(form.sessionDate);
-    const startTimeParts = form.startTime.split(':');
-    const endTimeParts = form.endTime.split(':');
+  //   const sessionDate = new Date(form.sessionDate);
+  //   const startTimeParts = form.startTime.split(':');
+  //   const endTimeParts = form.endTime.split(':');
 
-    const startDate = new Date(sessionDate);
-    const endDate = new Date(sessionDate);
+  //   const startDate = new Date(sessionDate);
+  //   const endDate = new Date(sessionDate);
 
-    if (startTimeParts.length === 2) {
-      const [startHour, startMinute] = startTimeParts.map(Number);
-      startDate.setHours(startHour, startMinute, 0, 0);
-    }
+  //   if (startTimeParts.length === 2) {
+  //     const [startHour, startMinute] = startTimeParts.map(Number);
+  //     startDate.setHours(startHour, startMinute, 0, 0);
+  //   }
 
-    if (endTimeParts.length === 2) {
-      const [endHour, endMinute] = endTimeParts.map(Number);
-      endDate.setHours(endHour, endMinute, 0, 0);
-    }
+  //   if (endTimeParts.length === 2) {
+  //     const [endHour, endMinute] = endTimeParts.map(Number);
+  //     endDate.setHours(endHour, endMinute, 0, 0);
+  //   }
 
-    const selectedStudents = this.selection.selected;
+  //   const selectedStudents = this.selection.selected;
 
-    this.defaultParticipants = selectedStudents.map((student, index) => {
-      const participantStartTime = new Date(startDate);
-      participantStartTime.setMinutes(startDate.getMinutes() + index * 15);
+  //   this.defaultParticipants = selectedStudents.map((student, index) => {
+  //     const participantStartTime = new Date(startDate);
+  //     participantStartTime.setMinutes(startDate.getMinutes() + index * 15);
 
-      return {
-        studentId: student.id,
-        startTime: participantStartTime,  // as Date
-        durationMinutes: 15
-      };
-    });
+  //     return {
+  //       studentId: student.id,
+  //       startTime: participantStartTime,  // as Date
+  //       durationMinutes: 15
+  //     };
+  //   });
 
-    const payload: Omit<SessionSchedule, 'id'> = {
-      teacherId: this.currentUser.id,
-      startDate: startDate,
-      endDate: endDate,
-      toEndOfYear: form.toEndOfYear,
-      Recurrence: form.recurrence,
-      defaultParticipants : this.defaultParticipants
-    };
+  //   const payload: Omit<SessionSchedule, 'id'> = {
+  //     teacherId: this.currentUser.id,
+  //     startDate: startDate,
+  //     endDate: endDate,
+  //     toEndOfYear: form.toEndOfYear,
+  //     title : form.title , 
+  //     Recurrence: form.recurrence,
+  //     defaultParticipants : this.defaultParticipants
+  //   };
 
-    this.sessionScheduleService.createSession(payload).subscribe({
-      next: res =>  this.dialogRef.close(true),
-      error: err => this.dialogRef.close(true)
-    });
+  //   this.sessionScheduleService.createSession(payload).subscribe({
+  //     next: res =>  this.dialogRef.close(true),
+  //     error: err => this.dialogRef.close(true)
+  //   });
+  // }
+onSubmit(): void {
+  const form = this.step1Form.value;
+
+  const sessionDate = new Date(form.sessionDate);
+  const startTimeStr = form.startTime;
+
+  // Combine date and time to form full startDate
+  const startDate = new Date(sessionDate);
+  if (startTimeStr) {
+    const [hours, minutes] = startTimeStr.split(':').map(Number);
+    startDate.setHours(hours, minutes, 0, 0);
   }
+
+  // End date: optional, may be null
+  const endDate: Date | null = form.endTime ? new Date(form.endTime) : null;
+
+  // Students selected
+  const selectedStudents = this.selection.selected;
+
+  this.defaultParticipants = selectedStudents.map((student, index) => {
+    const participantStart = new Date(startDate);
+    participantStart.setMinutes(startDate.getMinutes() + index * 15);
+
+    return {
+      studentId: student.id,
+      startTime: participantStart,
+      durationMinutes: 15
+    };
+  });
+
+  // Final payload
+  const payload: Omit<SessionSchedule, 'id'> = {
+    teacherId: this.currentUser.id,
+    title: form.title,
+    startDate: startDate,
+    endDate: endDate,
+    toEndOfYear: form.toEndOfYear,
+    Recurrence: form.recurrence,
+    defaultParticipants: this.defaultParticipants
+  };
+
+  this.sessionScheduleService.createSession(payload).subscribe({
+    next: res => this.dialogRef.close(true),
+    error: err => {
+      console.error('Failed to submit session schedule:', err);
+      this.dialogRef.close(false);
+    }
+  });
+}
 
 
 
@@ -229,5 +282,24 @@ toggleAllRows() {
     ? this.selection.clear()
     : this.dataSource.filteredData.forEach(row => this.selection.select(row));
 }
+professorFilter = '';
+
+
+
+applyProfessorFilter(event: Event): void {
+  const filterValue = (event.target as HTMLInputElement).value?.trim().toLowerCase() || '';
+  this.professorFilter = filterValue;
+  this.filterTable();
+}
+
+filterTable(): void {
+  this.dataSource.filterPredicate = (data: Student, filter: string) => {
+    const studentMatch = data.fullName?.toLowerCase().includes(this.studentFilter);
+    const professorMatch = data.professorName?.toLowerCase().includes(this.professorFilter);
+    return studentMatch && professorMatch;
+  };
+  this.dataSource.filter = `${Date.now()}`; // trigger filtering
+}
+
 
 }

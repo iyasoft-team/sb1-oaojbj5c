@@ -1,112 +1,112 @@
 <div class="modal-header">
   <h2 mat-dialog-title>
     <mat-icon>event_note</mat-icon>
-    {{ translations.editsessionDay }}
+    Modifier la séance
   </h2>
 </div>
 
 <mat-dialog-content class="modal-content">
-<mat-horizontal-stepper>
-  <!-- Step 1 -->
-  <mat-step class="step-content" label="Time & Recurrence">
-    <form [formGroup]="step1Form" class="step-content">
+  <mat-horizontal-stepper>
+    <!-- Step 1 -->
+    <mat-step class="step-content" label="Temps & Récurrence">
+      <form [formGroup]="step1Form" class="step-content">
 
-      <!-- Session Date -->
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Session Date</mat-label>
-        <input matInput [matDatepicker]="picker" formControlName="sessionDate">
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field>
+        <!-- Session Title (newly added at the top) -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Titre de la séance</mat-label>
+          <input matInput formControlName="title" placeholder="Entrez un titre pour la séance">
+        </mat-form-field>
 
-      <!-- Session Time -->
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Session Time</mat-label>
-        <input matInput type="time" formControlName="sessionTime">
-      </mat-form-field>
+        <!-- Session Date -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Date de la séance</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="sessionDate">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
 
-    </form>
-  </mat-step>
+        <!-- Session Time -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Heure de la séance</mat-label>
+          <input matInput type="time" formControlName="startTime">
+        </mat-form-field>
 
-  <!-- Step 2 -->
-  <mat-step class="step-content" label="Select Students">
-    <div class="step-content">
+      </form>
+    </mat-step>
 
-      <!-- Search -->
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Search students</mat-label>
-        <input matInput (keyup)="applyFilter($event)" placeholder="Type a name..." />
-      </mat-form-field>
+    <!-- Step 2 -->
+    <mat-step class="step-content" label="Sélectionner les élèves">
+      <div class="step-content">
 
-      <!-- Student Table -->
-      <div class="table-container">
-        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 full-width">
-          
-          <!-- Select Checkbox -->
-          <ng-container matColumnDef="select">
-            <th mat-header-cell *matHeaderCellDef>
-              <mat-checkbox
-                (change)="toggleAllRows()"
-                [checked]="isAllSelected()"
-                [indeterminate]="selection.hasValue() && !isAllSelected()">
-              </mat-checkbox>
-            </th>
-            <td mat-cell *matCellDef="let row">
-              <mat-checkbox
-                (click)="$event.stopPropagation()"
-                (change)="selection.toggle(row)"
-                [checked]="selection.isSelected(row)">
-              </mat-checkbox>
-            </td>
-          </ng-container>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Rechercher des élèves</mat-label>
+          <input matInput (keyup)="applyFilter($event)" placeholder="Tapez un nom..." />
+        </mat-form-field>
 
-          <!-- Profile Column -->
-          <ng-container matColumnDef="profile">
-            <th mat-header-cell *matHeaderCellDef> Profile </th>
-            <td mat-cell *matCellDef="let row">
-              <img [src]="row.profileImageUrl || defaultProfileImage"
-                   alt="profile"
-                   width="32"
-                   height="32"
-                   style="border-radius: 50%; object-fit: cover;">
-            </td>
-          </ng-container>
+        <div class="table-container">
+          <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 full-width">
 
-          <!-- Full Name Column -->
-          <ng-container matColumnDef="fullName">
-            <th mat-header-cell *matHeaderCellDef> Name </th>
-            <td mat-cell *matCellDef="let row"> {{ row.fullName }} </td>
-          </ng-container>
+            <ng-container matColumnDef="select">
+              <th mat-header-cell *matHeaderCellDef>
+                <mat-checkbox
+                  (change)="toggleAllRows()"
+                  [checked]="isAllSelected()"
+                  [indeterminate]="selection.hasValue() && !isAllSelected()">
+                </mat-checkbox>
+              </th>
+              <td mat-cell *matCellDef="let row">
+                <mat-checkbox
+                  (click)="$event.stopPropagation()"
+                  (change)="selection.toggle(row)"
+                  [checked]="selection.isSelected(row)">
+                </mat-checkbox>
+              </td>
+            </ng-container>
 
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        </table>
+            <ng-container matColumnDef="profile">
+              <th mat-header-cell *matHeaderCellDef> Profil </th>
+              <td mat-cell *matCellDef="let row">
+                <img [src]="row.profileImageUrl || defaultProfileImage"
+                     alt="profile"
+                     width="32"
+                     height="32"
+                     style="border-radius: 50%; object-fit: cover;">
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="fullName">
+              <th mat-header-cell *matHeaderCellDef> Nom complet </th>
+              <td mat-cell *matCellDef="let row"> {{ row.fullName }} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        </div>
+
+        <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 25]" showFirstLastButtons></mat-paginator>
       </div>
+    </mat-step>
 
-      <!-- Pagination -->
-      <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 25]" showFirstLastButtons></mat-paginator>
-    </div>
-  </mat-step>
-
-  <!-- Step 3 -->
-  <mat-step class="step-content" label="Timeline">
-    <div class="step-content">
-      <app-student-time-line
-        [selectedStudents]="selection.selected"
-        [selectedStartTime]="step1Form.value.startTime">
-      </app-student-time-line>
-    </div>
-  </mat-step>
-</mat-horizontal-stepper>
+    <!-- Step 3 -->
+    <mat-step class="step-content" label="Planning">
+      <div class="step-content">
+        <app-student-time-line
+          [selectedStudents]="selection.selected"
+          [selectedStartTime]="step1Form.value.startTime">
+        </app-student-time-line>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
 </mat-dialog-content>
 
 <mat-dialog-actions class="modal-actions">
   <button mat-button (click)="onCancel()">
     <mat-icon>close</mat-icon>
-    {{ translations.cancel }}
+    Annuler
   </button>
   <button mat-raised-button color="primary" (click)="onSubmit()">
-   <mat-icon>edit</mat-icon>
-    confirmer Modification
+    <mat-icon>edit</mat-icon>
+    Confirmer la modification
   </button>
 </mat-dialog-actions>

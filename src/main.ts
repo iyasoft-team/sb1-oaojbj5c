@@ -1,8 +1,8 @@
-import { Component, importProvidersFrom } from '@angular/core';
+import { Component, importProvidersFrom, LOCALE_ID } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { provideRouter, Routes } from '@angular/router';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { CommonModule } from '@angular/common';
+import { CommonModule, registerLocaleData } from '@angular/common';
 import { RouterOutlet, Router, NavigationEnd } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
 import { LoginComponent } from './components/login/login.component';
@@ -19,6 +19,8 @@ import { DateInterceptor } from './services/date.interceptor';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { RecitationList } from './components/teacher/recitation-list/recitation-list';
+import localeFr from '@angular/common/locales/fr';
+
 
 @Component({
   selector: 'app-root',
@@ -126,9 +128,11 @@ const routes: Routes = [
   },
   { path: '**', redirectTo: '/teacher/sessions' }
 ];
+registerLocaleData(localeFr);
 
 bootstrapApplication(App, {
   providers: [
+    { provide: LOCALE_ID, useValue: 'fr' },
     importProvidersFrom(MatDatepickerModule, MatNativeDateModule),
     provideRouter(routes),
     provideAnimations(),
