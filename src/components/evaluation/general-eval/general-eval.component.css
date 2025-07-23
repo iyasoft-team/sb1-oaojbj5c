@@ -1,12 +1,14 @@
 .evaluation-menu {
   width: 320px;
-  height: 145px;
+  height: var(--eval-h);
   padding: 12px;
+  font-family: 'Amiri', serif;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 15px;
+  gap: 8px;
+  direction: ltr;
+  text-align: left;
+  overflow-y: auto;
 }
 
 .rule-main {
@@ -14,12 +16,14 @@
   padding-bottom: 3px;
   font-size: 14px;
   color: #0f4c75;
+  direction: rtl;
   text-align: center;
   font-family: 'Amiri', serif;
   margin: 0;
   line-height: 1.1;
 }
 
+/* ⭐ STAR RATING ONLY BELOW THIS POINT */
 .star-bar {
   display: flex;
   justify-content: center;   
@@ -53,7 +57,7 @@ mat-icon {
   line-height: 1 !important;
 }
 
-/* Responsive adjustments */
+/* 📱 Responsive adjustments */
 @media (max-width: 768px) {
   .evaluation-menu {
     width: 280px;

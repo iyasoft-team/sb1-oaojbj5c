@@ -24,6 +24,7 @@ import { Recitation, SessionDay, Status } from '../../../models/Sessions.model';
 import { RecitationService } from '../../../services/recitation.service';
 import { StudentInfoComponent } from '../tasmii-informations/student-info/student-info.component';
 import { RecitationInfoComponent } from '../tasmii-informations/recitation-Info/recitation-info.component';
+import { TasmiiHeader } from '../tasmii-header/tasmii-header';
 
 
 @Component({
@@ -34,6 +35,7 @@ import { RecitationInfoComponent } from '../tasmii-informations/recitation-Info/
             QuranBook2Component,
             TajweedEvalComponent,
             AyahEvalComponent,
+            TasmiiHeader,
             GeneralEvalComponent,MatExpansionModule,MatIconModule,MatButtonModule],
   templateUrl: './tasmii-session.component.html',
   styleUrl: './tasmii-session.component.css'

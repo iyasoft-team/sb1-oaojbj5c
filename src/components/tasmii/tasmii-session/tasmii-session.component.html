@@ -1,16 +1,6 @@
 <div class="main-session-container">
   <!-- Header inside white card -->
-  <div class="white-container header-card">
-    <header class="dashboard-header">
-      <div class="header-content">
-        <div class="header-title">
-          <div class="title-group">
-            <h1>TASMII</h1>
-          </div>
-        </div>
-      </div>
-    </header>
-  </div>
+ <app-tasmii-header></app-tasmii-header>
 
 <div class="main-content" [style.margin-left]="sidebarCollapsed ? '60px' : '280px'">
 <div class="tasmii-container">
@@ -39,9 +29,11 @@
 
 </mat-expansion-panel> -->
 
-    <div class="info-section-wrapper">
+    <div class="info-section-container white-container-card">
+      <div class="info-section-wrapper">
       <app-student-info [imageUrl]="session.student.profileImageUrl"></app-student-info>
       <app-recitation-info></app-recitation-info>
+    </div>
     </div>
     <div class="horizontal-div tasmii-main gap-20" (click)="reset()">
     <app-quran-book2

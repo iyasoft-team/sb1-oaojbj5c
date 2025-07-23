@@ -1,9 +1,9 @@
-<div class="evaluation-menu white-rounded-shd" *ngIf="selectedTajweedChar">
+<div class="evaluation-menu white-rounded-shd">
   <h3 class="rule-main">Tajweed evaluation</h3>
   <h3 class="rule-title">{{ selectedRule?.Name }}</h3>
   <h3 class="rule-title">{{ selectedTajweedChar?.text }}</h3>
 
-  <label class="error-label" id="error-radio-group-label">Choisir l'erreur :</label>
+  <label *ngIf="selectedTajweedChar" class="error-label" id="error-radio-group-label">Choisir l'erreur :</label>
 
   <mat-radio-group
     aria-labelledby="error-radio-group-label"

@@ -126,7 +126,6 @@ mat-expansion-panel {
   min-width: 300px;
 }
 .main-session-container {
-  padding: 24px;
   background: #f5f5f5;
 }
 .white-container {
@@ -138,4 +137,5 @@ mat-expansion-panel {
 }
 .header-card {
   margin-bottom: 16px;
+  margin-left: 10px;
 }

@@ -1,0 +1,63 @@
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 24px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.header-title .header-text {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #0f4c75;
+  margin: 0;
+}
+
+.toggle-section {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+  color: #0f4c75;
+  font-family: 'Amiri', serif;
+}
+
+.toggle-section span {
+  font-size: 14px;
+  opacity: 0.6;
+}
+
+.toggle-section .active-mode {
+  font-weight: 600;
+  opacity: 1;
+}
+
+.styled-toggle {
+  transform: scale(1.2);
+}
+
+/* Blinking homework button */
+.blink-homework-btn {
+  color: #b71c1c;
+  background-color: #ffe5e5;
+  animation: blinkLightRed 1s infinite;
+  font-weight: 500;
+  border-radius: 4px;
+  padding: 6px 14px;
+  border: 1px solid #ffcdd2;
+  transition: background-color 0.3s ease;
+}
+
+/* Blinking effect */
+@keyframes blinkLightRed {
+  0%, 100% {
+    background-color: #ffe5e5;
+    border-color: #ffcdd2;
+  }
+  50% {
+    background-color: #ffbdbd;
+    border-color: #ff9999;
+  }
+}
+
