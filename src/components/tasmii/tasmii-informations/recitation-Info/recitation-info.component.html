@@ -6,9 +6,13 @@
   </button>
 
   <div [class.open]="isOpen" class="history-menu">
-    <div class="recitation-item" *ngFor="let item of dummyHistory">
-      <mat-icon class="history-icon">book</mat-icon>
-      <div class="recitation-text">{{ item }}</div>
+    <div class="recitation-row" *ngFor="let r of recitations">
+      <mat-icon class="book-icon">book</mat-icon>
+      <div class="recitation-details">
+        <div class="surah-name">Sourate {{ r.surah }}</div>
+        <div class="ayah-range">Ayah {{ r.ayahStart }} → {{ r.ayahEnd }}</div>
+      </div>
+      <span class="rating" [ngClass]="r.rating">{{ r.rating | titlecase }}</span>
     </div>
   </div>
 </div>

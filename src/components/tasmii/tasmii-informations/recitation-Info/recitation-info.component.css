@@ -7,34 +7,35 @@
   border-radius: 10px;
   padding: 6px 12px;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  font-weight: 500;
 }
 
-/* Dropdown with transition */
 .history-menu {
   position: absolute;
   top: 100%;
   left: 0;
   z-index: 1000;
   background: white;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
   border-radius: 8px;
   margin-top: 4px;
-  padding: 0 0;
-  width: 300px;
-
-  /* Collapsing animation */
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease, padding 0.3s ease;
-}
-
-/* Open state */
-.history-menu.open {
+  width: 420px; /* wider dropdown */
   max-height: 250px;
-  padding: 8px 0;
   overflow-y: auto;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  padding: 8px 0;
+  transition: all 0.3s ease;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
 }
 
+.history-menu.open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Scrollbar */
 .history-menu::-webkit-scrollbar {
   width: 6px;
 }
@@ -43,14 +44,60 @@
   border-radius: 4px;
 }
 
-.recitation-item {
+/* Recitation Item */
+.recitation-row {
   display: flex;
   align-items: center;
-  padding: 6px 12px;
-  font-size: 14px;
+  justify-content: space-between;
+  padding: 8px 12px;
+  border-bottom: 1px solid #f0f0f0;
 }
 
-.history-icon {
-  margin-right: 8px;
+.recitation-row:last-child {
+  border-bottom: none;
+}
+
+.book-icon {
   color: #0f4c75;
+  margin-right: 8px;
+  font-size: 22px;
+}
+
+.recitation-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-left: 8px;
+}
+
+.surah-name {
+  font-weight: 600;
+  color: #333;
+}
+
+.ayah-range {
+  font-size: 13px;
+  color: #777;
+}
+
+/* Ratings with colors */
+.rating {
+  font-size: 13px;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 6px;
+  text-transform: capitalize;
+}
+
+.rating.good {
+  background-color: #d4edda;
+  color: #2e7d32;
+}
+.rating.bad {
+  background-color: #f8d7da;
+  color: #c62828;
+}
+.rating.average {
+  background-color: #fff3cd;
+  color: #856404;
 }

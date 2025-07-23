@@ -17,17 +17,14 @@ import { MatIconModule } from '@angular/material/icon';
 export class RecitationInfoComponent {
   isOpen = false;
 
-  dummyHistory: string[] = [
-    'Sourate Al-Baqara : Ayah 10 → Ayah 20',
-    'Sourate Al-Kahf : Ayah 1 → Ayah 10',
-    'Sourate Yasin : Ayah 30 → Ayah 40',
-    'Sourate Al-Baqara : Ayah 10 → Ayah 20',
-    'Sourate Al-Kahf : Ayah 1 → Ayah 10',
-    'Sourate Yasin : Ayah 30 → Ayah 40',
-    'Sourate Al-Baqara : Ayah 10 → Ayah 20',
-    'Sourate Al-Kahf : Ayah 1 → Ayah 10',
-    'Sourate Yasin : Ayah 30 → Ayah 40'
-  ];
+recitations = [
+  { surah: 'Al-Baqara', ayahStart: 10, ayahEnd: 20, rating: 'good' },
+  { surah: 'Al-Kahf', ayahStart: 1, ayahEnd: 10, rating: 'bad' },
+  { surah: 'Yasin', ayahStart: 30, ayahEnd: 40, rating: 'good' },
+  { surah: 'An-Nisa', ayahStart: 5, ayahEnd: 8, rating: 'average' },
+  { surah: 'Maryam', ayahStart: 15, ayahEnd: 22, rating: 'good' },
+  { surah: 'Taha', ayahStart: 100, ayahEnd: 110, rating: 'bad' },
+];
 
   toggleDropdown() {
     this.isOpen = !this.isOpen;
