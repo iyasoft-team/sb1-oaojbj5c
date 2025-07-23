@@ -2,7 +2,7 @@
   <!-- Header inside white card -->
  <app-tasmii-header></app-tasmii-header>
 
-<div class="main-content" [style.margin-left]="sidebarCollapsed ? '60px' : '280px'">
+<div class="main-content">
 <div class="tasmii-container">
  <!-- <mat-expansion-panel>
   <mat-expansion-panel-header>
@@ -35,7 +35,7 @@
       <app-recitation-info></app-recitation-info>
     </div>
     </div>
-    <div class="horizontal-div tasmii-main gap-20" (click)="reset()">
+    <div style="justify-content: center;" class="horizontal-div tasmii-main gap-20 " (click)="reset()">
     <app-quran-book2
       [startAyahNumber]="session.startAyah === 0 ? 1 : session.startAyah"
       [startSurahNumber]="session.startSurah === 0 ? 1 : session.startSurah"

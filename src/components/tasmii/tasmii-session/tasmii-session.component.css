@@ -117,8 +117,11 @@ mat-expansion-panel {
 }
 .info-section-wrapper {
     display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    flex-direction: row;
+    width: 100%;
 }
 .info-section-wrapper app-student-info,
 .info-section-wrapper app-recitation-info {

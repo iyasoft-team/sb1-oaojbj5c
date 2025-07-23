@@ -1,20 +1,14 @@
-<mat-expansion-panel class="history-panel">
-  <mat-expansion-panel-header>
-    <mat-panel-title>
-      <mat-slide-toggle [(ngModel)]="isRevision" color="primary">
-        {{ isRevision ? 'Révision' : 'Apprentissage' }}
-      </mat-slide-toggle>
-    </mat-panel-title>
-    <mat-panel-description>
-      Historique des récitations
-    </mat-panel-description>
-  </mat-expansion-panel-header>
+<div class="history-dropdown">
+  <button mat-button class="history-toggle" (click)="toggleDropdown()">
+    <mat-icon class="history-icon">history</mat-icon>
+    Historique des récitations
+    <mat-icon>{{ isOpen ? 'expand_less' : 'expand_more' }}</mat-icon>
+  </button>
 
-  <!-- Scrollable Content Area -->
-  <div class="recitation-history">
+  <div [class.open]="isOpen" class="history-menu">
     <div class="recitation-item" *ngFor="let item of dummyHistory">
       <mat-icon class="history-icon">book</mat-icon>
       <div class="recitation-text">{{ item }}</div>
     </div>
   </div>
-</mat-expansion-panel>
+</div>

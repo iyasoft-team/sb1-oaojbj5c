@@ -52,6 +52,25 @@ namespace QuranApi.Controllers
             return recitation;
         }
 
+        [HttpGet("GetRecitationsByStudentID/{id}")]
+        public async Task<ActionResult<IEnumerable<Recitation>>> GetStudentOldRecitations(int id)
+        {
+            var recitations = await _context.Recitations
+                .Where(r => r.StudentId == id)
+                .Include(r => r.Student)
+                .ToListAsync();
+
+            foreach (var recitation in recitations)
+            {
+                if (recitation.Student?.ProfileImageUrl != null)
+                {
+                    recitation.Student.ProfileImageUrl = $"{Request.Scheme}://{Request.Host}/{recitation.Student.ProfileImageUrl}";
+                }
+            }
+
+            return recitations;
+        }
+
         [HttpPut("{id}")]
         public async Task<IActionResult> PutRecitation(int id, Recitation recitation)
         {

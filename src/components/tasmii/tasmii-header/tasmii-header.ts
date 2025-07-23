@@ -3,13 +3,15 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatButtonModule } from '@angular/material/button';
+import { RecitationInfoComponent } from '../tasmii-informations/recitation-Info/recitation-info.component';
 
 @Component({
   selector: 'app-tasmii-header',
   imports: [
     FormsModule,
     MatButtonModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    RecitationInfoComponent
   ],
   templateUrl: './tasmii-header.html',
   styleUrl: './tasmii-header.css'
