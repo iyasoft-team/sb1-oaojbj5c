@@ -19,14 +19,14 @@
       <mat-card-content>
         <div class="session-details">
           <div class="detail-item">
-            <mat-icon>event</mat-icon>
-            <ng-container *ngIf="session.title; else showStatus">
-              <span>Planifié le :{{ session.date | date: 'EEEE, MMMM d' }}</span>
-            </ng-container>
-            <ng-template #showStatus>
-              {{ formatStatus(session.status) }}
-            </ng-template>
-          </div>
+  <mat-icon>event</mat-icon>
+  <ng-container *ngIf="areAllRecitationsFinished(session); else plannedText">
+    <span class="session-ended-text">Session terminée</span>
+  </ng-container>
+  <ng-template #plannedText>
+    <span>Planifié le :{{ session.date | date: 'EEEE, MMMM d' }}</span>
+  </ng-template>
+</div>
           <div class="detail-item">
             <mat-icon>schedule</mat-icon>
             <span>{{ session.date | date:'shortTime' }}</span>
@@ -49,14 +49,26 @@
       </mat-card-content>
 
       <mat-card-actions>
-        <button 
-          mat-raised-button 
-          color="primary" 
-          [disabled]="!isToday(session.date)"
-          (click)="onStartSession(session)">
-          <mat-icon>play_arrow</mat-icon>
-          {{ translations.startSession }}
-        </button>
+          <ng-container *ngIf="areAllRecitationsFinished(session); else startButton">
+          <button 
+            mat-raised-button 
+            color="primary"
+            (click)="onViewNotes(session)">
+            <mat-icon>visibility</mat-icon>
+            Voir détails
+          </button>
+        </ng-container>
+
+        <ng-template #startButton>
+          <button 
+            mat-raised-button 
+            color="primary" 
+            [disabled]="!isToday(session.date)"
+            (click)="onStartSession(session)">
+            <mat-icon>play_arrow</mat-icon>
+            {{ translations.startSession }}
+          </button>
+        </ng-template>
 
         <button 
           mat-stroked-button 
@@ -65,10 +77,12 @@
           <mat-icon>notes</mat-icon>
           {{ translations.viewNotes }}
         </button>
-          <button 
+         <button 
           mat-icon-button 
           color="accent" 
-          (click)="onEditSession(session)">
+          matTooltip="Impossible de modifier une session terminée"
+          (click)="onEditSession(session)"
+          [disabled]="areAllRecitationsFinished(session)">
           <mat-icon>edit</mat-icon>
         </button>
         <button 

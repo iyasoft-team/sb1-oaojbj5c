@@ -23,6 +23,11 @@
         <mat-slide-toggle [(ngModel)]="isRevision" color="accent" class="styled-toggle"></mat-slide-toggle>
         <span [class.active-mode]="isRevision">Révision</span>
       </div>
+      <div class="toggle-section">
+        <span [class.active-mode]="!isTajweedSelected">selection par mot</span>
+        <mat-slide-toggle [(ngModel)]="isTajweedSelected" color="primary"></mat-slide-toggle>
+        <span [class.active-mode]="isTajweedSelected">selection par Tajweed lettre</span>
+      </div>
       <div class="buttons-display">
       <!-- Homework button -->
       <button mat-raised-button class="blink-save-btn" (click)="openSaveRecitationModal()">

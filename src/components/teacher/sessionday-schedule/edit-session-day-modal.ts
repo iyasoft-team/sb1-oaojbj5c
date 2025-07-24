@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Inject, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
@@ -96,7 +96,7 @@ export class EditSessionDayModal {
     // ✅ Added 'title' to form group
     this.step1Form = this.fb.group({
       title: [data.title ?? ''],
-      sessionDate: [dateObj],
+      sessionDate: [dateObj, Validators.required],
       startTime: [startTimeString]
     });
 

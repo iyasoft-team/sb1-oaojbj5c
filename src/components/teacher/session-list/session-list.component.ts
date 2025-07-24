@@ -12,6 +12,7 @@ import { SessionDay, Status } from '../../../models/Sessions.model';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ScheduleSessionModalComponent } from '../schedule-session/schedule-session-modal.component';
 import { EditSessionDayModal } from '../sessionday-schedule/edit-session-day-modal';
+import { SessionDayService } from '../../../services/session-day.service';
 
 
 @Component({
@@ -28,7 +29,7 @@ export class SessionListComponent {
 
   translations: Translation;
   
-  constructor(private languageService: LanguageService,private dialog: MatDialog) {
+  constructor(private languageService: LanguageService,private dialog: MatDialog , private sessionDayService : SessionDayService ) {
     this.translations = this.languageService.getTranslations();
     this.languageService.translations$.subscribe(translations => {
       this.translations = translations;
@@ -86,6 +87,9 @@ export class SessionListComponent {
 
   onDeleteSession(session: SessionDay): void {
     this.sessionAction.emit({ action: 'delete', session });
+    this.sessionDayService.deleteSessionDay(session.id).subscribe(() => {
+     console.log('Session supprimée avec succès');
+});
   }
   // formatSurahAyah(session : SessionDay)
   // {
@@ -104,4 +108,8 @@ export class SessionListComponent {
       data: sessionDay
     });
   }
+  areAllRecitationsFinished(session: any): boolean {
+  if (!session.recitations || session.recitations.length === 0) return false;
+  return session.recitations.every(r => r.status === 1 || r.status === 2);
+}
 }

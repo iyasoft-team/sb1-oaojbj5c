@@ -28,7 +28,7 @@ export class TasmiiHomework {
   surahs = [
   { number: 1, name: 'Al-Fatiha', ayahs: 7 },
   { number: 2, name: 'Al-Baqara', ayahs: 286 },
-  { number: 36, name: 'Yasin', ayahs: 83 }
+  { number: 36, name: 'Yassin', ayahs: 83 }
 ];
 
   selectedSurah = this.surahs[0];

@@ -25,5 +25,8 @@ export class SessionDayService {
   putSessionDay(id: number, sessionDay: SessionDay): Observable<void> {
     return this.http.put<void>(`${this.baseUrl}/${id}`, sessionDay);
   }
+   deleteSessionDay(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/${id}`);
+  }
 }
   

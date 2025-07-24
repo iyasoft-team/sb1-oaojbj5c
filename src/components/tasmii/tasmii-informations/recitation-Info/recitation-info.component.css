@@ -101,3 +101,28 @@
   background-color: #fff3cd;
   color: #856404;
 }
+.rating.good {
+  background-color: #d4edda;
+  color: #2e7d32;
+}
+
+.rating.very-good {
+  background-color: #c8e6c9;
+  color: #1b5e20;
+}
+
+.rating.perfect {
+  background-color: #bbdefb;
+  color: #0d47a1;
+}
+
+.rating.average {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.rating.bad {
+  background-color: #f8d7da;
+  color: #c62828;
+}
+

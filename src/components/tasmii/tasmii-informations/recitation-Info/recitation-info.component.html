@@ -12,7 +12,7 @@
         <div class="surah-name">Sourate {{ r.surah }}</div>
         <div class="ayah-range">Ayah {{ r.ayahStart }} → {{ r.ayahEnd }}</div>
       </div>
-      <span class="rating" [ngClass]="r.rating">{{ r.rating | titlecase }}</span>
+<span class="rating" [ngClass]="getRatingClass(r.rating)">{{ r.rating | titlecase }}</span>
     </div>
   </div>
 </div>

@@ -235,3 +235,7 @@ mat-card-actions .mat-mdc-stroked-button mat-icon {
   border: 1px solid #ddd; /* Optional: light border for clarity */
   vertical-align: middle;
 }
+.session-ended-text {
+  color: #4caf50;
+  font-weight: 500;
+}

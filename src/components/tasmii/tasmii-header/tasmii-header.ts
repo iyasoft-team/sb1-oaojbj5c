@@ -31,6 +31,7 @@ export class TasmiiHeader {
     sessionId : number ; 
     studentName: string = "Nom de l'étudiant";
     isRevision: boolean = false;
+    isTajweedSelected : boolean = false 
     constructor(private dialog: MatDialog , private router : Router , private recitationService : RecitationService) {}
 ngOnInit() {
     this.sessionId = this.recitation.sessionId
