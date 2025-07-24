@@ -1,6 +1,6 @@
 <div class="main-session-container">
   <!-- Header inside white card -->
- <app-tasmii-header></app-tasmii-header>
+ <app-tasmii-header *ngIf="session" [recitation]="session"></app-tasmii-header>
 
 <div class="main-content">
 <div class="tasmii-container">
@@ -35,7 +35,7 @@
       <app-recitation-info></app-recitation-info>
     </div>
     </div>
-    <div style="justify-content: center;" class="horizontal-div tasmii-main gap-20 " (click)="reset()">
+    <div style="justify-content: space-evenly;" class="horizontal-div tasmii-main gap-20 " (click)="reset()">
     <app-quran-book2
       [startAyahNumber]="session.startAyah === 0 ? 1 : session.startAyah"
       [startSurahNumber]="session.startSurah === 0 ? 1 : session.startSurah"

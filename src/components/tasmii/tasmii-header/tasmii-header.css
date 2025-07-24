@@ -34,7 +34,7 @@
 }
 
 .styled-toggle {
-  transform: scale(1.2);
+  transform: scale(1.2) !important;
 }
 
 /* Blinking homework button */
@@ -60,4 +60,10 @@
     border-color: #ff9999;
   }
 }
-
+.buttons-display
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}

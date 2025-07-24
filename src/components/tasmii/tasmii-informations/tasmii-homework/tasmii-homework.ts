@@ -26,11 +26,10 @@ import { MatSelect, MatSelectModule } from '@angular/material/select';
 })
 export class TasmiiHomework {
   surahs = [
-    { name: 'Al-Fatiha', ayahs: 7 },
-    { name: 'Al-Baqara', ayahs: 286 },
-    { name: 'Yasin', ayahs: 83 }
-    // Add more as needed
-  ];
+  { number: 1, name: 'Al-Fatiha', ayahs: 7 },
+  { number: 2, name: 'Al-Baqara', ayahs: 286 },
+  { number: 36, name: 'Yasin', ayahs: 83 }
+];
 
   selectedSurah = this.surahs[0];
   selectedStart: number | null = null;
@@ -73,12 +72,12 @@ export class TasmiiHomework {
   }
 
   confirm() {
-    this.dialogRef.close({
-      surah: this.selectedSurah.name,
-      start: this.selectedStart,
-      end: this.selectedEnd
-    });
-  }
+  this.dialogRef.close({
+    surahNumber: this.selectedSurah.number,
+    start: this.selectedStart,
+    end: this.selectedEnd
+  });
+}
 
   cancel() {
     this.dialogRef.close(null);

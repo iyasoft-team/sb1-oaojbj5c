@@ -19,8 +19,20 @@ getRecitationsBySessionID(Id : string): Observable<Recitation[]> {
 getRecitationByID(Id : string) : Observable<Recitation> {
 
     return this.http.get<Recitation>(`${this.apiUrl}/GetRecitationByID/`+Id)
-
 }
-  
-
+updateRecitationStatus(id: number, status: number): Observable<void> {
+  return this.http.patch<void>(`${this.apiUrl}/${id}/status`, status, {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  });
 }
+ updateRecitationHomework(id: number, homework: UpdateHomeworkDto): Observable<void> {
+    return this.http.patch<void>(`${this.apiUrl}/${id}/homework`, homework, {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    });
+  }
+}
+export interface UpdateHomeworkDto {
+  scheduledSurah: number;
+  scheduledAyah: number;
+}
+

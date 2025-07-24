@@ -41,11 +41,11 @@ ngOnInit(): void {
     const chars = [...word];
 
     for (let i = 0; i < chars.length; i++) {
-      const char = chars[i];
+      var char = chars[i];
       const rule = ayah.annotations?.find(
         ann => ann.wordIndex === wordIndex && (ann.start === i || ann.end === i)
       );
-
+      if((char=="ٲ") && (rule!=null)) {char="ا"}
       const activeRule = (pendingRule && pendingRule.wordIndex !== wordIndex) ? pendingRule : rule;
       
       const ruleClass = activeRule ? this.getTajweedClass(activeRule.rule) : '';

@@ -39,7 +39,7 @@ namespace QuranModels
     public enum ParticipationStatus
     {
         Pending,
-        Done,
+        Finished,
         Canceled
     }
     public class ParticipationTemplateDto

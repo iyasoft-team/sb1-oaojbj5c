@@ -34,4 +34,9 @@ namespace QuranModels
         public Student? Student { get; set; }
 
     }
+    public class UpdateHomeworkDto
+    {
+        public int ScheduledSurah { get; set; }
+        public int ScheduledAyah { get; set; }
+    }
 }

@@ -1,16 +1,23 @@
 <div class="main-session-container">
   <!-- Header inside white card -->
   <div class="white-container header-card">
-    <header class="dashboard-header">
-      <div class="header-content">
-        <div class="header-title">
-          <div class="title-group">
-            <h1>{{ session?.title ?? "Séance tasmii d'aujourd'hui" }}</h1>
-          </div>
+  <header class="dashboard-header">
+    <div class="header-content">
+      <div class="header-title">
+        <div class="title-group">
+          <h1>{{ session?.title ?? "Séance tasmii d'aujourd'hui" }}</h1>
         </div>
       </div>
-    </header>
-  </div>
+
+      <div class="header-actions">
+      <button mat-raised-button color="primary" class="actions-button" (click)="ReturnToSessions()">
+  Terminer la séance
+</button>
+      </div>
+    </div>
+  </header>
+</div>
+
 
   <!-- Content in white container -->
   <div class="white-container">
@@ -41,34 +48,43 @@
           </div>
 
           <!-- Actions -->
-<div class="status-chip-group">
-  <button mat-icon-button aria-label="Démarrer" (click)="StartTasmii(participant)" class="start-btn">
-    <mat-icon>play_arrow</mat-icon>
-  </button>
+          <div class="status-chip-group">
+            <!-- Start Button -->
+            <button
+              mat-icon-button
+              aria-label="Démarrer"
+              (click)="StartTasmii(participant)"
+              class="start-btn"
+              [disabled]="participant.status === 1 || participant.status === 2"
+            >
+              <mat-icon>play_arrow</mat-icon>
+            </button>
 
-  <mat-chip
-    class="status-chip"
-    [ngClass]="{
-      'pending-chip': participant.status == 0,
-      'completed-chip': participant.status == 1,
-      'canceled-chip': participant.status == 2
-    }"
-    selected
-    [matMenuTriggerFor]="menu"
-  >
-    {{ getStatusLabelFr(participant.status) }}
-  </mat-chip>
+            <!-- Status Chip -->
+            <mat-chip
+              class="status-chip"
+              [ngClass]="{
+                'pending-chip': participant.status == 0,
+                'completed-chip': participant.status == 1,
+                'canceled-chip': participant.status == 2
+              }"
+              selected
+              [matMenuTriggerFor]="participant.status !== 1 ? menu : null"
+            >
+              {{ getStatusLabelFr(participant.status) }}
+            </mat-chip>
 
-  <mat-menu #menu="matMenu">
-    <button mat-menu-item (click)="updateStatus(participant, 0)">En attente</button>
-    <button mat-menu-item (click)="updateStatus(participant, 2)">Annulée</button>
-  </mat-menu>
+            <!-- Status Menu -->
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="updateStatus(participant, 0)">En attente</button>
+              <button mat-menu-item (click)="updateStatus(participant, 2)">Annulée</button>
+            </mat-menu>
 
-  <button mat-icon-button class="whatsapp-btn">
-    <mat-icon svgIcon="whatsapp"></mat-icon>
-  </button>
-</div>
-
+            <!-- WhatsApp Button -->
+            <button mat-icon-button class="whatsapp-btn">
+              <mat-icon svgIcon="whatsapp"></mat-icon>
+            </button>
+          </div>
 
         </div>
       </div>

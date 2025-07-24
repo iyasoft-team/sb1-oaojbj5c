@@ -1,0 +1,20 @@
+<div class="save-modal">
+  <h2 class="modal-title">
+    <mat-icon class="modal-icon">assignment</mat-icon>
+    Finaliser la récitation
+  </h2>
+
+  <label class="remark-label" for="remark">Remarques du professeur :</label>
+  <textarea
+    id="remark"
+    [(ngModel)]="remarque"
+    placeholder="Optionnel : Écrivez ici vos remarques ..."
+    rows="5"
+    class="remark-textarea"
+  ></textarea>
+
+  <div class="modal-actions">
+    <button mat-raised-button class="cancel-btn" (click)="cancel()">Annuler</button>
+    <button mat-raised-button color="primary" class="save-btn" (click)="save()">Enregistrer</button>
+  </div>
+</div>

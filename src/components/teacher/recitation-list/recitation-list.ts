@@ -69,6 +69,10 @@ getStatusLabelFr(status: number): string {
 updateStatus(participant: any, newStatus: number) {
   participant.status = newStatus;
 }
+ReturnToSessions()
+{
+  this.router.navigateByUrl('/teacher/sessions');
+}
 }
 
 

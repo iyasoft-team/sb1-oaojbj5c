@@ -15,19 +15,24 @@
     <div class="header-content">
       <!-- Title -->
       <div class="header-title">
-        <h1 class="header-text">Tasmii de {{ studentName }}</h1>
+        <h1 class="header-text">Tasmii de {{ recitation.student.fullName }}</h1>
       </div>
       <!-- Center toggle -->
       <div class="toggle-section">
-        <span [class.active-mode]="!isRevision">Apprentissage</span>
+        <span [class.active-mode]="!isRevision">Recitation</span>
         <mat-slide-toggle [(ngModel)]="isRevision" color="accent" class="styled-toggle"></mat-slide-toggle>
         <span [class.active-mode]="isRevision">Révision</span>
       </div>
-
+      <div class="buttons-display">
       <!-- Homework button -->
-      <button mat-raised-button class="blink-homework-btn"(click)="openModalHomework()">
+      <button mat-raised-button class="blink-save-btn" (click)="openSaveRecitationModal()">
+        Finaliser Recitation
+      </button>
+      <!-- Homework button -->
+      <button mat-raised-button class="blink-homework-btn" (click)="openModalHomework()">
         Préparer Homework
       </button>
+      </div>
     </div>
   </header>
 </div>

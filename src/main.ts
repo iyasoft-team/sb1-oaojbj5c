@@ -75,9 +75,9 @@ export class App {
       this.menuItems = [
         { id: 'dashboard', label: 'Dashboard', arabicLabel: 'لوحة التحكم', icon: 'dashboard' },
         { id: 'sessions', label: 'Sessions', arabicLabel: 'الجلسات', icon: 'event' },
-        { id: 'students', label: 'Students', arabicLabel: 'الطلاب', icon: 'people' },
+        { id: 'students', label: 'Etudants', arabicLabel: 'الطلاب', icon: 'people' },
         { id: 'reports', label: 'Reports', arabicLabel: 'التقارير', icon: 'assessment' },
-        { id: 'settings', label: 'Settings', arabicLabel: 'الإعدادات', icon: 'settings' }
+        { id: 'settings', label: 'Parametres', arabicLabel: 'الإعدادات', icon: 'settings' }
       ];
     } else if (role === 'student') {
       this.menuItems = [

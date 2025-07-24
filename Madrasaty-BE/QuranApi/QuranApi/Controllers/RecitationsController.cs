@@ -127,5 +127,46 @@ namespace QuranApi.Controllers
         {
             return _context.Recitations.Any(e => e.Id == id);
         }
+
+        [HttpPatch("{id}/status")]
+        public async Task<IActionResult> UpdateRecitationStatus(int id, [FromBody] ParticipationStatus status)
+        {
+            var recitation = await _context.Recitations.FindAsync(id);
+            if (recitation == null)
+                return NotFound();
+
+            recitation.Status = status;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+                return NoContent();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                return StatusCode(500, "A concurrency error occurred.");
+            }
+        }
+        
+        [HttpPatch("{id}/homework")]
+        public async Task<IActionResult> UpdateRecitationHomework(int id, [FromBody] UpdateHomeworkDto homework)
+        {
+            var recitation = await _context.Recitations.FindAsync(id);
+            if (recitation == null)
+                return NotFound();
+
+            recitation.ScheduledSurah = homework.ScheduledSurah;
+            recitation.ScheduledAyah = homework.ScheduledAyah;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+                return NoContent();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                return StatusCode(500, "A concurrency error occurred while saving homework.");
+            }
+        }
     }
 }
