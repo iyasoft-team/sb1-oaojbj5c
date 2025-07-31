@@ -52,10 +52,26 @@ namespace QuranApi.Controllers
         public async Task<ActionResult<SessionDay>> GetSessionDayByID(int id)
         {
             var sessionDay = await _context.SessionDays
+                .Include(t => t.Recitations)
+                .ThenInclude(p => p.Student)
                 .FirstOrDefaultAsync(t => t.Id == id);
 
             if (sessionDay == null)
                 return NotFound();
+
+            // Inject base URL into student profile image URLs
+            var baseUrl = $"{Request.Scheme}://{Request.Host}/";
+
+            foreach (var participant in sessionDay.Recitations)
+            {
+                var student = participant.Student;
+                if (student != null &&
+                    !string.IsNullOrEmpty(student.ProfileImageUrl) &&
+                    !student.ProfileImageUrl.StartsWith("http"))
+                {
+                    student.ProfileImageUrl = baseUrl + student.ProfileImageUrl.TrimStart('/');
+                }
+            }
 
             return sessionDay;
         }
