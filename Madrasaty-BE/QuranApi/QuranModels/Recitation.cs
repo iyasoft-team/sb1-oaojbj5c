@@ -39,4 +39,9 @@ namespace QuranModels
         public int ScheduledSurah { get; set; }
         public int ScheduledAyah { get; set; }
     }
+    public class AddRecitationMinimalDto
+    {
+        public int StudentId { get; set; }
+        public int DurationMinutes { get; set; }
+    }
 }

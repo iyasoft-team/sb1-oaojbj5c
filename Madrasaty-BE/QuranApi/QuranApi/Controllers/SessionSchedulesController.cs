@@ -142,7 +142,7 @@ namespace QuranApi.Controllers
             _context.SessionDays.AddRange(sessionDays);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetSessionSchedule", new { id = newScheduledSession.Id });
+            return Ok(newScheduledSession);
         }
 
         [HttpDelete("{id}")]

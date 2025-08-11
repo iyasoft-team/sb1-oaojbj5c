@@ -163,6 +163,55 @@ namespace QuranApi.Controllers
             return NoContent();
         }
 
+        [HttpPut("UpdateParticipantsInExistingSessionDay/{id}")]
+        public async Task<IActionResult> AppendRecitationsToSessionDay(int id, [FromBody] List<AddRecitationMinimalDto> newParticipants)
+        {
+            if (newParticipants == null || newParticipants.Count == 0)
+                return BadRequest("At least one recitation must be provided.");
+
+            var sessionDay = await _context.SessionDays
+                .Include(sd => sd.Recitations)
+                .FirstOrDefaultAsync(sd => sd.Id == id);
+
+            if (sessionDay == null)
+                return NotFound($"SessionDay with id {id} not found.");
+
+            // Get the last end time from existing recitations
+            DateTime lastEndTime = sessionDay.Recitations?
+                .OrderByDescending(r => r.StartTime)
+                .Select(r => r.StartTime.AddMinutes(r.DurationMinutes))
+                .FirstOrDefault()
+                ?? sessionDay.Date.Date.AddHours(8); // fallback: 08:00 AM
+
+            foreach (var dto in newParticipants)
+            {
+                if (dto.DurationMinutes <= 0)
+                    return BadRequest("DurationMinutes must be > 0");
+
+                var newRec = new Recitation
+                {
+                    StudentId = dto.StudentId,
+                    StartSurah = 0,
+                    StartAyah = 0,
+                    ScheduledSurah = 0,
+                    ScheduledAyah = 0,
+                    StartTime = lastEndTime,
+                    DurationMinutes = dto.DurationMinutes,
+                    Status = ParticipationStatus.Pending, // or default
+                    SessionId = id
+                };
+
+                lastEndTime = newRec.StartTime.AddMinutes(newRec.DurationMinutes);
+
+                _context.Recitations.Add(newRec);
+            }
+
+            await _context.SaveChangesAsync();
+
+            return Ok("Recitations added successfully.");
+        }
+
+
         private bool SessionDayExists(int id)
         {
             return _context.SessionDays.Any(e => e.Id == id);
