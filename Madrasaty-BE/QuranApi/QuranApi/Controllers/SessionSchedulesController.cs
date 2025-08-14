@@ -142,8 +142,8 @@ namespace QuranApi.Controllers
             _context.SessionDays.AddRange(sessionDays);
             await _context.SaveChangesAsync();
 
-            return Ok(newScheduledSession);
-        }
+            return Ok(new { success = true });
+                }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteSessionSchedule(int id)

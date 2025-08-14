@@ -31,6 +31,8 @@ namespace QuranApi.Controllers
                          s.FullName,
                          s.Email,
                          s.BirthDate,
+                         s.Class,
+                         s.Professor,
                          ProfileImageUrl = $"{Request.Scheme}://{Request.Host}/{s.ProfileImageUrl}"
                      })
                     .ToListAsync();
@@ -45,6 +47,8 @@ namespace QuranApi.Controllers
                     student.Id,
                     student.FullName,
                     student.Email,
+                    student.Professor,
+                    student.Class,
                     LastEval = _context.AyahEvals
                         .Where(e => e.StudentId == student.Id)
                         .OrderByDescending(e => e.Id)

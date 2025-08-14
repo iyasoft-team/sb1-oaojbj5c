@@ -32,6 +32,9 @@ namespace QuranModels
 
 
         public Student? Student { get; set; }
+
+        [JsonIgnore]
+
         public SessionSchedule? SessionSchedule { get; set; }
     }
 

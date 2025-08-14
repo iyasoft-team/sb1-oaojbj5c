@@ -14,6 +14,8 @@ namespace QuranModels
         public string? Email { get; set; }
         public DateTime? BirthDate { get; set; }
         public string? ProfileImageUrl { get; set; }
+        public string Professor { get; set; } 
+        public string Class { get; set; }
     }
 
     public class StudentDto
@@ -23,5 +25,7 @@ namespace QuranModels
         public string? Email { get; set; }
         public DateTime? BirthDate { get; set; }
         public string? ProfileImageUrl { get; set; }
+        public string Professor { get; set; }
+        public string Class { get; set; }
     }
 }
