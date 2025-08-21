@@ -100,6 +100,35 @@ namespace QuranApi.Controllers
             return NoContent();
         }
 
+        [HttpPut("updatestudentRecitationStatus/{id}")]
+        public async Task<IActionResult> UpdateStudentRecitationStatus(int id, [FromBody] PresenceStatus isPresent)
+        {
+            var recitation = await _context.Recitations.FindAsync(id);
+
+            if (recitation == null)
+            {
+                return NotFound();
+            }
+            recitation.presenceStatus = isPresent;
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!RecitationExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
+        }
+
         [HttpPost]
         public async Task<ActionResult<Recitation>> PostRecitation(Recitation recitation)
         {
@@ -128,14 +157,14 @@ namespace QuranApi.Controllers
             return _context.Recitations.Any(e => e.Id == id);
         }
 
-        [HttpPatch("{id}/status")]
+        [HttpPatch("Updateworkflowstatus/{id}")]
         public async Task<IActionResult> UpdateRecitationStatus(int id, [FromBody] ParticipationStatus status)
         {
             var recitation = await _context.Recitations.FindAsync(id);
             if (recitation == null)
                 return NotFound();
 
-            recitation.Status = status;
+            recitation.participationStatus = status;
 
             try
             {
@@ -148,25 +177,25 @@ namespace QuranApi.Controllers
             }
         }
         
-        [HttpPatch("{id}/homework")]
-        public async Task<IActionResult> UpdateRecitationHomework(int id, [FromBody] UpdateHomeworkDto homework)
-        {
-            var recitation = await _context.Recitations.FindAsync(id);
-            if (recitation == null)
-                return NotFound();
+        //[HttpPatch("{id}/homework")]
+        //public async Task<IActionResult> UpdateRecitationHomework(int id, [FromBody] UpdateHomeworkDto homework)
+        //{
+        //    var recitation = await _context.Recitations.FindAsync(id);
+        //    if (recitation == null)
+        //        return NotFound();
 
-            recitation.ScheduledSurah = homework.ScheduledSurah;
-            recitation.ScheduledAyah = homework.ScheduledAyah;
+        //    recitation.ScheduledSurah = homework.ScheduledSurah;
+        //    recitation.ScheduledAyah = homework.ScheduledAyah;
 
-            try
-            {
-                await _context.SaveChangesAsync();
-                return NoContent();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                return StatusCode(500, "A concurrency error occurred while saving homework.");
-            }
-        }
+        //    try
+        //    {
+        //        await _context.SaveChangesAsync();
+        //        return NoContent();
+        //    }
+        //    catch (DbUpdateConcurrencyException)
+        //    {
+        //        return StatusCode(500, "A concurrency error occurred while saving homework.");
+        //    }
+        //}
     }
 }

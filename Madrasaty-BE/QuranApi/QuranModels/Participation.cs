@@ -12,7 +12,7 @@ namespace QuranModels
         public int Id { get; set; }
         public int StudentId { get; set; }
         public int SessionId { get; set; }
-        public ParticipationStatus Status { get; set; }      
+        
         public DateTime StartTime { get; set; }//the start hour scheduled for this student 
         public int DurationMinutes { get; set; }//how many minutes will the tasmii lasts 
         public Recitation? Tasmii { get; set; }
@@ -39,12 +39,7 @@ namespace QuranModels
     }
 
 
-    public enum ParticipationStatus
-    {
-        Pending,
-        Finished,
-        Canceled
-    }
+
     public class ParticipationTemplateDto
     {
         public int StudentId { get; set; }

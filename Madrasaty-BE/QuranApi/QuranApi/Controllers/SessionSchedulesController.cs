@@ -131,7 +131,8 @@ namespace QuranApi.Controllers
                     SessionId = sessionDay.Id, // will be correctly set after SaveChanges
                     StartTime = sessionDay.Date.Date.Add(template.StartTime.TimeOfDay),
                     DurationMinutes = template.DurationMinutes,
-                    Status = ParticipationStatus.Pending
+                    participationStatus = ParticipationStatus.InProgress,
+                    presenceStatus = PresenceStatus.Present
                 }).ToList();
 
                 sessionDay.Recitations = participants;
@@ -223,7 +224,9 @@ namespace QuranApi.Controllers
                     StudentId = pt.StudentId,
                     StartTime = date.Date.AddHours(pt.StartTime.Hour).AddMinutes(pt.StartTime.Minute),
                     DurationMinutes = pt.DurationMinutes,
-                    Status = ParticipationStatus.Pending // or default
+                    participationStatus = ParticipationStatus.InProgress ,  // or default
+                    presenceStatus = PresenceStatus.Present // or default
+
                 }).ToList()
             };
         }

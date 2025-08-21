@@ -1,0 +1,24 @@
+{
+  "dependencies": {
+    "apis1": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.ApiManagement/service/QuranApi-Prod/apis/QuranApi",
+      "type": "apis.azure"
+    },
+    "mssql1": {
+      "serviceConnectorResourceId": "/subscriptions/[parameters('subscriptionId')]/resourcegroups/[parameters('resourceGroupName')]/providers/Microsoft.Web/sites/Madrasaty-API/providers/Microsoft.ServiceLinker/linkers/ConnectionStringsSchoolDb_26BF498145",
+      "secretStore": "AzureAppSettings",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourcegroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/quranapi-schooldbserver/databases/QuranApi_db_School",
+      "type": "mssql.azure",
+      "connectionId": "ConnectionStrings:SchoolDb",
+      "dynamicId": null
+    },
+    "mssql2": {
+      "serviceConnectorResourceId": "/subscriptions/[parameters('subscriptionId')]/resourcegroups/[parameters('resourceGroupName')]/providers/Microsoft.Web/sites/Madrasaty-API/providers/Microsoft.ServiceLinker/linkers/ConnectionStringsQuranDb_8D73370C10",
+      "secretStore": "AzureAppSettings",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/quranapi-schooldbserver/databases/QuranApi_db_School",
+      "type": "mssql.azure",
+      "connectionId": "ConnectionStrings:QuranDb",
+      "dynamicId": null
+    }
+  }
+}

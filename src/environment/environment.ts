@@ -1,5 +1,5 @@
 export const environment = {
-  production: true, // change this manually to true for production
+  production: false, // change this manually to true for production
   apiUrl: '',
   basicAuth: {
     username: '',

@@ -26,7 +26,8 @@ namespace QuranApi.Controllers
         public async Task<ActionResult<IEnumerable<object>>> GetStudents()
         {
             return await _context.Students
-                     .Select(s => new {
+                     .Select(s => new
+                     {
                          s.Id,
                          s.FullName,
                          s.Email,

@@ -24,18 +24,26 @@ namespace QuranApi.Controllers
         [HttpGet("GetSessionDaysByTeacherID/{id}")]
         public async Task<ActionResult<IEnumerable<SessionDay>>> GetSessionDaysByTeacherID(int id)
         {
-
             var sessionDays = await _context.SessionDays
                 .Where(t => t.TeacherId == id)
                 .Include(t => t.Recitations)
-            .ThenInclude(p => p.Student)
-        .ToListAsync();
+                    .ThenInclude(p => p.Student)
+                .ToListAsync();
 
-            // Inject base URL into student profile image URLs
             var baseUrl = $"{Request.Scheme}://{Request.Host}/";
+
+            // Sort session days by closest to now
+            sessionDays = sessionDays
+                .OrderBy(d => (d.Date - DateTime.Now).Duration()) // smallest time difference first
+                .ToList();
 
             foreach (var day in sessionDays)
             {
+                // Optional: sort recitations by startTime ascending
+                day.Recitations = day.Recitations
+                    .OrderBy(r => r.StartTime)
+                    .ToList();
+
                 foreach (var participant in day.Recitations)
                 {
                     var student = participant.Student;
@@ -113,7 +121,9 @@ namespace QuranApi.Controllers
                     existingRec.StartTime = updatedRec.StartTime;
                     existingRec.DurationMinutes = updatedRec.DurationMinutes;
                     existingRec.StudentId = updatedRec.StudentId;
-                    existingRec.Status = updatedRec.Status;
+                    existingRec.participationStatus = updatedRec.participationStatus;
+                    existingRec.presenceStatus = updatedRec.presenceStatus;
+
                     // ... update other fields if needed
                 }
             }
@@ -163,53 +173,53 @@ namespace QuranApi.Controllers
             return NoContent();
         }
 
-        [HttpPut("UpdateParticipantsInExistingSessionDay/{id}")]
-        public async Task<IActionResult> AppendRecitationsToSessionDay(int id, [FromBody] List<AddRecitationMinimalDto> newParticipants)
-        {
-            if (newParticipants == null || newParticipants.Count == 0)
-                return BadRequest("At least one recitation must be provided.");
+        //[HttpPut("UpdateParticipantsInExistingSessionDay/{id}")]
+        //public async Task<IActionResult> AppendRecitationsToSessionDay(int id, [FromBody] List<AddRecitationMinimalDto> newParticipants)
+        //{
+        //    if (newParticipants == null || newParticipants.Count == 0)
+        //        return BadRequest("At least one recitation must be provided.");
 
-            var sessionDay = await _context.SessionDays
-                .Include(sd => sd.Recitations)
-                .FirstOrDefaultAsync(sd => sd.Id == id);
+        //    var sessionDay = await _context.SessionDays
+        //        .Include(sd => sd.Recitations)
+        //        .FirstOrDefaultAsync(sd => sd.Id == id);
 
-            if (sessionDay == null)
-                return NotFound($"SessionDay with id {id} not found.");
+        //    if (sessionDay == null)
+        //        return NotFound($"SessionDay with id {id} not found.");
 
-            // Get the last end time from existing recitations
-            DateTime lastEndTime = sessionDay.Recitations?
-                .OrderByDescending(r => r.StartTime)
-                .Select(r => r.StartTime.AddMinutes(r.DurationMinutes))
-                .FirstOrDefault()
-                ?? sessionDay.Date.Date.AddHours(8); // fallback: 08:00 AM
+        //    // Get the last end time from existing recitations
+        //    DateTime lastEndTime = sessionDay.Recitations?
+        //        .OrderByDescending(r => r.StartTime)
+        //        .Select(r => r.StartTime.AddMinutes(r.DurationMinutes))
+        //        .FirstOrDefault()
+        //        ?? sessionDay.Date.Date.AddHours(8); // fallback: 08:00 AM
 
-            foreach (var dto in newParticipants)
-            {
-                if (dto.DurationMinutes <= 0)
-                    return BadRequest("DurationMinutes must be > 0");
+        //    foreach (var dto in newParticipants)
+        //    {
+        //        if (dto.DurationMinutes <= 0)
+        //            return BadRequest("DurationMinutes must be > 0");
 
-                var newRec = new Recitation
-                {
-                    StudentId = dto.StudentId,
-                    StartSurah = 0,
-                    StartAyah = 0,
-                    ScheduledSurah = 0,
-                    ScheduledAyah = 0,
-                    StartTime = lastEndTime,
-                    DurationMinutes = dto.DurationMinutes,
-                    Status = ParticipationStatus.Pending, // or default
-                    SessionId = id
-                };
+        //        var newRec = new Recitation
+        //        {
+        //            StudentId = dto.StudentId,
+        //            StartSurah = 0,
+        //            StartAyah = 0,
+        //            ScheduledSurah = 0,
+        //            ScheduledAyah = 0,
+        //            StartTime = lastEndTime,
+        //            DurationMinutes = dto.DurationMinutes,
+        //            Status = ParticipationStatus.Pending, // or default
+        //            SessionId = id
+        //        };
 
-                lastEndTime = newRec.StartTime.AddMinutes(newRec.DurationMinutes);
+        //        lastEndTime = newRec.StartTime.AddMinutes(newRec.DurationMinutes);
 
-                _context.Recitations.Add(newRec);
-            }
+        //        _context.Recitations.Add(newRec);
+        //    }
 
-            await _context.SaveChangesAsync();
+        //    await _context.SaveChangesAsync();
 
-            return Ok("Recitations added successfully.");
-        }
+        //    return Ok("Recitations added successfully.");
+        //}
 
 
         private bool SessionDayExists(int id)
