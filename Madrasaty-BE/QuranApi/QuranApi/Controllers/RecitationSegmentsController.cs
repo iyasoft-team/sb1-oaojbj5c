@@ -40,6 +40,7 @@ namespace QuranApi.Controllers
         }
 
         [HttpGet("{id}")]
+       
         public async Task<ActionResult<RecitationSegment>> GetRecitationSegment(int id)
         {
             var recitationSegment = await _context.RecitationSegment.FindAsync(id);
@@ -51,6 +52,26 @@ namespace QuranApi.Controllers
 
             return recitationSegment;
         }
+        
+        [HttpGet("{sessionId}")]
+        public async Task<ActionResult<IEnumerable<RecitationSegmentDto>>> GetSessionPreviousRecitationSegments(int sessionId)
+        {
+            var segments = await _context.RecitationSegment
+           .Where(x=> x.RecitationId == sessionId)
+           .AsNoTracking()
+           .Select(s => new RecitationSegmentDto
+           {
+               Id = s.Id,
+               RecitationId = s.RecitationId,
+               Order = s.Order,
+               ActualFrom = s.ActualFrom,
+               ActualTo = s.ActualTo,
+               Mode = s.Mode
+           })
+           .ToListAsync();
+            return Ok(segments);
+        }
+
 
         // PUT: api/RecitationSegments/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754

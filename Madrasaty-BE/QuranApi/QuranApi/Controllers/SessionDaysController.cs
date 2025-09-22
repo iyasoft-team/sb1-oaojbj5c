@@ -24,10 +24,51 @@ namespace QuranApi.Controllers
         [HttpGet("GetSessionDaysByTeacherID/{id}")]
         public async Task<ActionResult<IEnumerable<SessionDay>>> GetSessionDaysByTeacherID(int id)
         {
+            DateTime refDate = DateTime.Now.Date;
+
             var sessionDays = await _context.SessionDays
                 .Where(t => t.TeacherId == id)
+                .Where(ti => ti.Date.Date >= refDate)
                 .Include(t => t.Recitations)
-                    .ThenInclude(p => p.Student)
+                 .ThenInclude(p => p.Student)
+                .ToListAsync();
+
+            var baseUrl = $"{Request.Scheme}://{Request.Host}/";
+
+            // Sort session days by closest to now
+            sessionDays = sessionDays
+                .OrderBy(d => (d.Date - DateTime.Now).Duration()) // smallest time difference first
+                .ToList();
+
+            foreach (var day in sessionDays)
+            {
+                // Optional: sort recitations by startTime ascending
+                day.Recitations = day.Recitations
+                    .OrderBy(r => r.StartTime)
+                    .ToList();
+
+                foreach (var participant in day.Recitations)
+                {
+                    var student = participant.Student;
+                    if (student != null && !string.IsNullOrEmpty(student.ProfileImageUrl) && !student.ProfileImageUrl.StartsWith("http"))
+                    {
+                        student.ProfileImageUrl = baseUrl + student.ProfileImageUrl.TrimStart('/');
+                    }
+                }
+            }
+
+            return sessionDays;
+        }
+        [HttpGet("GetPreviousSessionDaysByTeacherID/{id}")]
+        public async Task<ActionResult<IEnumerable<SessionDay>>> GetPreviousSessionDaysByTeacherID(int id)
+        {
+            DateTime refDate = DateTime.Now.Date;
+
+            var sessionDays = await _context.SessionDays
+                .Where(t => t.TeacherId == id)
+                .Where(ti => ti.Date.Date < refDate)
+                .Include(t => t.Recitations)
+                 .ThenInclude(p => p.Student)
                 .ToListAsync();
 
             var baseUrl = $"{Request.Scheme}://{Request.Host}/";
