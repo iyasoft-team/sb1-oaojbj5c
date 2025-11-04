@@ -1,0 +1,18 @@
+# build outputs
+bin/
+obj/
+
+# user files
+*.user
+*.suo
+
+# IDE folders
+.vscode/
+.idea/
+
+# version control
+.git/
+.gitignore
+
+# temporary / logs
+*.log
